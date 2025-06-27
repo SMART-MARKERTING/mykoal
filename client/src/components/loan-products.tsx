@@ -100,11 +100,18 @@ export default function LoanProducts() {
                     ))}
                   </div>
                   
-                  <Link href={product.link}>
-                    <Button className={`w-full ${product.buttonColor} text-white`}>
-                      Learn More
-                    </Button>
-                  </Link>
+                  <div className="space-y-3">
+                    <Link href={product.link}>
+                      <Button variant="outline" className="w-full border-gray-300 text-gray-700 hover:bg-gray-50">
+                        Learn More
+                      </Button>
+                    </Link>
+                    <a href="#contact">
+                      <Button className={`w-full ${product.buttonColor} text-white`}>
+                        Get Quote
+                      </Button>
+                    </a>
+                  </div>
                 </CardContent>
               </Card>
             );
