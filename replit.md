@@ -151,6 +151,7 @@ The application uses four main tables:
 - June 27, 2025. Created live market updates page with real-time mortgage rates from FRED API and Freddie Mac, news feeds from FOXBusiness and Mortgage News Daily RSS, MBS data from Mortgage News Daily, proper error handling for missing API keys with fallback to contact information
 - June 27, 2025. Optimized market updates page with top 3 FOX Business articles only, AI-generated "Mykoal's Market Insights" analyzing news impact on rates with urgency indicators, mobile-first responsive design, comprehensive SEO optimization, regulatory compliance disclaimers including FRED data source attribution and Equal Housing Opportunity statements
 - June 27, 2025. Refined market insights to be less aggressive about rate locking, more varied in content focus (investment opportunities, market trends, strategic positioning), with only one insight mentioning rate strategy instead of all three being rate-focused
+- June 27, 2025. Moved rates section below Mykoal's Market Insights on Market Updates page, added Equal Housing Opportunity logo and compliance text universally across entire website including footer, pre-qualification, debt consolidation, and market updates pages
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.

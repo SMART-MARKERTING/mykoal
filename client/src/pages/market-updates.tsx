@@ -134,6 +134,42 @@ export default function MarketUpdatesPage() {
             </p>
           </div>
 
+          {/* Mykoal's Market Insights */}
+          {marketData.insights && marketData.insights.length > 0 && (
+            <div className="mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 text-center">
+                Mykoal's Market Insights
+              </h2>
+              <div className="grid gap-4 md:gap-6">
+                {marketData.insights.map((insight) => (
+                  <Card key={insight.id} className={`shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 ${getRateImpactColor(insight.rateImpact)}`}>
+                    <CardHeader className="pb-3">
+                      <div className="flex items-center justify-between flex-wrap gap-2">
+                        <CardTitle className="text-lg md:text-xl text-gray-900 flex-1">
+                          {insight.title}
+                        </CardTitle>
+                        <div className="flex items-center gap-2">
+                          {getUrgencyIcon(insight.urgency)}
+                          <Badge variant="outline" className="text-xs">
+                            {insight.urgency.toUpperCase()} PRIORITY
+                          </Badge>
+                        </div>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <p className="text-gray-700 leading-relaxed mb-4 text-sm md:text-base">
+                        {insight.content}
+                      </p>
+                      <div className="text-xs md:text-sm text-gray-500 italic">
+                        Related to: {insight.relatedNews}
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Current Rates */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8">
             <Card className="bg-white shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-l-blue-600">
@@ -184,42 +220,6 @@ export default function MarketUpdatesPage() {
               </CardContent>
             </Card>
           </div>
-
-          {/* Mykoal's Market Insights */}
-          {marketData.insights && marketData.insights.length > 0 && (
-            <div className="mb-8">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 text-center">
-                Mykoal's Market Insights
-              </h2>
-              <div className="grid gap-4 md:gap-6">
-                {marketData.insights.map((insight) => (
-                  <Card key={insight.id} className={`shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 ${getRateImpactColor(insight.rateImpact)}`}>
-                    <CardHeader className="pb-3">
-                      <div className="flex items-center justify-between flex-wrap gap-2">
-                        <CardTitle className="text-lg md:text-xl text-gray-900 flex-1">
-                          {insight.title}
-                        </CardTitle>
-                        <div className="flex items-center gap-2">
-                          {getUrgencyIcon(insight.urgency)}
-                          <Badge variant="outline" className="text-xs">
-                            {insight.urgency.toUpperCase()} PRIORITY
-                          </Badge>
-                        </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="pt-0">
-                      <p className="text-gray-700 leading-relaxed mb-4 text-sm md:text-base">
-                        {insight.content}
-                      </p>
-                      <div className="text-xs md:text-sm text-gray-500 italic">
-                        Related to: {insight.relatedNews}
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          )}
 
           {/* Market News */}
           <div className="mb-8">
@@ -296,6 +296,12 @@ export default function MarketUpdatesPage() {
 
           {/* Compliance Footer */}
           <div className="mt-8 text-center">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <div className="w-8 h-8 bg-blue-600 text-white rounded flex items-center justify-center text-xs font-bold">
+                =
+              </div>
+              <span className="text-sm font-semibold text-gray-700">Equal Housing Opportunity</span>
+            </div>
             <p className="text-xs text-gray-500 leading-relaxed max-w-4xl mx-auto">
               Equal Housing Opportunity. All loans subject to credit approval. Rates, terms, and conditions are subject to change without notice. 
               This is not a commitment to lend. Licensed by the Department of Financial Protection and Innovation under the California Residential Mortgage Lending Act. 

@@ -110,6 +110,12 @@ export default function Footer() {
               <p>
                 All loans subject to credit approval. This is not a commitment to lend.
               </p>
+              <div className="flex items-center justify-center md:justify-start gap-2 mt-3">
+                <div className="w-6 h-6 bg-blue-600 text-white rounded flex items-center justify-center text-xs font-bold">
+                  =
+                </div>
+                <span className="text-xs text-gray-400">Equal Housing Opportunity</span>
+              </div>
             </div>
             
             <div className="text-sm text-gray-400 md:text-right">

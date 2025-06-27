@@ -474,6 +474,20 @@ export default function PreQualificationPage() {
                   </Button>
                 </Link>
               </div>
+
+              {/* Compliance Footer */}
+              <div className="mt-8 text-center border-t pt-6">
+                <div className="flex items-center justify-center gap-3 mb-3">
+                  <div className="w-6 h-6 bg-blue-600 text-white rounded flex items-center justify-center text-xs font-bold">
+                    =
+                  </div>
+                  <span className="text-sm font-semibold text-gray-700">Equal Housing Opportunity</span>
+                </div>
+                <p className="text-xs text-gray-500 leading-relaxed max-w-2xl mx-auto">
+                  Equal Housing Opportunity. This is not a commitment to lend. All loans subject to credit approval. 
+                  Rates, terms, and conditions are subject to change without notice. Mykoal DeShazo NMLS #1912347.
+                </p>
+              </div>
             </CardContent>
           </Card>
         </div>

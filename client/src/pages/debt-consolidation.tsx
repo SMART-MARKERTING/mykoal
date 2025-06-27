@@ -403,6 +403,20 @@ export default function DebtConsolidationPage() {
               </Button>
             </Link>
           </div>
+
+          {/* Compliance Footer */}
+          <div className="mt-12 text-center">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <div className="w-6 h-6 bg-blue-600 text-white rounded flex items-center justify-center text-xs font-bold">
+                =
+              </div>
+              <span className="text-sm font-semibold text-white">Equal Housing Opportunity</span>
+            </div>
+            <p className="text-xs text-white opacity-80 leading-relaxed max-w-3xl mx-auto">
+              Equal Housing Opportunity. All loans subject to credit approval. This is not a commitment to lend. 
+              Rates, terms, and conditions are subject to change without notice. Mykoal DeShazo NMLS #1912347.
+            </p>
+          </div>
         </div>
       </section>
     </div>
