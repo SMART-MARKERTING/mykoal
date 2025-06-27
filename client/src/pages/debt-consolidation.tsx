@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CheckCircle, ArrowLeft, Calculator, Plus, Trash2, CreditCard, Home, DollarSign } from "lucide-react";
 import { Link } from "wouter";
-import MortgageCalculator from "@/components/mortgage-calculator";
+import DebtConsolidationCalculator from "@/components/debt-consolidation-calculator";
 
 interface Debt {
   id: number;
@@ -266,18 +266,21 @@ export default function DebtConsolidationPage() {
         </div>
       </section>
 
-      {/* Integrated Loan Calculator */}
+      {/* Integrated Debt Consolidation Calculator */}
       <section className="py-16 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Consolidation Loan Calculator
+              Consolidation Loan Calculator & Savings Analysis
             </h2>
             <p className="text-lg text-gray-600">
-              See what your new consolidated payment could look like.
+              See your potential savings and payoff acceleration with debt consolidation.
             </p>
           </div>
-          <MortgageCalculator />
+          <DebtConsolidationCalculator 
+            totalDebtBalance={getTotalBalance()}
+            totalMonthlyPayments={getTotalPayments()}
+          />
         </div>
       </section>
 
