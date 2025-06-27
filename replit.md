@@ -121,6 +121,8 @@ The application uses four main tables:
 
 ## Changelog
 - June 27, 2025. Initial setup
+- June 27, 2025. Personalized website for Mykoal DeShazo with NMLS #1912347, removed interest rate section
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.
+Business owner: Mykoal DeShazo, NMLS #1912347

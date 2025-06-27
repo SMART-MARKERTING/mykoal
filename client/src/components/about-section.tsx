@@ -29,7 +29,7 @@ export default function AboutSection() {
           </div>
 
           <div>
-            <h3 className="text-3xl font-bold text-gray-900 mb-2">Sarah Johnson</h3>
+            <h3 className="text-3xl font-bold text-gray-900 mb-2">Mykoal DeShazo</h3>
             <p className="text-xl text-blue-600 font-semibold mb-4">Senior Mortgage Advisor</p>
             
             <div className="flex items-center mb-6">
@@ -42,14 +42,14 @@ export default function AboutSection() {
             </div>
 
             <p className="text-gray-700 text-lg leading-relaxed mb-6">
-              With over 15 years in the mortgage industry, Sarah has helped over 500 families achieve their homeownership dreams. She specializes in first-time homebuyer programs, conventional loans, and complex financial situations.
+              With over 15 years in the mortgage industry, Mykoal has helped over 500 families achieve their homeownership dreams. He specializes in first-time homebuyer programs, conventional loans, and complex financial situations.
             </p>
 
             {/* Credentials */}
             <div className="grid grid-cols-2 gap-4 mb-8">
               <div className="text-center p-4 bg-blue-50 rounded-lg">
                 <div className="text-2xl font-bold text-blue-600">NMLS</div>
-                <div className="text-sm text-gray-600">#123456</div>
+                <div className="text-sm text-gray-600">#1912347</div>
               </div>
               <div className="text-center p-4 bg-blue-50 rounded-lg">
                 <div className="text-2xl font-bold text-blue-600">Licensed</div>
@@ -65,7 +65,7 @@ export default function AboutSection() {
               </div>
               <div className="flex items-center">
                 <Mail className="text-blue-600 mr-3 h-5 w-5" />
-                <span>sarah@mortgagepro.com</span>
+                <span>mykoal@mortgagepro.com</span>
               </div>
             </div>
 

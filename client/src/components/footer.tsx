@@ -14,7 +14,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-8">
           {/* Company info */}
           <div className="md:col-span-2">
-            <h3 className="text-2xl font-bold mb-4">MortgagePro</h3>
+            <h3 className="text-2xl font-bold mb-4">Mykoal DeShazo</h3>
             <p className="text-gray-300 mb-6 max-w-md">
               Your trusted mortgage advisor, helping families achieve homeownership dreams with personalized service and competitive rates.
             </p>
@@ -103,7 +103,7 @@ export default function Footer() {
             <div className="text-sm text-gray-400">
               <p className="mb-2">
                 <strong>NMLS Company ID:</strong> #987654321 | 
-                <strong> Sarah Johnson NMLS:</strong> #123456
+                <strong> Mykoal DeShazo NMLS:</strong> #1912347
               </p>
               <p className="mb-2">
                 Licensed in CA, NV, AZ. Equal Housing Lender. 

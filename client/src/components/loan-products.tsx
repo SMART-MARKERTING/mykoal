@@ -47,12 +47,7 @@ const loanProducts = [
   }
 ];
 
-const currentRates = [
-  { loanType: "30-Year Fixed", term: "30 years", rate: "6.375%", apr: "6.421%", points: "0.000" },
-  { loanType: "15-Year Fixed", term: "15 years", rate: "5.875%", apr: "5.923%", points: "0.000" },
-  { loanType: "FHA 30-Year", term: "30 years", rate: "6.250%", apr: "6.298%", points: "0.000" },
-  { loanType: "VA 30-Year", term: "30 years", rate: "6.125%", apr: "6.175%", points: "0.000" },
-];
+
 
 export default function LoanProducts() {
   return (
@@ -95,44 +90,7 @@ export default function LoanProducts() {
           })}
         </div>
 
-        {/* Current rates table */}
-        <Card className="overflow-hidden">
-          <div className="bg-blue-600 text-white py-6 px-8">
-            <h3 className="text-2xl font-bold">Current Interest Rates</h3>
-            <p className="text-blue-100">Updated daily - rates effective as of today</p>
-          </div>
-          
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Loan Type</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Term</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Rate</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">APR</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Points</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {currentRates.map((rate, index) => (
-                  <tr key={index}>
-                    <td className="px-6 py-4 text-sm text-gray-900">{rate.loanType}</td>
-                    <td className="px-6 py-4 text-sm text-gray-600">{rate.term}</td>
-                    <td className="px-6 py-4 text-sm font-semibold text-blue-600">{rate.rate}</td>
-                    <td className="px-6 py-4 text-sm text-gray-600">{rate.apr}</td>
-                    <td className="px-6 py-4 text-sm text-gray-600">{rate.points}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          
-          <div className="bg-gray-50 px-8 py-4">
-            <p className="text-sm text-gray-600">
-              Rates shown are for qualified borrowers and may vary based on loan amount, credit score, and other factors.
-            </p>
-          </div>
-        </Card>
+
       </div>
     </section>
   );
