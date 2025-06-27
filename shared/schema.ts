@@ -84,6 +84,18 @@ export const insertQuickQuoteSchema = createInsertSchema(quickQuotes).omit({
 export const insertPreQualificationSchema = createInsertSchema(preQualifications).omit({
   id: true,
   createdAt: true,
+}).extend({
+  dateOfBirth: z.string().optional().nullable(),
+  ssn: z.string().optional().nullable(),
+  employmentLength: z.string().optional().nullable(),
+  monthlyDebt: z.string().optional().nullable(),
+  assets: z.string().optional().nullable(),
+  propertyValue: z.string().optional().nullable(),
+  propertyType: z.string().optional().nullable(),
+  downPayment: z.string().optional().nullable(),
+  bankruptcyHistory: z.string().optional().nullable(),
+  notes: z.string().optional().nullable(),
+  estimatedRate: z.string().optional().nullable(),
 });
 
 export type Contact = typeof contacts.$inferSelect;

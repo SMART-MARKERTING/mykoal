@@ -200,11 +200,36 @@ export default function PreQualificationPage() {
       // Calculate qualification locally
       const result = calculateQualification(data);
       
-      // Save to backend (would typically save the application)
-      const response = await apiRequest("POST", "/api/pre-qualifications", {
-        ...data,
-        qualificationResult: result
-      });
+      // Transform data to match backend schema, converting empty strings to null
+      const transformValue = (value: string) => value === "" ? null : value;
+      
+      const backendData = {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        phone: data.phone,
+        dateOfBirth: transformValue(data.dateOfBirth),
+        ssn: transformValue(data.ssn),
+        annualIncome: data.annualIncome,
+        employmentType: data.employmentType,
+        employmentLength: transformValue(data.employmentLength),
+        creditScore: data.creditScore,
+        monthlyDebt: transformValue(data.monthlyDebt),
+        assets: transformValue(data.assets),
+        loanType: data.loanType,
+        loanAmount: data.loanAmount,
+        propertyValue: transformValue(data.propertyValue),
+        propertyType: transformValue(data.propertyType),
+        downPayment: transformValue(data.downPayment),
+        bankruptcyHistory: transformValue(data.bankruptcyHistory),
+        notes: transformValue(data.notes),
+        qualificationStatus: result.status,
+        qualificationScore: result.score,
+        estimatedRate: result.estimatedRate
+      };
+      
+      // Save to backend
+      const response = await apiRequest("POST", "/api/pre-qualifications", backendData);
       
       return { ...response, result };
     },
