@@ -52,7 +52,7 @@ export function calculateMortgage(inputs: MortgageInputs): MortgageResults {
   return {
     monthlyPayment: Math.round(monthlyPayment),
     totalPayments: Math.round(totalPayments),
-    totalInterest: Math.round(totalInterest),
+    totalInterest: Math.round(extraPayment > 0 ? totalInterestWithExtra : totalInterest),
     effectiveInterestRate: Math.round(effectiveRate * 100) / 100, // Round to 2 decimal places
     payoffTime: payoffTimeMonths,
     interestSavings: Math.round(interestSavings),

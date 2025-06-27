@@ -78,23 +78,11 @@ export default function DebtConsolidationCalculator({
     if (inputs.extraPayment > 0) {
       // If user has applied extra payments, compare to baseline without extra payments
       interestSaved = Math.max(0, baselineCalculation.totalInterest - calculation.totalInterest);
-      console.log('Interest savings calculation with extra payment:', {
-        baseline: baselineCalculation.totalInterest,
-        current: calculation.totalInterest,
-        savings: interestSaved,
-        extraPayment: inputs.extraPayment
-      });
     } else {
       // Show potential interest savings if they apply the monthly savings as extra payment
       const standardTotalInterest = calculation.totalInterest;
       const acceleratedTotalInterest = calculationWithExtra.totalInterest;
       interestSaved = Math.max(0, standardTotalInterest - acceleratedTotalInterest);
-      console.log('Potential interest savings calculation:', {
-        standard: standardTotalInterest,
-        accelerated: acceleratedTotalInterest,
-        savings: interestSaved,
-        monthlySavings: monthlySavings
-      });
     }
     
     // Calculate payoff acceleration - only when extra payments are actually applied
