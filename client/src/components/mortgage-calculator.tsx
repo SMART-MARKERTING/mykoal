@@ -88,21 +88,16 @@ export default function MortgageCalculator() {
                   </div>
                 </div>
                 <div>
-                  <Label>Loan Term</Label>
-                  <Select
-                    value={inputs.loanTerm.toString()}
-                    onValueChange={(value) => updateInput('loanTerm', Number(value))}
-                  >
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="30">30 years</SelectItem>
-                      <SelectItem value="15">15 years</SelectItem>
-                      <SelectItem value="20">20 years</SelectItem>
-                      <SelectItem value="25">25 years</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <Label htmlFor="loanTerm">Loan Term (Years)</Label>
+                  <Input
+                    id="loanTerm"
+                    type="number"
+                    min="1"
+                    max="50"
+                    value={inputs.loanTerm}
+                    onChange={(e) => updateInput('loanTerm', Number(e.target.value) || 30)}
+                    placeholder="30"
+                  />
                 </div>
               </div>
 
@@ -122,6 +117,7 @@ export default function MortgageCalculator() {
                     <SelectItem value="dscr-heloc">DSCR HELOC</SelectItem>
                     <SelectItem value="personal-loan">Personal Loan</SelectItem>
                     <SelectItem value="debt-consolidation">Debt Consolidation</SelectItem>
+                    <SelectItem value="other">Other</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
