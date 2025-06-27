@@ -1,33 +1,17 @@
 interface MortgageInputs {
-  homePrice: number;
-  downPayment: number;
+  loanAmount: number;
   interestRate: number;
   loanTerm: number;
-  propertyTax: number;
-  homeInsurance: number;
 }
 
 interface MortgageResults {
   monthlyPayment: number;
-  monthlyPropertyTax: number;
-  monthlyInsurance: number;
-  totalMonthly: number;
-  loanAmount: number;
   totalPayments: number;
   totalInterest: number;
 }
 
 export function calculateMortgage(inputs: MortgageInputs): MortgageResults {
-  const {
-    homePrice,
-    downPayment,
-    interestRate,
-    loanTerm,
-    propertyTax,
-    homeInsurance,
-  } = inputs;
-
-  const loanAmount = homePrice - downPayment;
+  const { loanAmount, interestRate, loanTerm } = inputs;
   const monthlyRate = interestRate / 100 / 12;
   const numPayments = loanTerm * 12;
 
@@ -42,19 +26,11 @@ export function calculateMortgage(inputs: MortgageInputs): MortgageResults {
     monthlyPayment = loanAmount / numPayments;
   }
 
-  const monthlyPropertyTax = propertyTax / 12;
-  const monthlyInsurance = homeInsurance / 12;
-  const totalMonthly = monthlyPayment + monthlyPropertyTax + monthlyInsurance;
-
   const totalPayments = monthlyPayment * numPayments;
   const totalInterest = totalPayments - loanAmount;
 
   return {
     monthlyPayment: Math.round(monthlyPayment),
-    monthlyPropertyTax: Math.round(monthlyPropertyTax),
-    monthlyInsurance: Math.round(monthlyInsurance),
-    totalMonthly: Math.round(totalMonthly),
-    loanAmount: Math.round(loanAmount),
     totalPayments: Math.round(totalPayments),
     totalInterest: Math.round(totalInterest),
   };

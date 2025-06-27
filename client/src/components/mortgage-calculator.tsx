@@ -8,22 +8,14 @@ import { calculateMortgage } from "@/lib/mortgage-calculations";
 
 export default function MortgageCalculator() {
   const [inputs, setInputs] = useState({
-    homePrice: 400000,
-    downPayment: 80000,
-    downPaymentPercent: 20,
+    loanAmount: 320000,
     interestRate: 6.5,
     loanTerm: 30,
-    propertyTax: 5000,
-    homeInsurance: 1200,
     loanType: "dscr-purchase",
   });
 
   const [results, setResults] = useState({
     monthlyPayment: 0,
-    monthlyPropertyTax: 0,
-    monthlyInsurance: 0,
-    totalMonthly: 0,
-    loanAmount: 0,
     totalPayments: 0,
     totalInterest: 0,
   });
@@ -34,18 +26,7 @@ export default function MortgageCalculator() {
   }, [inputs]);
 
   const updateInput = (key: string, value: number) => {
-    setInputs(prev => {
-      const updated = { ...prev, [key]: value };
-      
-      // Sync down payment percentage and dollar amount
-      if (key === 'downPayment') {
-        updated.downPaymentPercent = Math.round((value / updated.homePrice) * 100 * 10) / 10;
-      } else if (key === 'downPaymentPercent') {
-        updated.downPayment = Math.round(updated.homePrice * value / 100);
-      }
-      
-      return updated;
-    });
+    setInputs(prev => ({ ...prev, [key]: value }));
   };
 
   const scrollToContact = () => {
@@ -59,7 +40,7 @@ export default function MortgageCalculator() {
     <section id="calculator" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Mortgage Calculator</h2>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">Loan Calculator</h2>
           <p className="text-xl text-gray-600">Calculate your monthly payments and see what you can afford</p>
         </div>
 
@@ -71,40 +52,16 @@ export default function MortgageCalculator() {
             </CardHeader>
             <CardContent className="space-y-6">
               <div>
-                <Label htmlFor="homePrice">Home Price</Label>
+                <Label htmlFor="loanAmount">Loan Amount</Label>
                 <div className="relative">
                   <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
                   <Input
-                    id="homePrice"
+                    id="loanAmount"
                     type="number"
-                    value={inputs.homePrice}
-                    onChange={(e) => updateInput('homePrice', Number(e.target.value))}
+                    value={inputs.loanAmount}
+                    onChange={(e) => updateInput('loanAmount', Number(e.target.value))}
                     className="pl-8 text-lg"
                   />
-                </div>
-              </div>
-
-              <div>
-                <Label>Down Payment</Label>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="relative">
-                    <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
-                    <Input
-                      type="number"
-                      value={inputs.downPayment}
-                      onChange={(e) => updateInput('downPayment', Number(e.target.value))}
-                      className="pl-8"
-                    />
-                  </div>
-                  <div className="relative">
-                    <Input
-                      type="number"
-                      value={inputs.downPaymentPercent}
-                      onChange={(e) => updateInput('downPaymentPercent', Number(e.target.value))}
-                      className="pr-8"
-                    />
-                    <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">%</span>
-                  </div>
                 </div>
               </div>
 
@@ -162,37 +119,7 @@ export default function MortgageCalculator() {
                 </Select>
               </div>
 
-              <div className="border-t pt-6">
-                <h4 className="text-lg font-medium text-gray-900 mb-4">Additional Costs (Optional)</h4>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="propertyTax">Property Tax (Annual)</Label>
-                    <div className="relative">
-                      <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
-                      <Input
-                        id="propertyTax"
-                        type="number"
-                        value={inputs.propertyTax}
-                        onChange={(e) => updateInput('propertyTax', Number(e.target.value))}
-                        className="pl-8"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <Label htmlFor="homeInsurance">Home Insurance (Annual)</Label>
-                    <div className="relative">
-                      <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
-                      <Input
-                        id="homeInsurance"
-                        type="number"
-                        value={inputs.homeInsurance}
-                        onChange={(e) => updateInput('homeInsurance', Number(e.target.value))}
-                        className="pl-8"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
+
             </CardContent>
           </Card>
 
@@ -200,31 +127,13 @@ export default function MortgageCalculator() {
           <div className="mt-8 lg:mt-0">
             <Card className="bg-blue-50 border-2 border-blue-100">
               <CardHeader>
-                <CardTitle className="text-blue-900">Monthly Payment Breakdown</CardTitle>
+                <CardTitle className="text-blue-900">Payment Results</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="flex justify-between items-center py-3 border-b border-blue-200">
-                  <span className="text-gray-700">Principal & Interest</span>
-                  <span className="text-2xl font-bold text-blue-900">
+                <div className="flex justify-between items-center py-4 bg-blue-50 rounded-lg px-4 border-2 border-blue-200">
+                  <span className="text-lg font-semibold text-gray-900">Monthly Payment</span>
+                  <span className="text-3xl font-bold text-blue-600">
                     ${results.monthlyPayment.toLocaleString('en-US', { maximumFractionDigits: 0 })}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center py-3 border-b border-blue-200">
-                  <span className="text-gray-700">Property Tax</span>
-                  <span className="text-lg font-semibold text-gray-900">
-                    ${results.monthlyPropertyTax.toLocaleString('en-US', { maximumFractionDigits: 0 })}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center py-3 border-b border-blue-200">
-                  <span className="text-gray-700">Home Insurance</span>
-                  <span className="text-lg font-semibold text-gray-900">
-                    ${results.monthlyInsurance.toLocaleString('en-US', { maximumFractionDigits: 0 })}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center py-4 bg-green-50 rounded-lg px-4 border-2 border-green-200">
-                  <span className="text-lg font-semibold text-gray-900">Total Monthly Payment</span>
-                  <span className="text-3xl font-bold text-green-600">
-                    ${results.totalMonthly.toLocaleString('en-US', { maximumFractionDigits: 0 })}
                   </span>
                 </div>
 
@@ -234,7 +143,7 @@ export default function MortgageCalculator() {
                     <div className="flex justify-between">
                       <span className="text-gray-600">Loan Amount:</span>
                       <span className="font-semibold">
-                        ${results.loanAmount.toLocaleString('en-US', { maximumFractionDigits: 0 })}
+                        ${inputs.loanAmount.toLocaleString('en-US', { maximumFractionDigits: 0 })}
                       </span>
                     </div>
                     <div className="flex justify-between">
