@@ -167,15 +167,27 @@ export default function ResourcesPage() {
             Comprehensive guides, calculators, and tools to help you make informed financing decisions
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Badge variant="secondary" className="text-lg px-4 py-2">
+            <Button 
+              variant="secondary" 
+              className="text-lg px-6 py-3 bg-white/20 hover:bg-white/30 text-white border-white/30"
+              onClick={() => document.getElementById('educational-guides')?.scrollIntoView({ behavior: 'smooth' })}
+            >
               Educational Guides
-            </Badge>
-            <Badge variant="secondary" className="text-lg px-4 py-2">
+            </Button>
+            <Button 
+              variant="secondary" 
+              className="text-lg px-6 py-3 bg-white/20 hover:bg-white/30 text-white border-white/30"
+              onClick={() => document.getElementById('financial-calculators')?.scrollIntoView({ behavior: 'smooth' })}
+            >
               Financial Calculators
-            </Badge>
-            <Badge variant="secondary" className="text-lg px-4 py-2">
+            </Button>
+            <Button 
+              variant="secondary" 
+              className="text-lg px-6 py-3 bg-white/20 hover:bg-white/30 text-white border-white/30"
+              onClick={() => document.getElementById('market-data')?.scrollIntoView({ behavior: 'smooth' })}
+            >
               Market Data
-            </Badge>
+            </Button>
           </div>
         </div>
       </section>
@@ -207,7 +219,7 @@ export default function ResourcesPage() {
         </section>
 
         {/* Featured Articles */}
-        <section className="mb-16">
+        <section id="educational-guides" className="mb-16">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Featured Articles</h2>
             <p className="text-lg text-gray-600">Expert insights and comprehensive guides</p>
@@ -243,7 +255,7 @@ export default function ResourcesPage() {
         </section>
 
         {/* Financial Calculators */}
-        <section className="mb-16">
+        <section id="financial-calculators" className="mb-16">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Financial Calculators</h2>
             <p className="text-lg text-gray-600">Interactive tools for loan planning and analysis</p>
@@ -306,7 +318,7 @@ export default function ResourcesPage() {
         </section>
 
         {/* Market Data & Tools */}
-        <div className="grid lg:grid-cols-2 gap-12 mb-16">
+        <div id="market-data" className="grid lg:grid-cols-2 gap-12 mb-16">
           
           {/* Market Resources */}
           <section>
