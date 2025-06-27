@@ -1,26 +1,22 @@
 import { Facebook, Linkedin, Instagram, Youtube } from "lucide-react";
 import { Link, useLocation } from "wouter";
+import equalHousingLogo from "@assets/Equal-Housing-Logo_1751007456918.png";
 
 export default function Footer() {
   const [location, setLocation] = useLocation();
   
   const navigateToSection = (sectionId: string) => {
-    console.log('Navigating to section:', sectionId, 'Current location:', location);
-    
     if (location === '/') {
       // Already on home page, just scroll
       const element = document.getElementById(sectionId);
-      console.log('Element found:', element);
       if (element) {
         element.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     } else {
       // Navigate to home page and then scroll
-      console.log('Navigating to home page first');
       setLocation('/');
       setTimeout(() => {
         const element = document.getElementById(sectionId);
-        console.log('Element found after navigation:', element);
         if (element) {
           element.scrollIntoView({ behavior: "smooth", block: "start" });
         }
@@ -141,7 +137,7 @@ export default function Footer() {
               </p>
               <div className="flex items-center justify-center md:justify-start gap-2 mt-3">
                 <img 
-                  src="/equal-housing-logo.png" 
+                  src={equalHousingLogo} 
                   alt="Equal Housing Opportunity Logo" 
                   className="w-6 h-6 object-contain filter brightness-0 invert"
                 />

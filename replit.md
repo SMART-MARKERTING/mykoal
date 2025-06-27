@@ -174,6 +174,7 @@ The application uses four main tables:
 - June 27, 2025. Comprehensive Resources page mobile optimization and SEO enhancement - added proper meta tags, improved responsive design for hero section, Quick Links navigation, article cards, calculator cards, loan product guides, and market data sections; enhanced mobile button layouts with proper text sizing and spacing; optimized Equal Housing Opportunity section layout
 - June 27, 2025. Updated website color scheme to Saratoga Water Blue - changed primary blue color from standard blue (hsl 220,87%,50%) to Saratoga Water Blue (hsl 195,100%,32%) across entire website including CSS variables, gradients, and component styling for consistent branding
 - June 27, 2025. Fixed Quick Links navigation buttons in footer - replaced broken hash navigation with proper cross-page routing that navigates to home page and scrolls to correct sections (Mortgage Calculator, Lending Solutions, Contact) from any page
+- June 27, 2025. Fixed Equal Housing Opportunity logo display across all pages - updated asset imports using proper Vite @assets path for footer, resources, privacy policy, terms of service, debt consolidation, market updates, and about pages; logos now display correctly on all pages
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.

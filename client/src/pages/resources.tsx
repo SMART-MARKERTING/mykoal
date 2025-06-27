@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import equalHousingLogo from "@assets/Equal-Housing-Logo_1751007456918.png";
 import { 
   ArrowLeft, 
   BookOpen, 
@@ -422,7 +423,7 @@ export default function ResourcesPage() {
         <div className="mt-8 sm:mt-12 text-center">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4">
             <img 
-              src="/attached_assets/Equal-Housing-Logo_1751007456918.png" 
+              src={equalHousingLogo} 
               alt="Equal Housing Opportunity Logo" 
               className="w-5 h-5 sm:w-6 sm:h-6 object-contain"
             />

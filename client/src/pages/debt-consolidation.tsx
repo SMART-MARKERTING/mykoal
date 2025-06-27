@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { CheckCircle, ArrowLeft, Calculator, Plus, Trash2, CreditCard, Home, DollarSign } from "lucide-react";
 import { Link } from "wouter";
 import DebtConsolidationCalculator from "@/components/debt-consolidation-calculator";
+import equalHousingLogo from "@assets/Equal-Housing-Logo_1751007456918.png";
 
 interface Debt {
   id: number;
@@ -414,7 +415,7 @@ export default function DebtConsolidationPage() {
           <div className="mt-12 text-center">
             <div className="flex items-center justify-center gap-3 mb-4">
               <img 
-                src="/equal-housing-logo.png" 
+                src={equalHousingLogo} 
                 alt="Equal Housing Opportunity Logo" 
                 className="w-6 h-6 object-contain filter brightness-0 invert"
               />

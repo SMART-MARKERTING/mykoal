@@ -9,6 +9,7 @@ import { useToast } from '@/hooks/use-toast';
 import { apiRequest } from '@/lib/queryClient';
 import { TrendingUp, TrendingDown, Clock, ExternalLink, Building2, DollarSign, Calendar, AlertTriangle, CheckCircle, AlertCircle, Mail } from 'lucide-react';
 import { useState } from 'react';
+import equalHousingLogo from "@assets/Equal-Housing-Logo_1751007456918.png";
 
 interface NewsItem {
   title: string;
@@ -430,7 +431,7 @@ export default function MarketUpdatesPage() {
           <div className="mt-8 text-center">
             <div className="flex items-center justify-center gap-3 mb-4">
               <img 
-                src="/equal-housing-logo.png" 
+                src={equalHousingLogo} 
                 alt="Equal Housing Opportunity Logo" 
                 className="w-8 h-8 object-contain"
               />

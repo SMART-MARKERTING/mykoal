@@ -4,6 +4,7 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import { Home, ArrowLeft } from "lucide-react";
 import { Link } from "wouter";
+import equalHousingLogo from "@assets/Equal-Housing-Logo_1751007456918.png";
 
 export default function PrivacyPolicyPage() {
   return (
@@ -177,7 +178,7 @@ export default function PrivacyPolicyPage() {
             <div className="bg-white p-8 rounded-lg shadow-lg text-center">
               <div className="flex items-center justify-center gap-3 mb-4">
                 <img 
-                  src="/equal-housing-logo.png" 
+                  src={equalHousingLogo} 
                   alt="Equal Housing Opportunity Logo" 
                   className="w-6 h-6 object-contain"
                 />
