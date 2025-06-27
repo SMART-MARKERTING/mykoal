@@ -305,7 +305,7 @@ export default function MarketUpdatesPage() {
               <img 
                 src="/equal-housing-logo.png" 
                 alt="Equal Housing Opportunity Logo" 
-                className="w-8 h-8 object-contain"
+                className="w-8 h-8 object-contain filter brightness-0 invert"
               />
               <span className="text-sm font-semibold text-gray-700">Equal Housing Opportunity</span>
             </div>

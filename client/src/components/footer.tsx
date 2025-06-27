@@ -114,7 +114,7 @@ export default function Footer() {
                 <img 
                   src="/equal-housing-logo.png" 
                   alt="Equal Housing Opportunity Logo" 
-                  className="w-6 h-6 object-contain filter brightness-75"
+                  className="w-6 h-6 object-contain filter brightness-0 invert"
                 />
                 <span className="text-xs text-gray-400">Equal Housing Opportunity</span>
               </div>

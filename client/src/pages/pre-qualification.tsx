@@ -481,7 +481,7 @@ export default function PreQualificationPage() {
                   <img 
                     src="/equal-housing-logo.png" 
                     alt="Equal Housing Opportunity Logo" 
-                    className="w-6 h-6 object-contain"
+                    className="w-6 h-6 object-contain filter brightness-0 invert"
                   />
                   <span className="text-sm font-semibold text-gray-700">Equal Housing Opportunity</span>
                 </div>

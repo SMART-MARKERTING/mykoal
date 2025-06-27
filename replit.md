@@ -156,6 +156,7 @@ The application uses four main tables:
 - June 27, 2025. Cleaned up rate cards on Market Updates page by removing descriptive text ("Investment Property Rate", "Faster Equity Building", "High-Value Properties") to focus on loan types and rates only
 - June 27, 2025. Fixed pre-qualification form validation error by updating database schema to make sensitive fields optional, created custom validation schema for removed fields (annualIncome, employmentType, creditScore), and implemented backend defaults for qualification scoring
 - June 27, 2025. Replaced all temporary Equal Housing Opportunity "=" symbols with official EHO logo image across entire website (footer, market updates, pre-qualification, debt consolidation pages) with proper CSS filters for different background colors
+- June 27, 2025. Fixed Equal Housing Opportunity logo image paths and made logo white color across all pages using brightness-0 invert CSS filters
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.
