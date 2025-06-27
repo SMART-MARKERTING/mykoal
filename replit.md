@@ -179,6 +179,7 @@ The application uses four main tables:
 - June 27, 2025. Added email capture forms to debt consolidation and DSCR landing pages - integrated quick quote functionality with loan amount, credit score, and email fields; forms submit to database and provide user feedback via toast notifications
 - June 27, 2025. Implemented automatic email notifications using SendGrid - created comprehensive email service with templates for contact forms, quick quotes, pre-qualifications, and market subscriptions; all form submissions now trigger instant email notifications to mdeshazo@mykoal.com
 - June 27, 2025. Added "Email Quote" functionality to both debt consolidation calculator and main mortgage calculator - users can now email detailed calculation results to themselves while being captured as leads; includes comprehensive email templates with loan details, payment breakdowns, and savings analysis
+- June 27, 2025. Fixed live market news implementation - successfully integrated FOX Business RSS feed parsing to pull real-time real estate articles; implemented dynamic "Mykoal's Market Insights" generation based on actual news content; market updates page now displays live FOX Business articles with personalized investment strategy analysis and urgency indicators
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.

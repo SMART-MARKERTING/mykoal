@@ -956,9 +956,30 @@ export class DatabaseStorage implements IStorage {
   }
 
   private async fetchMarketNews(): Promise<NewsItem[]> {
-    // For reliable market data, prioritize authentic sources
-    console.log('Providing authentic market analysis from Federal Reserve, NAR, and Freddie Mac');
-    return this.getAuthenticMarketNews();
+    try {
+      console.log('Fetching live real estate news from FOX Business RSS feed...');
+      
+      // Fetch FOX Business real estate feed
+      const foxNews = await this.fetchRSSFeed('https://moxie.foxbusiness.com/google-publisher/real-estate.xml', 'FOX Business');
+      
+      if (foxNews.length > 0) {
+        console.log(`✓ Successfully fetched ${foxNews.length} live articles from FOX Business`);
+        return foxNews.slice(0, 3);
+      }
+      
+      console.log('FOX Business real estate feed returned no articles, checking general business news...');
+      const generalNews = await this.fetchRSSFeed('https://moxie.foxbusiness.com/google-publisher/latest.xml', 'FOX Business');
+      
+      if (generalNews.length > 0) {
+        console.log(`✓ Successfully fetched ${generalNews.length} articles from FOX Business general feed`);
+        return generalNews.slice(0, 3);
+      }
+      
+      throw new Error('No articles found in either RSS feed');
+    } catch (error) {
+      console.error('Error fetching live market news:', error);
+      return this.getAuthenticMarketNews();
+    }
   }
 
   private getAuthenticMarketNews(): NewsItem[] {
@@ -996,62 +1017,118 @@ export class DatabaseStorage implements IStorage {
 
   private async fetchRSSFeed(rssUrl: string, sourceName: string): Promise<NewsItem[]> {
     try {
-      const response = await fetch(rssUrl, {
-        headers: {
-          'User-Agent': 'Mozilla/5.0 (compatible; News Aggregator)'
-        }
-      });
+      console.log(`Fetching RSS feed from: ${rssUrl}`);
+      
+      const response = await Promise.race([
+        fetch(rssUrl, {
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+            'Accept': 'application/rss+xml, application/xml, text/xml'
+          }
+        }),
+        new Promise<never>((_, reject) => 
+          setTimeout(() => reject(new Error('Request timeout')), 8000)
+        )
+      ]);
       
       if (!response.ok) {
+        console.error(`HTTP ${response.status} error for ${sourceName}`);
         throw new Error(`HTTP ${response.status}`);
       }
       
       const xmlText = await response.text();
+      console.log(`Received ${xmlText.length} characters from ${sourceName}`);
       
-      // Enhanced XML parsing for RSS feeds using regex (Node.js compatible)
+      // Parse RSS/XML using robust regex patterns
       const items: NewsItem[] = [];
-      const itemMatches = xmlText.match(/<item[^>]*>[\s\S]*?<\/item>/gi);
       
-      console.log(`Found ${itemMatches?.length || 0} items in RSS feed from ${sourceName}`);
+      // Direct pattern matching for FOX Business RSS format
+      const itemMatches = xmlText.match(/<item>[\s\S]*?<\/item>/gi);
       
-      if (itemMatches) {
-        for (const itemXml of itemMatches.slice(0, 10)) {
-          // More flexible regex patterns to handle various RSS formats
-          const titleMatch = itemXml.match(/<title[^>]*>(?:<!\[CDATA\[)?([\s\S]*?)(?:\]\]>)?<\/title>/i);
-          const descMatch = itemXml.match(/<description[^>]*>(?:<!\[CDATA\[)?([\s\S]*?)(?:\]\]>)?<\/description>/i);
-          const linkMatch = itemXml.match(/<link[^>]*>(?:<!\[CDATA\[)?([\s\S]*?)(?:\]\]>)?<\/link>/i) || 
-                           itemXml.match(/<guid[^>]*>(?:<!\[CDATA\[)?(https?:\/\/[^\s<]+)(?:\]\]>)?<\/guid>/i);
-          const pubDateMatch = itemXml.match(/<pubDate[^>]*>(?:<!\[CDATA\[)?([\s\S]*?)(?:\]\]>)?<\/pubDate>/i);
+      if (!itemMatches || itemMatches.length === 0) {
+        console.log(`No items found in RSS feed from ${sourceName}`);
+        return [];
+      }
+      
+      console.log(`Found ${itemMatches.length} items in RSS feed from ${sourceName}`);
+      
+      for (const itemXml of itemMatches.slice(0, 10)) {
+        try {
+          // Direct extraction using simple regex patterns
+          const titleMatch = itemXml.match(/<title>(.*?)<\/title>/i);
+          const descMatch = itemXml.match(/<description>(.*?)<\/description>/i);
+          const linkMatch = itemXml.match(/<link>(.*?)<\/link>/i);
+          const pubDateMatch = itemXml.match(/<pubDate>(.*?)<\/pubDate>/i);
           
           let title = titleMatch ? titleMatch[1].trim() : '';
-          let description = descMatch ? descMatch[1].replace(/<[^>]*>/g, '').trim() : '';
+          let description = descMatch ? descMatch[1].trim() : '';
           let url = linkMatch ? linkMatch[1].trim() : '';
           let pubDate = pubDateMatch ? pubDateMatch[1].trim() : '';
           
-          // Clean up extracted content
-          title = title.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"');
-          description = description.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"');
+          // Clean HTML entities and tags
+          title = title.replace(/&amp;/g, '&').replace(/&apos;/g, "'").replace(/&quot;/g, '"');
+          description = description.replace(/&amp;/g, '&').replace(/&apos;/g, "'").replace(/&quot;/g, '"');
           
-          if (title && url) {
-            console.log(`Parsed article: ${title.substring(0, 50)}...`);
+          if (title && url && title.length > 10) {
             items.push({
-              title,
-              description: description.length > 200 ? description.substring(0, 200) + '...' : description || 'No description available',
+              title: title.substring(0, 150),
+              description: description.length > 200 ? description.substring(0, 200) + '...' : description,
               url,
               publishedAt: pubDate || new Date().toISOString(),
               source: sourceName,
               category: this.categorizeNews(title + ' ' + description)
             });
+            
+            console.log(`✓ Parsed FOX Business article: ${title.substring(0, 80)}...`);
           }
+        } catch (itemError) {
+          console.warn(`Failed to parse individual item from ${sourceName}:`, itemError);
+          continue;
         }
       }
       
-      console.log(`Successfully parsed ${items.length} items from ${sourceName}`);
+      console.log(`Successfully parsed ${items.length} articles from ${sourceName}`);
       return items;
+      
     } catch (error) {
       console.error(`Error fetching RSS feed from ${sourceName}:`, error);
       return [];
     }
+  }
+
+  private extractXmlContent(xml: string, tag: string, cdata: boolean = false): string | null {
+    // Handle different XML formats found in FOX Business RSS
+    const patterns = [
+      // CDATA format
+      new RegExp(`<${tag}[^>]*>\\s*<!\\[CDATA\\[([\\s\\S]*?)\\]\\]>\\s*<\\/${tag}>`, 'i'),
+      // Standard XML format with content
+      new RegExp(`<${tag}[^>]*>([^<]*)<\\/${tag}>`, 'i'),
+      // Self-closing tag
+      new RegExp(`<${tag}[^>]*\\/>`, 'i'),
+      // Link in guid format
+      tag === 'link' ? new RegExp(`<guid[^>]*>(https?://[^<]+)</guid>`, 'i') : null
+    ].filter(Boolean);
+    
+    for (const pattern of patterns) {
+      const match = xml.match(pattern!);
+      if (match && match[1]) {
+        return match[1].trim();
+      }
+    }
+    
+    return null;
+  }
+
+  private cleanXmlContent(content: string): string {
+    return content
+      .replace(/<[^>]*>/g, '') // Remove HTML tags
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&amp;/g, '&')
+      .replace(/&quot;/g, '"')
+      .replace(/&apos;/g, "'")
+      .replace(/\s+/g, ' ')
+      .trim();
   }
 
   private categorizeNews(content: string): 'rates' | 'regulation' | 'market' | 'mbs' {
@@ -1070,38 +1147,89 @@ export class DatabaseStorage implements IStorage {
 
   async generateMarketInsights(news: NewsItem[], rates: any): Promise<MarketInsight[]> {
     const insights: MarketInsight[] = [];
-    
-    const marketInsight: MarketInsight = {
-      id: 'market-1',
-      title: 'Investment Property Market Analysis',
-      content: 'Current market conditions present unique opportunities for real estate investors. DSCR loans remain attractive for portfolio expansion with competitive terms available.',
-      rateImpact: 'neutral' as const,
-      urgency: 'medium' as const,
-      relatedNews: news[0]?.title || 'Market Update'
-    };
-    insights.push(marketInsight);
 
-    const opportunityInsight: MarketInsight = {
-      id: 'opportunity-1',
-      title: 'Cash-Out Refinance Opportunities',
-      content: 'Property values in key markets continue to support cash-out refinancing strategies. Consider leveraging existing equity for new investment opportunities.',
-      rateImpact: 'positive' as const,
-      urgency: 'low' as const,
-      relatedNews: news[1]?.title || 'Market Trends'
-    };
-    insights.push(opportunityInsight);
-
-    if (rates.thirtyYear > 6.5) {
-      const rateInsight: MarketInsight = {
-        id: 'rates-1',
-        title: 'Strategic Rate Positioning',
-        content: 'While rates remain elevated, savvy investors are securing properties now to benefit from future rate declines through refinancing strategies.',
-        rateImpact: 'negative' as const,
-        urgency: 'high' as const,
-        relatedNews: news[2]?.title || 'Rate Analysis'
-      };
-      insights.push(rateInsight);
+    if (news.length === 0) {
+      // Generate default insights when no news is available
+      return [
+        {
+          id: "market-1",
+          title: "Investment Property Market Analysis",
+          content: "Current market conditions present unique opportunities for real estate investors. DSCR loans remain attractive for portfolio expansion with competitive terms available.",
+          rateImpact: "neutral",
+          urgency: "medium",
+          relatedNews: "Market Update"
+        },
+        {
+          id: "opportunity-1", 
+          title: "Cash-Out Refinance Opportunities",
+          content: "Property values in key markets continue to support cash-out refinancing strategies. Consider leveraging existing equity for new investment opportunities.",
+          rateImpact: "positive",
+          urgency: "low",
+          relatedNews: "Market Trends"
+        },
+        {
+          id: "rates-1",
+          title: "Strategic Rate Positioning", 
+          content: "While rates remain elevated, savvy investors are securing properties now to benefit from future rate declines through refinancing strategies.",
+          rateImpact: "negative",
+          urgency: "high",
+          relatedNews: "Rate Analysis"
+        }
+      ];
     }
+
+    // Generate dynamic insights based on actual FOX Business news
+    news.forEach((article, index) => {
+      const timestamp = Date.now() + index;
+      
+      if (index === 0) {
+        // First article - Market Analysis
+        const isRateRelated = article.title.toLowerCase().includes('rate') || 
+                             article.title.toLowerCase().includes('fed') ||
+                             article.description.toLowerCase().includes('mortgage');
+        
+        insights.push({
+          id: `market-${timestamp}`,
+          title: "Mykoal's Market Analysis",
+          content: `Breaking: "${article.title}" - This development ${isRateRelated ? 'directly impacts mortgage rates and' : ''} creates opportunities for real estate investors. ${isRateRelated ? 'DSCR loans and investment property financing may see rate adjustments.' : 'Smart investors should monitor these market shifts for portfolio expansion opportunities.'} Contact me for personalized strategy discussion.`,
+          rateImpact: isRateRelated ? 'negative' : 'neutral',
+          urgency: isRateRelated ? 'high' : 'medium',
+          relatedNews: article.title
+        });
+      }
+      
+      if (index === 1) {
+        // Second article - Investment Opportunity
+        const isPositive = article.title.toLowerCase().includes('growth') ||
+                          article.title.toLowerCase().includes('rise') ||
+                          article.description.toLowerCase().includes('increase');
+        
+        insights.push({
+          id: `opportunity-${timestamp}`,
+          title: "Investment Property Opportunity Alert",
+          content: `Market update on "${article.title}" - ${isPositive ? 'Rising property values support' : 'Current market conditions favor'} cash-out refinancing and HELOC strategies. Experienced investors are leveraging equity to acquire additional properties while opportunities exist.`,
+          rateImpact: isPositive ? 'positive' : 'neutral',
+          urgency: 'medium',
+          relatedNews: article.title
+        });
+      }
+      
+      if (index === 2) {
+        // Third article - Strategic Positioning
+        const isUrgent = article.title.toLowerCase().includes('federal') ||
+                        article.title.toLowerCase().includes('policy') ||
+                        article.title.toLowerCase().includes('decision');
+        
+        insights.push({
+          id: `strategy-${timestamp}`,
+          title: "Strategic Positioning Insight",
+          content: `Latest: "${article.title}" - ${isUrgent ? 'Federal policy impacts require immediate strategic review.' : 'Market dynamics suggest tactical positioning opportunities.'} Portfolio investors should ${isUrgent ? 'act quickly to secure favorable financing' : 'evaluate refinancing options'} before conditions shift further.`,
+          rateImpact: isUrgent ? 'negative' : 'neutral',
+          urgency: isUrgent ? 'high' : 'low',
+          relatedNews: article.title
+        });
+      }
+    });
 
     return insights;
   }
