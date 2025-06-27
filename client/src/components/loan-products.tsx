@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Building2, CreditCard, TrendingUp, DollarSign, Check } from "lucide-react";
+import { Link } from "wouter";
 
 const loanProducts = [
   {
@@ -10,6 +11,7 @@ const loanProducts = [
     iconBg: "bg-blue-100",
     iconColor: "text-blue-600",
     buttonColor: "bg-blue-600 hover:bg-blue-700",
+    link: "/dscr-refinance",
     features: [
       "Purchase & rate/term refinance",
       "Cash-out refinance available",
@@ -24,6 +26,7 @@ const loanProducts = [
     iconBg: "bg-green-100",
     iconColor: "text-green-600",
     buttonColor: "bg-green-500 hover:bg-green-600",
+    link: "/dscr-heloc",
     features: [
       "Access property equity",
       "Revolving credit line",
@@ -38,6 +41,7 @@ const loanProducts = [
     iconBg: "bg-purple-100",
     iconColor: "text-purple-600",
     buttonColor: "bg-purple-600 hover:bg-purple-700",
+    link: "/startup-business-loan",
     features: [
       "New business funding",
       "Equipment & working capital",
@@ -52,6 +56,7 @@ const loanProducts = [
     iconBg: "bg-orange-100",
     iconColor: "text-orange-600",
     buttonColor: "bg-orange-600 hover:bg-orange-700",
+    link: "/personal-loan",
     features: [
       "Debt consolidation",
       "Home improvements",
@@ -95,9 +100,11 @@ export default function LoanProducts() {
                     ))}
                   </div>
                   
-                  <Button className={`w-full ${product.buttonColor} text-white`}>
-                    Learn More
-                  </Button>
+                  <Link href={product.link}>
+                    <Button className={`w-full ${product.buttonColor} text-white`}>
+                      Learn More
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             );
