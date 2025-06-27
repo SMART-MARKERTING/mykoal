@@ -4,11 +4,8 @@ import { CheckCircle, ArrowLeft, Rocket, Users, Target, DollarSign } from "lucid
 import { Link } from "wouter";
 
 export default function StartupBusinessLoanPage() {
-  const scrollToContact = () => {
-    const element = document.getElementById("contact");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+  const goToContact = () => {
+    window.location.href = "/#contact";
   };
 
   return (
@@ -347,7 +344,7 @@ export default function StartupBusinessLoanPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
-              onClick={scrollToContact}
+              onClick={goToContact}
               className="bg-white text-blue-900 hover:bg-blue-50 px-8 py-4 text-lg font-semibold"
             >
               Apply for Funding

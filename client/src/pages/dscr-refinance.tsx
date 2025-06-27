@@ -4,11 +4,8 @@ import { CheckCircle, ArrowLeft, Percent, Clock, TrendingDown, RefreshCw } from 
 import { Link } from "wouter";
 
 export default function DSCRRefinancePage() {
-  const scrollToContact = () => {
-    const element = document.getElementById("contact");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+  const goToContact = () => {
+    window.location.href = "/#contact";
   };
 
   return (
@@ -236,7 +233,7 @@ export default function DSCRRefinancePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
-              onClick={scrollToContact}
+              onClick={goToContact}
               className="bg-white text-blue-900 hover:bg-blue-50 px-8 py-4 text-lg font-semibold"
             >
               Get Refinance Quote

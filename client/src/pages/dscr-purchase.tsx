@@ -4,11 +4,8 @@ import { CheckCircle, ArrowLeft, Calculator, DollarSign, TrendingUp, Shield } fr
 import { Link } from "wouter";
 
 export default function DSCRPurchasePage() {
-  const scrollToContact = () => {
-    const element = document.getElementById("contact");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+  const goToContact = () => {
+    window.location.href = "/#contact";
   };
 
   return (
@@ -203,7 +200,7 @@ export default function DSCRPurchasePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
-              onClick={scrollToContact}
+              onClick={goToContact}
               className="bg-white text-blue-900 hover:bg-blue-50 px-8 py-4 text-lg font-semibold"
             >
               Get Started Today
