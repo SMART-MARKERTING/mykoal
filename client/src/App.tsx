@@ -19,11 +19,13 @@ import MarketUpdatesPage from "@/pages/market-updates";
 import PrivacyPolicyPage from "@/pages/privacy-policy";
 import TermsOfServicePage from "@/pages/terms-of-service";
 import ResourcesPage from "@/pages/resources";
+import AboutPage from "@/pages/about";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/about" component={AboutPage} />
       <Route path="/dscr-purchase" component={DSCRPurchasePage} />
       <Route path="/dscr-refinance" component={DSCRRefinancePage} />
       <Route path="/dscr-heloc" component={DSCRHELOCPage} />
