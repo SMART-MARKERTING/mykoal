@@ -106,7 +106,7 @@ export default function HeroSection() {
               <Button
                 onClick={() => scrollToSection("contact")}
                 variant="outline"
-                className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-blue-700 transition-colors"
+                className="border-2 border-blue-200 bg-blue-100 text-blue-800 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-200 hover:text-blue-900 transition-colors"
               >
                 Get Free Quote
               </Button>
@@ -121,10 +121,6 @@ export default function HeroSection() {
               <div className="text-center">
                 <div className="text-2xl font-bold text-white">15+</div>
                 <div className="text-sm text-blue-200">Years Experience</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-white">6.5%</div>
-                <div className="text-sm text-blue-200">Starting Rate</div>
               </div>
             </div>
           </div>
