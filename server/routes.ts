@@ -3,7 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertContactSchema, insertQuickQuoteSchema, insertPreQualificationSchema, insertMarketSubscriptionSchema } from "@shared/schema";
 import { z } from "zod";
-import { sendNotificationEmail, emailTemplates } from "./email";
+import { sendEmail, sendNotificationEmail, emailTemplates } from "./email";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Contact form submission
@@ -261,6 +261,119 @@ export async function registerRoutes(app: Express): Promise<Server> {
           message: "Internal server error" 
         });
       }
+    }
+  });
+
+  // Email debt consolidation quote
+  app.post("/api/email-debt-quote", async (req, res) => {
+    try {
+      const { email, debts, totalDebt, totalPayments } = req.body;
+      
+      // Send detailed debt consolidation analysis to user
+      const userEmailTemplate = emailTemplates.debtConsolidationQuote({
+        debts,
+        totalDebt,
+        totalPayments
+      });
+      
+      await sendEmail({
+        to: email,
+        from: "mdeshazo@mykoal.com",
+        subject: userEmailTemplate.subject,
+        html: userEmailTemplate.html,
+        text: userEmailTemplate.text,
+      });
+
+      // Send notification to Mykoal
+      const notificationTemplate = {
+        subject: `Debt Consolidation Quote Request: ${email}`,
+        html: `
+          <h2>New Debt Consolidation Quote Request</h2>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Total Debt:</strong> $${totalDebt.toLocaleString()}</p>
+          <p><strong>Total Monthly Payments:</strong> $${totalPayments.toLocaleString()}</p>
+          <p><strong>Number of Debts:</strong> ${debts.length}</p>
+          <p><strong>Submitted:</strong> ${new Date().toLocaleString()}</p>
+        `,
+        text: `
+          New Debt Consolidation Quote Request
+          
+          Email: ${email}
+          Total Debt: $${totalDebt.toLocaleString()}
+          Total Monthly Payments: $${totalPayments.toLocaleString()}
+          Number of Debts: ${debts.length}
+          Submitted: ${new Date().toLocaleString()}
+        `
+      };
+      
+      await sendNotificationEmail(notificationTemplate);
+      
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error sending debt consolidation quote:", error);
+      res.status(500).json({ 
+        success: false, 
+        message: "Failed to send quote" 
+      });
+    }
+  });
+
+  // Email calculation results
+  app.post("/api/email-calculation", async (req, res) => {
+    try {
+      const { email, calculationType, inputs, results, savingsAnalysis, totalDebtBalance, totalMonthlyPayments } = req.body;
+      
+      // Send detailed calculation results to user
+      const userEmailTemplate = emailTemplates.calculationResults({
+        calculationType,
+        inputs,
+        results,
+        savingsAnalysis,
+        totalDebtBalance,
+        totalMonthlyPayments
+      });
+      
+      await sendEmail({
+        to: email,
+        from: "mdeshazo@mykoal.com",
+        subject: userEmailTemplate.subject,
+        html: userEmailTemplate.html,
+        text: userEmailTemplate.text,
+      });
+
+      // Send notification to Mykoal
+      const notificationTemplate = {
+        subject: `${calculationType === 'debt-consolidation' ? 'Debt Consolidation' : 'Mortgage'} Calculation Request: ${email}`,
+        html: `
+          <h2>New Calculation Results Request</h2>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Calculation Type:</strong> ${calculationType}</p>
+          <p><strong>Loan Amount:</strong> $${inputs.loanAmount.toLocaleString()}</p>
+          <p><strong>Interest Rate:</strong> ${inputs.interestRate}%</p>
+          <p><strong>Monthly Payment:</strong> $${results.monthlyPayment.toLocaleString()}</p>
+          <p><strong>Submitted:</strong> ${new Date().toLocaleString()}</p>
+        `,
+        text: `
+          New Calculation Results Request
+          
+          Email: ${email}
+          Calculation Type: ${calculationType}
+          Loan Amount: $${inputs.loanAmount.toLocaleString()}
+          Interest Rate: ${inputs.interestRate}%
+          Monthly Payment: $${results.monthlyPayment.toLocaleString()}
+          Submitted: ${new Date().toLocaleString()}
+        `
+      };
+      
+      await sendNotificationEmail(notificationTemplate);
+      
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error sending calculation results:", error);
+      res.status(500).json({ 
+        success: false, 
+        message: "Failed to send calculation results" 
+      });
     }
   });
 

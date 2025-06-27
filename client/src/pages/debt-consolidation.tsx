@@ -29,6 +29,8 @@ export default function DebtConsolidationPage() {
   const [nextId, setNextId] = useState(4);
   const [email, setEmail] = useState("");
   const [creditScore, setCreditScore] = useState("");
+  const [showEmailQuote, setShowEmailQuote] = useState(false);
+  const [quoteEmail, setQuoteEmail] = useState("");
   const { toast } = useToast();
 
   const goToContact = () => {
@@ -63,6 +65,28 @@ export default function DebtConsolidationPage() {
     },
   });
 
+  const emailQuoteMutation = useMutation({
+    mutationFn: async (data: any) => {
+      const response = await apiRequest("/api/email-debt-quote", "POST", data);
+      return response;
+    },
+    onSuccess: () => {
+      toast({
+        title: "Quote Emailed Successfully!",
+        description: "Your debt consolidation analysis has been sent to your email.",
+      });
+      setShowEmailQuote(false);
+      setQuoteEmail("");
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to email quote. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
   const handleQuickQuote = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !creditScore) {
@@ -81,6 +105,38 @@ export default function DebtConsolidationPage() {
       creditScore,
       propertyType: "Debt Consolidation",
       email,
+    });
+  };
+
+  const handleEmailQuote = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!quoteEmail) {
+      toast({
+        title: "Email Required",
+        description: "Please enter your email address to receive the quote.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const validDebts = debts.filter(debt => debt.creditor && debt.balance && debt.currentPayment);
+    if (validDebts.length === 0) {
+      toast({
+        title: "No Debt Information",
+        description: "Please enter at least one debt to generate a quote.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const totalDebt = validDebts.reduce((sum, debt) => sum + parseFloat(debt.balance), 0);
+    const totalPayments = validDebts.reduce((sum, debt) => sum + parseFloat(debt.currentPayment), 0);
+
+    emailQuoteMutation.mutate({
+      email: quoteEmail,
+      debts: validDebts,
+      totalDebt,
+      totalPayments
     });
   };
 

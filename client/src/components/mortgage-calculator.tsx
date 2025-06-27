@@ -5,6 +5,10 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { calculateMortgage } from "@/lib/mortgage-calculations";
+import { Mail } from "lucide-react";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 
 export default function MortgageCalculator() {
   const [inputs, setInputs] = useState({
@@ -15,6 +19,32 @@ export default function MortgageCalculator() {
     extraPayment: 0,
     propertyTax: 0,
     propertyInsurance: 0,
+  });
+
+  const [showEmailForm, setShowEmailForm] = useState(false);
+  const [emailAddress, setEmailAddress] = useState("");
+  const { toast } = useToast();
+
+  const emailCalculationMutation = useMutation({
+    mutationFn: async (data: any) => {
+      const response = await apiRequest("/api/email-calculation", "POST", data);
+      return response;
+    },
+    onSuccess: () => {
+      toast({
+        title: "Calculation Emailed!",
+        description: "Your mortgage analysis has been sent to your email.",
+      });
+      setShowEmailForm(false);
+      setEmailAddress("");
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to email calculation. Please try again.",
+        variant: "destructive",
+      });
+    },
   });
 
   const [results, setResults] = useState({
@@ -302,12 +332,82 @@ export default function MortgageCalculator() {
                   </div>
                 </div>
 
-                <Button
-                  onClick={scrollToContact}
-                  className="w-full mt-6 accent-gradient text-white hover:opacity-90"
-                >
-                  Get Pre-Approved Now
-                </Button>
+                <div className="flex flex-col gap-3 mt-6">
+                  <Button
+                    onClick={() => setShowEmailForm(true)}
+                    variant="outline"
+                    className="w-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center gap-2"
+                  >
+                    <Mail className="w-4 h-4" />
+                    Email This Calculation
+                  </Button>
+                  <Button
+                    onClick={scrollToContact}
+                    className="w-full accent-gradient text-white hover:opacity-90"
+                  >
+                    Get Pre-Approved Now
+                  </Button>
+                </div>
+
+                {/* Email Form Modal */}
+                {showEmailForm && (
+                  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="bg-white p-6 rounded-lg max-w-md w-full mx-4">
+                      <h3 className="text-lg font-semibold mb-4">Email Your Mortgage Calculation</h3>
+                      <form onSubmit={(e) => {
+                        e.preventDefault();
+                        if (!emailAddress) {
+                          toast({
+                            title: "Email Required",
+                            description: "Please enter your email address.",
+                            variant: "destructive",
+                          });
+                          return;
+                        }
+                        emailCalculationMutation.mutate({
+                          email: emailAddress,
+                          calculationType: "mortgage",
+                          inputs,
+                          results
+                        });
+                      }}>
+                        <div className="space-y-4">
+                          <div>
+                            <Label htmlFor="email">Email Address</Label>
+                            <Input
+                              id="email"
+                              type="email"
+                              placeholder="your.email@example.com"
+                              value={emailAddress}
+                              onChange={(e) => setEmailAddress(e.target.value)}
+                              required
+                            />
+                          </div>
+                          <div className="flex gap-3">
+                            <Button
+                              type="button"
+                              variant="outline"
+                              onClick={() => {
+                                setShowEmailForm(false);
+                                setEmailAddress("");
+                              }}
+                              className="flex-1"
+                            >
+                              Cancel
+                            </Button>
+                            <Button
+                              type="submit"
+                              disabled={emailCalculationMutation.isPending}
+                              className="flex-1"
+                            >
+                              {emailCalculationMutation.isPending ? "Sending..." : "Send Calculation"}
+                            </Button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>

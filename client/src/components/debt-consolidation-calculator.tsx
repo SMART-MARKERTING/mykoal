@@ -6,7 +6,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { calculateMortgage } from "@/lib/mortgage-calculations";
-import { Calculator, TrendingDown, Clock, DollarSign } from "lucide-react";
+import { Calculator, TrendingDown, Clock, DollarSign, Mail } from "lucide-react";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 
 interface DebtConsolidationCalculatorProps {
   totalDebtBalance: number;
@@ -27,6 +30,31 @@ export default function DebtConsolidationCalculator({
   });
 
   const [useExtraPayment, setUseExtraPayment] = useState(false);
+  const [showEmailForm, setShowEmailForm] = useState(false);
+  const [emailAddress, setEmailAddress] = useState("");
+  const { toast } = useToast();
+
+  const emailCalculationMutation = useMutation({
+    mutationFn: async (data: any) => {
+      const response = await apiRequest("/api/email-calculation", "POST", data);
+      return response;
+    },
+    onSuccess: () => {
+      toast({
+        title: "Calculation Emailed!",
+        description: "Your debt consolidation analysis has been sent to your email.",
+      });
+      setShowEmailForm(false);
+      setEmailAddress("");
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to email calculation. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
 
   const [results, setResults] = useState({
     monthlyPayment: 0,
@@ -444,14 +472,84 @@ export default function DebtConsolidationCalculator({
             </div>
           </div>
 
-          <div className="flex justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button
-              onClick={goToContact}
+              onClick={() => setShowEmailForm(true)}
+              variant="outline"
+              className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 flex items-center gap-2"
+            >
+              <Mail className="w-4 h-4" />
+              Email This Analysis
+            </Button>
+            <Button
               className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg font-semibold"
             >
               Get Your Consolidation Loan Quote
             </Button>
           </div>
+
+          {/* Email Form Modal */}
+          {showEmailForm && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+              <div className="bg-white p-6 rounded-lg max-w-md w-full mx-4">
+                <h3 className="text-lg font-semibold mb-4">Email Your Debt Consolidation Analysis</h3>
+                <form onSubmit={(e) => {
+                  e.preventDefault();
+                  if (!emailAddress) {
+                    toast({
+                      title: "Email Required",
+                      description: "Please enter your email address.",
+                      variant: "destructive",
+                    });
+                    return;
+                  }
+                  emailCalculationMutation.mutate({
+                    email: emailAddress,
+                    calculationType: "debt-consolidation",
+                    inputs,
+                    results,
+                    savingsAnalysis,
+                    totalDebtBalance,
+                    totalMonthlyPayments
+                  });
+                }}>
+                  <div className="space-y-4">
+                    <div>
+                      <Label htmlFor="email">Email Address</Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder="your.email@example.com"
+                        value={emailAddress}
+                        onChange={(e) => setEmailAddress(e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div className="flex gap-3">
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={() => {
+                          setShowEmailForm(false);
+                          setEmailAddress("");
+                        }}
+                        className="flex-1"
+                      >
+                        Cancel
+                      </Button>
+                      <Button
+                        type="submit"
+                        disabled={emailCalculationMutation.isPending}
+                        className="flex-1"
+                      >
+                        {emailCalculationMutation.isPending ? "Sending..." : "Send Analysis"}
+                      </Button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          )}
         </CardContent>
       </Card>
     </div>
