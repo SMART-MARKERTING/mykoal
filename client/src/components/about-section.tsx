@@ -73,7 +73,7 @@ export default function AboutSection() {
               onClick={scrollToContact}
               className="bg-blue-600 text-white hover:bg-blue-700"
             >
-              Schedule Free Consultation
+              Get Quote Today
             </Button>
           </div>
         </div>

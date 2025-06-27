@@ -159,6 +159,7 @@ The application uses four main tables:
 - June 27, 2025. Fixed Equal Housing Opportunity logo image paths and made logo white color across all pages using brightness-0 invert CSS filters
 - June 27, 2025. Removed "Need Help After Hours?" emergency contact section from contact page
 - June 27, 2025. Created comprehensive Privacy Policy and Terms of Service pages with NMLS #1912347 licensing integration, direct link to NMLS Consumer Access verification, regulatory compliance sections, and updated footer with proper navigation links
+- June 27, 2025. Removed consultation scheduling references - changed "Free 30-minute consultation" to "Same-day rate quotes" and "Schedule Free Consultation" buttons to "Get Quote Today" and "Get Started Today"
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.

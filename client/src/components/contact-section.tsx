@@ -51,14 +51,14 @@ export default function ContactSection() {
                     <Calendar className="text-blue-600 h-6 w-6" />
                   </div>
                   <div>
-                    <div className="font-semibold text-gray-900">Schedule Online</div>
-                    <div className="text-blue-600 font-semibold">Book a time that works</div>
-                    <div className="text-sm text-gray-600">Free 30-minute consultation</div>
+                    <div className="font-semibold text-gray-900">Quick Response</div>
+                    <div className="text-blue-600 font-semibold">Fast quote turnaround</div>
+                    <div className="text-sm text-gray-600">Same-day rate quotes</div>
                   </div>
                 </div>
 
                 <Button className="mt-6 w-full accent-gradient text-white hover:opacity-90">
-                  Schedule Free Consultation
+                  Get Started Today
                 </Button>
               </CardContent>
             </Card>
