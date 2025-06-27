@@ -132,7 +132,7 @@ The application uses four main tables:
 - June 27, 2025. Fixed effective interest rate calculation to properly show rate reduction when extra payments are made
 - June 27, 2025. Fixed extra payment input field zero display issue, removed trusted license section, updated phone to 623-280-8351, created SEO-optimized blog pages with proper "Read More" navigation
 - June 27, 2025. Added "Get Quote" buttons to all lending solutions that link directly to contact form for lead capture
-- June 27, 2025. Updated experience from "15 years" to "20+ combined team experience years" in about section
+- June 27, 2025. Updated experience from "15 years" to "20+ combined team experience years" in about section and hero section
 - June 27, 2025. Fixed all quote buttons on dedicated landing pages to properly redirect to main contact form instead of broken scroll functionality
 - June 27, 2025. Created comprehensive debt consolidation loan page with interactive debt calculator, dynamic debt input system (3 initial debt types with add/remove functionality), integrated loan calculator, and complete SEO content
 - June 27, 2025. Implemented complete online pre-qualification system with 4-step form (personal, financial, loan details, review), automatic qualification scoring algorithm, results dashboard with approval status, estimated rates, and integrated navigation
