@@ -42,12 +42,10 @@ export function calculateMortgage(inputs: MortgageInputs): MortgageResults {
     totalPaymentsWithExtra 
   } = calculateAmortizationWithExtra(loanAmount, monthlyRate, monthlyPayment, extraPayment);
 
-  // Calculate effective interest rate
-  const effectiveRate = calculateEffectiveInterestRate(
-    loanAmount, 
-    monthlyPayment + extraPayment, 
-    payoffTimeMonths
-  );
+  // Calculate effective interest rate based on total interest paid vs standard
+  const effectiveRate = extraPayment > 0 
+    ? calculateEffectiveInterestRate(loanAmount, totalInterestWithExtra, payoffTimeMonths)
+    : interestRate;
 
   const interestSavings = totalInterest - totalInterestWithExtra;
 
@@ -100,28 +98,44 @@ function calculateAmortizationWithExtra(
 
 function calculateEffectiveInterestRate(
   principal: number, 
-  totalMonthlyPayment: number, 
+  totalInterestPaid: number, 
   payoffMonths: number
 ): number {
-  if (payoffMonths <= 0) return 0;
+  if (payoffMonths <= 0 || totalInterestPaid <= 0) return 0;
   
-  // Use Newton-Raphson method to solve for effective monthly rate
-  // PV = PMT * [1 - (1 + r)^-n] / r
-  // Rearranging: f(r) = PV * r - PMT * [1 - (1 + r)^-n] = 0
+  // Calculate what interest rate would result in the same total interest over the original loan term
+  // We use the standard loan term (not the accelerated payoff time) for comparison
+  const standardLoanTermMonths = 360; // 30 years for comparison
   
-  let rate = 0.005; // Initial guess (0.5% monthly)
+  // Use Newton-Raphson method to find the rate that produces the same total interest
+  // Total Interest = (Monthly Payment * n) - Principal
+  // Monthly Payment = P * [r(1+r)^n] / [(1+r)^n - 1]
+  // So: Total Interest = P * [r(1+r)^n] / [(1+r)^n - 1] * n - P
+  
+  let rate = 0.002; // Initial guess (2.4% annual)
   const tolerance = 0.0000001;
   const maxIterations = 100;
   
   for (let i = 0; i < maxIterations; i++) {
     const onePlusR = 1 + rate;
-    const onePlusRToN = Math.pow(onePlusR, -payoffMonths);
+    const onePlusRToN = Math.pow(onePlusR, standardLoanTermMonths);
     
-    // Function value
-    const f = principal * rate - totalMonthlyPayment * (1 - onePlusRToN);
+    // Calculate monthly payment for this rate
+    const monthlyPayment = principal * (rate * onePlusRToN) / (onePlusRToN - 1);
+    const calculatedTotalInterest = (monthlyPayment * standardLoanTermMonths) - principal;
     
-    // Derivative
-    const df = principal + totalMonthlyPayment * payoffMonths * onePlusRToN / onePlusR;
+    // Function: difference between calculated and target interest
+    const f = calculatedTotalInterest - totalInterestPaid;
+    
+    // Derivative (approximate)
+    const deltaRate = 0.0001;
+    const onePlusRDelta = 1 + rate + deltaRate;
+    const onePlusRDeltaToN = Math.pow(onePlusRDelta, standardLoanTermMonths);
+    const monthlyPaymentDelta = principal * ((rate + deltaRate) * onePlusRDeltaToN) / (onePlusRDeltaToN - 1);
+    const calculatedTotalInterestDelta = (monthlyPaymentDelta * standardLoanTermMonths) - principal;
+    const df = (calculatedTotalInterestDelta - calculatedTotalInterest) / deltaRate;
+    
+    if (Math.abs(df) < tolerance) break;
     
     const newRate = rate - f / df;
     
@@ -132,8 +146,9 @@ function calculateEffectiveInterestRate(
     
     rate = newRate;
     
-    // Ensure rate stays positive
+    // Ensure rate stays positive and reasonable
     if (rate < 0) rate = 0.001;
+    if (rate > 0.5) rate = 0.5; // Cap at 50% to prevent overflow
   }
   
   // Convert monthly rate to annual percentage

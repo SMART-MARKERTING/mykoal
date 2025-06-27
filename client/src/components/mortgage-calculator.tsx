@@ -182,9 +182,21 @@ export default function MortgageCalculator() {
                     <h4 className="text-lg font-semibold text-yellow-800 mb-3">Effective Interest Rate Benefits</h4>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
-                        <span className="text-gray-700">Effective Interest Rate:</span>
-                        <span className="font-semibold text-yellow-800">
+                        <span className="text-gray-700">Standard Rate:</span>
+                        <span className="font-semibold text-gray-600">
+                          {inputs.interestRate.toFixed(2)}%
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-700">Effective Rate with Extra Payment:</span>
+                        <span className="font-semibold text-green-700">
                           {results.effectiveInterestRate.toFixed(2)}%
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-700">Rate Reduction:</span>
+                        <span className="font-semibold text-green-700">
+                          -{(inputs.interestRate - results.effectiveInterestRate).toFixed(2)}%
                         </span>
                       </div>
                       <div className="flex justify-between">
