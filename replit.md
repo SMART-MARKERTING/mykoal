@@ -177,6 +177,7 @@ The application uses four main tables:
 - June 27, 2025. Fixed Equal Housing Opportunity logo display across all pages - updated asset imports using proper Vite @assets path for footer, resources, privacy policy, terms of service, debt consolidation, market updates, and about pages; logos now display correctly on all pages
 - June 27, 2025. Set up PostgreSQL database with permanent storage for all form submissions - created database schema, migrated from memory storage to DatabaseStorage class, initialized with sample data; all contact forms, quick quotes, pre-qualifications, and email subscriptions now permanently stored
 - June 27, 2025. Added email capture forms to debt consolidation and DSCR landing pages - integrated quick quote functionality with loan amount, credit score, and email fields; forms submit to database and provide user feedback via toast notifications
+- June 27, 2025. Implemented automatic email notifications using SendGrid - created comprehensive email service with templates for contact forms, quick quotes, pre-qualifications, and market subscriptions; all form submissions now trigger instant email notifications to mdeshazo@mykoal.com
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.

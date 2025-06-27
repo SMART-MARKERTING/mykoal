@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertContactSchema, insertQuickQuoteSchema, insertPreQualificationSchema, insertMarketSubscriptionSchema } from "@shared/schema";
 import { z } from "zod";
+import { sendNotificationEmail, emailTemplates } from "./email";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Contact form submission
@@ -11,7 +12,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertContactSchema.parse(req.body);
       const contact = await storage.createContact(validatedData);
       
-      // Here you would typically send an email notification
+      // Send email notification
+      const emailTemplate = emailTemplates.newContact(contact);
+      await sendNotificationEmail(emailTemplate);
       console.log("New contact submission:", contact);
       
       res.json({ success: true, contact });
@@ -52,6 +55,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertQuickQuoteSchema.parse(req.body);
       const quote = await storage.createQuickQuote(validatedData);
       
+      // Send email notification
+      const emailTemplate = emailTemplates.newQuickQuote(quote);
+      await sendNotificationEmail(emailTemplate);
       console.log("New quick quote submission:", quote);
       
       res.json({ success: true, quote });
@@ -128,6 +134,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertPreQualificationSchema.parse(requestData);
       const preQualification = await storage.createPreQualification(validatedData);
       
+      // Send email notification
+      const emailTemplate = emailTemplates.newPreQualification(preQualification);
+      await sendNotificationEmail(emailTemplate);
       console.log("New pre-qualification submission:", preQualification);
       
       res.json({ success: true, preQualification });
@@ -232,6 +241,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertMarketSubscriptionSchema.parse(req.body);
       const subscription = await storage.createMarketSubscription(validatedData);
       
+      // Send email notification
+      const emailTemplate = emailTemplates.newMarketSubscription(subscription);
+      await sendNotificationEmail(emailTemplate);
       console.log("New market subscription:", subscription);
       
       res.json({ success: true, subscription });
