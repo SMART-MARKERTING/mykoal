@@ -6,6 +6,12 @@ import { Link } from "wouter";
 export default function StartupBusinessLoanPage() {
   const goToContact = () => {
     window.location.href = "/#contact";
+    setTimeout(() => {
+      const element = document.getElementById("contact");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 100);
   };
 
   return (

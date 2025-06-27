@@ -25,6 +25,12 @@ export default function DebtConsolidationPage() {
 
   const goToContact = () => {
     window.location.href = "/#contact";
+    setTimeout(() => {
+      const element = document.getElementById("contact");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 100);
   };
 
   const addDebt = () => {

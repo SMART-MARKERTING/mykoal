@@ -57,7 +57,15 @@ export default function ContactSection() {
                   </div>
                 </div>
 
-                <Button className="mt-6 w-full accent-gradient text-white hover:opacity-90">
+                <Button 
+                  onClick={() => {
+                    const element = document.getElementById("contact");
+                    if (element) {
+                      element.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }
+                  }}
+                  className="mt-6 w-full accent-gradient text-white hover:opacity-90"
+                >
                   Get Started Today
                 </Button>
               </CardContent>
