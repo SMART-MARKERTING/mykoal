@@ -18,8 +18,34 @@ import {
   ExternalLink
 } from "lucide-react";
 import { Link } from "wouter";
+import { useEffect } from "react";
 
 export default function ResourcesPage() {
+  // SEO optimization
+  useEffect(() => {
+    document.title = "Lending Resources - Mykoal DeShazo | Investment Property Financing Tools & Guides";
+    
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Comprehensive lending resources from Mykoal DeShazo, NMLS #1912347. Access mortgage calculators, DSCR loan guides, market data, and investment property financing tools in Scottsdale, Arizona.');
+    } else {
+      const meta = document.createElement('meta');
+      meta.name = 'description';
+      meta.content = 'Comprehensive lending resources from Mykoal DeShazo, NMLS #1912347. Access mortgage calculators, DSCR loan guides, market data, and investment property financing tools in Scottsdale, Arizona.';
+      document.head.appendChild(meta);
+    }
+
+    // Open Graph tags for social sharing
+    const ogTitle = document.querySelector('meta[property="og:title"]') || document.createElement('meta');
+    ogTitle.setAttribute('property', 'og:title');
+    ogTitle.setAttribute('content', 'Lending Resources - Investment Property Financing Tools & Guides');
+    if (!document.querySelector('meta[property="og:title"]')) document.head.appendChild(ogTitle);
+
+    const ogDescription = document.querySelector('meta[property="og:description"]') || document.createElement('meta');
+    ogDescription.setAttribute('property', 'og:description');
+    ogDescription.setAttribute('content', 'Access comprehensive lending resources including mortgage calculators, DSCR loan guides, and market intelligence tools from licensed mortgage professional Mykoal DeShazo.');
+    if (!document.querySelector('meta[property="og:description"]')) document.head.appendChild(ogDescription);
+  }, []);
   const blogArticles = [
     {
       id: 1,
@@ -157,33 +183,33 @@ export default function ResourcesPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
+      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex items-center justify-center mb-6">
-            <BookOpen className="h-12 w-12 mr-4" />
-            <h1 className="text-4xl lg:text-5xl font-bold">Lending Resources</h1>
+          <div className="flex flex-col sm:flex-row items-center justify-center mb-6">
+            <BookOpen className="h-10 w-10 sm:h-12 sm:w-12 mb-3 sm:mb-0 sm:mr-4" />
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold">Lending Resources</h1>
           </div>
-          <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
             Comprehensive guides, calculators, and tools to help you make informed financing decisions
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
             <Button 
               variant="secondary" 
-              className="text-lg px-6 py-3 bg-white/20 hover:bg-white/30 text-white border-white/30"
+              className="text-sm sm:text-lg px-4 py-2 sm:px-6 sm:py-3 bg-white/20 hover:bg-white/30 text-white border-white/30 transition-all duration-200"
               onClick={() => document.getElementById('educational-guides')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Educational Guides
             </Button>
             <Button 
               variant="secondary" 
-              className="text-lg px-6 py-3 bg-white/20 hover:bg-white/30 text-white border-white/30"
+              className="text-sm sm:text-lg px-4 py-2 sm:px-6 sm:py-3 bg-white/20 hover:bg-white/30 text-white border-white/30 transition-all duration-200"
               onClick={() => document.getElementById('financial-calculators')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Financial Calculators
             </Button>
             <Button 
               variant="secondary" 
-              className="text-lg px-6 py-3 bg-white/20 hover:bg-white/30 text-white border-white/30"
+              className="text-sm sm:text-lg px-4 py-2 sm:px-6 sm:py-3 bg-white/20 hover:bg-white/30 text-white border-white/30 transition-all duration-200"
               onClick={() => document.getElementById('market-data')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Market Data
@@ -196,23 +222,23 @@ export default function ResourcesPage() {
         
         {/* Quick Links Navigation */}
         <section className="mb-12">
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">Quick Links</h2>
-            <div className="grid md:grid-cols-5 gap-4">
-              <Link href="/#calculator" className="flex items-center justify-center bg-white border border-blue-200 rounded-lg p-4 hover:bg-blue-50 transition-colors">
-                <span className="text-sm font-medium text-gray-700">Mortgage Calculator</span>
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 sm:p-6">
+            <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">Quick Links</h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4">
+              <Link href="/#calculator" className="flex items-center justify-center bg-white border border-blue-200 rounded-lg p-3 sm:p-4 hover:bg-blue-50 transition-colors min-h-[60px]">
+                <span className="text-xs sm:text-sm font-medium text-gray-700 text-center">Mortgage Calculator</span>
               </Link>
-              <Link href="/#loans" className="flex items-center justify-center bg-white border border-blue-200 rounded-lg p-4 hover:bg-blue-50 transition-colors">
-                <span className="text-sm font-medium text-gray-700">Lending Solutions</span>
+              <Link href="/#loans" className="flex items-center justify-center bg-white border border-blue-200 rounded-lg p-3 sm:p-4 hover:bg-blue-50 transition-colors min-h-[60px]">
+                <span className="text-xs sm:text-sm font-medium text-gray-700 text-center">Lending Solutions</span>
               </Link>
-              <Link href="/about" className="flex items-center justify-center bg-white border border-blue-200 rounded-lg p-4 hover:bg-blue-50 transition-colors">
-                <span className="text-sm font-medium text-gray-700">About Us</span>
+              <Link href="/about" className="flex items-center justify-center bg-white border border-blue-200 rounded-lg p-3 sm:p-4 hover:bg-blue-50 transition-colors min-h-[60px]">
+                <span className="text-xs sm:text-sm font-medium text-gray-700 text-center">About Us</span>
               </Link>
-              <Link href="/pre-qualification" className="flex items-center justify-center bg-white border border-blue-200 rounded-lg p-4 hover:bg-blue-50 transition-colors">
-                <span className="text-sm font-medium text-gray-700">Pre-Qualify</span>
+              <Link href="/pre-qualification" className="flex items-center justify-center bg-white border border-blue-200 rounded-lg p-3 sm:p-4 hover:bg-blue-50 transition-colors min-h-[60px]">
+                <span className="text-xs sm:text-sm font-medium text-gray-700 text-center">Pre-Qualify</span>
               </Link>
-              <Link href="/#contact" className="flex items-center justify-center bg-white border border-blue-200 rounded-lg p-4 hover:bg-blue-50 transition-colors">
-                <span className="text-sm font-medium text-gray-700">Contact</span>
+              <Link href="/#contact" className="flex items-center justify-center bg-white border border-blue-200 rounded-lg p-3 sm:p-4 hover:bg-blue-50 transition-colors min-h-[60px] col-span-2 sm:col-span-1">
+                <span className="text-xs sm:text-sm font-medium text-gray-700 text-center">Contact</span>
               </Link>
             </div>
           </div>
@@ -220,12 +246,12 @@ export default function ResourcesPage() {
 
         {/* Featured Articles */}
         <section id="educational-guides" className="mb-16">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Featured Articles</h2>
-            <p className="text-lg text-gray-600">Expert insights and comprehensive guides</p>
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">Featured Articles</h2>
+            <p className="text-base sm:text-lg text-gray-600">Expert insights and comprehensive guides</p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {blogArticles.map((article) => (
               <Card key={article.id} className="hover:shadow-lg transition-shadow">
                 <CardHeader>
@@ -256,12 +282,12 @@ export default function ResourcesPage() {
 
         {/* Financial Calculators */}
         <section id="financial-calculators" className="mb-16">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Financial Calculators</h2>
-            <p className="text-lg text-gray-600">Interactive tools for loan planning and analysis</p>
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">Financial Calculators</h2>
+            <p className="text-base sm:text-lg text-gray-600">Interactive tools for loan planning and analysis</p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {calculators.map((calc) => (
               <Card key={calc.id} className="hover:shadow-lg transition-shadow">
                 <CardHeader>
@@ -285,12 +311,12 @@ export default function ResourcesPage() {
 
         {/* Loan Products Guide */}
         <section className="mb-16">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Loan Products Guide</h2>
-            <p className="text-lg text-gray-600">Detailed information about our financing solutions</p>
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">Loan Products Guide</h2>
+            <p className="text-base sm:text-lg text-gray-600">Detailed information about our financing solutions</p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6">
             {loanTypes.map((loan) => (
               <Card key={loan.id} className="hover:shadow-lg transition-shadow">
                 <CardHeader>
@@ -318,11 +344,11 @@ export default function ResourcesPage() {
         </section>
 
         {/* Market Data & Tools */}
-        <div id="market-data" className="grid lg:grid-cols-2 gap-12 mb-16">
+        <div id="market-data" className="grid lg:grid-cols-2 gap-8 lg:gap-12 mb-16">
           
           {/* Market Resources */}
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Market Intelligence</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Market Intelligence</h2>
             <div className="space-y-4">
               {marketResources.map((resource) => (
                 <Card key={resource.id} className="hover:shadow-md transition-shadow">
@@ -348,7 +374,7 @@ export default function ResourcesPage() {
 
           {/* Online Tools */}
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Online Tools</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Online Tools</h2>
             <div className="space-y-4">
               {tools.map((tool) => (
                 <Card key={tool.id} className="hover:shadow-md transition-shadow">
@@ -373,19 +399,19 @@ export default function ResourcesPage() {
         </div>
 
         {/* Quick Access Section */}
-        <section className="bg-blue-50 rounded-xl p-8 text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Need Personal Guidance?</h2>
-          <p className="text-lg text-gray-600 mb-6">
+        <section className="bg-blue-50 rounded-xl p-6 sm:p-8 text-center">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Need Personal Guidance?</h2>
+          <p className="text-base sm:text-lg text-gray-600 mb-4 sm:mb-6">
             Connect with Mykoal DeShazo for personalized lending solutions and expert advice
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4">
             <Link href="/#contact">
-              <Button size="lg">
+              <Button size="lg" className="w-full sm:w-auto">
                 Contact Mykoal
               </Button>
             </Link>
             <Link href="/pre-qualification">
-              <Button variant="outline" size="lg">
+              <Button variant="outline" size="lg" className="w-full sm:w-auto">
                 Get Pre-Qualified
               </Button>
             </Link>
@@ -393,16 +419,16 @@ export default function ResourcesPage() {
         </section>
 
         {/* Equal Housing Opportunity */}
-        <div className="mt-12 text-center">
-          <div className="flex items-center justify-center gap-3 mb-4">
+        <div className="mt-8 sm:mt-12 text-center">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4">
             <img 
-              src="/equal-housing-logo.png" 
+              src="/attached_assets/Equal-Housing-Logo_1751007456918.png" 
               alt="Equal Housing Opportunity Logo" 
-              className="w-6 h-6 object-contain"
+              className="w-5 h-5 sm:w-6 sm:h-6 object-contain"
             />
-            <span className="text-sm font-semibold text-gray-700">Equal Housing Opportunity</span>
+            <span className="text-xs sm:text-sm font-semibold text-gray-700">Equal Housing Opportunity</span>
           </div>
-          <p className="text-xs text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xs text-gray-600 max-w-3xl mx-auto px-4">
             We are committed to equal housing opportunity. All loans subject to credit approval. 
             This is not a commitment to lend. Licensed mortgage loan originator NMLS #1912347.
           </p>

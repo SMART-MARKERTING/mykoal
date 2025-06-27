@@ -30,10 +30,12 @@ export default function DSCRGuidePage() {
           <p className="text-xl mb-8 opacity-90">
             Master debt service coverage ratio loans and unlock your real estate investment potential with expert guidance
           </p>
-          <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
-            <Calculator className="h-5 w-5 mr-2" />
-            Calculate Your DSCR
-          </Button>
+          <Link href="/dscr-purchase">
+            <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
+              <Calculator className="h-5 w-5 mr-2" />
+              Calculate Your DSCR
+            </Button>
+          </Link>
         </div>
       </section>
 
