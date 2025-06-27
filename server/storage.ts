@@ -209,8 +209,26 @@ export class MemStorage implements IStorage {
 
   async createPreQualification(insertPreQual: InsertPreQualification): Promise<PreQualification> {
     const id = this.currentPreQualId++;
+    
+    // Calculate qualification score and status
+    const loanAmount = parseFloat(insertPreQual.loanAmount || "0");
+    const score = Math.min(100, Math.max(0, 85 - (loanAmount > 500000 ? 10 : 0)));
+    const status = score >= 70 ? 'qualified' : score >= 50 ? 'conditional' : 'not-qualified';
+    
     const preQual: PreQualification = {
-      ...insertPreQual,
+      id,
+      firstName: insertPreQual.firstName,
+      lastName: insertPreQual.lastName,
+      email: insertPreQual.email,
+      phone: insertPreQual.phone,
+      loanType: insertPreQual.loanType,
+      loanAmount: insertPreQual.loanAmount,
+      // Provide defaults for removed sensitive fields
+      annualIncome: "0", // Will be collected during actual application
+      employmentType: "To be determined", // Will be collected during actual application  
+      creditScore: "To be determined", // Will be collected during actual application
+      qualificationStatus: status,
+      qualificationScore: score,
       dateOfBirth: insertPreQual.dateOfBirth || null,
       ssn: insertPreQual.ssn || null,
       employmentLength: insertPreQual.employmentLength || null,
@@ -222,7 +240,6 @@ export class MemStorage implements IStorage {
       bankruptcyHistory: insertPreQual.bankruptcyHistory || null,
       notes: insertPreQual.notes || null,
       estimatedRate: insertPreQual.estimatedRate || null,
-      id,
       createdAt: new Date(),
     };
     this.preQualifications.set(id, preQual);

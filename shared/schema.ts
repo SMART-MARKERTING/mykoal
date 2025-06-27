@@ -52,10 +52,10 @@ export const preQualifications = pgTable("pre_qualifications", {
   phone: text("phone").notNull(),
   dateOfBirth: text("date_of_birth"),
   ssn: text("ssn"),
-  annualIncome: decimal("annual_income", { precision: 12, scale: 2 }).notNull(),
-  employmentType: text("employment_type").notNull(),
+  annualIncome: decimal("annual_income", { precision: 12, scale: 2 }),
+  employmentType: text("employment_type"),
   employmentLength: text("employment_length"),
-  creditScore: text("credit_score").notNull(),
+  creditScore: text("credit_score"),
   monthlyDebt: decimal("monthly_debt", { precision: 12, scale: 2 }),
   assets: decimal("assets", { precision: 12, scale: 2 }),
   loanType: text("loan_type").notNull(),
@@ -81,10 +81,17 @@ export const insertQuickQuoteSchema = createInsertSchema(quickQuotes).omit({
   createdAt: true,
 });
 
-export const insertPreQualificationSchema = createInsertSchema(preQualifications).omit({
-  id: true,
-  createdAt: true,
-}).extend({
+export const insertPreQualificationSchema = z.object({
+  firstName: z.string().min(1, "First name is required"),
+  lastName: z.string().min(1, "Last name is required"),
+  email: z.string().email("Valid email is required"),
+  phone: z.string().min(1, "Phone number is required"),
+  loanType: z.string().min(1, "Loan type is required"),
+  loanAmount: z.string().min(1, "Loan amount is required"),
+  // Optional fields that were removed from the form
+  annualIncome: z.string().nullish(),
+  employmentType: z.string().nullish(),
+  creditScore: z.string().nullish(),
   dateOfBirth: z.string().optional().nullable(),
   ssn: z.string().optional().nullable(),
   employmentLength: z.string().optional().nullable(),

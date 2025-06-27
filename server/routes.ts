@@ -89,7 +89,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Pre-qualification application submission
   app.post("/api/pre-qualifications", async (req, res) => {
     try {
-      const validatedData = insertPreQualificationSchema.parse(req.body);
+      // Set defaults for removed sensitive fields before validation
+      const requestData = {
+        ...req.body,
+        annualIncome: req.body.annualIncome || null,
+        employmentType: req.body.employmentType || null,
+        creditScore: req.body.creditScore || null,
+      };
+      
+      const validatedData = insertPreQualificationSchema.parse(requestData);
       const preQualification = await storage.createPreQualification(validatedData);
       
       console.log("New pre-qualification submission:", preQualification);
@@ -97,6 +105,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({ success: true, preQualification });
     } catch (error) {
       if (error instanceof z.ZodError) {
+        console.error("Validation errors:", error.errors);
         res.status(400).json({ 
           success: false, 
           message: "Validation error", 
