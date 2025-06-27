@@ -1,4 +1,5 @@
 import { Facebook, Linkedin, Instagram, Youtube } from "lucide-react";
+import { Link } from "wouter";
 
 export default function Footer() {
   const scrollToSection = (sectionId: string) => {
@@ -122,9 +123,9 @@ export default function Footer() {
             
             <div className="text-sm text-gray-400 md:text-right">
               <div className="flex md:justify-end space-x-6">
-                <a href="#" className="hover:text-blue-400 transition-colors">Privacy Policy</a>
-                <a href="#" className="hover:text-blue-400 transition-colors">Terms of Service</a>
-                <a href="#" className="hover:text-blue-400 transition-colors">Licensing</a>
+                <Link href="/privacy-policy" className="hover:text-blue-400 transition-colors">Privacy Policy</Link>
+                <Link href="/terms-of-service" className="hover:text-blue-400 transition-colors">Terms of Service</Link>
+                <a href="https://www.nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/1912347" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">Licensing</a>
               </div>
               <p className="mt-4">© 2025 Mykoal DeShazo. All rights reserved.</p>
             </div>

@@ -158,6 +158,7 @@ The application uses four main tables:
 - June 27, 2025. Replaced all temporary Equal Housing Opportunity "=" symbols with official EHO logo image across entire website (footer, market updates, pre-qualification, debt consolidation pages) with proper CSS filters for different background colors
 - June 27, 2025. Fixed Equal Housing Opportunity logo image paths and made logo white color across all pages using brightness-0 invert CSS filters
 - June 27, 2025. Removed "Need Help After Hours?" emergency contact section from contact page
+- June 27, 2025. Created comprehensive Privacy Policy and Terms of Service pages with NMLS #1912347 licensing integration, direct link to NMLS Consumer Access verification, regulatory compliance sections, and updated footer with proper navigation links
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.

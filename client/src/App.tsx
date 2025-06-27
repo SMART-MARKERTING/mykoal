@@ -16,6 +16,8 @@ import PersonalLoansGuidePage from "@/pages/blog-personal-loans";
 import DebtConsolidationPage from "@/pages/debt-consolidation";
 import PreQualificationPage from "@/pages/pre-qualification";
 import MarketUpdatesPage from "@/pages/market-updates";
+import PrivacyPolicyPage from "@/pages/privacy-policy";
+import TermsOfServicePage from "@/pages/terms-of-service";
 
 function Router() {
   return (
@@ -32,6 +34,8 @@ function Router() {
       <Route path="/blog/dscr-guide" component={DSCRGuidePage} />
       <Route path="/blog/business-loans" component={BusinessLoansGuidePage} />
       <Route path="/blog/personal-loans" component={PersonalLoansGuidePage} />
+      <Route path="/privacy-policy" component={PrivacyPolicyPage} />
+      <Route path="/terms-of-service" component={TermsOfServicePage} />
       <Route component={NotFound} />
     </Switch>
   );
