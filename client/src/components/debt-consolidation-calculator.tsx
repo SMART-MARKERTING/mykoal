@@ -65,10 +65,18 @@ export default function DebtConsolidationCalculator({
     };
     const calculationWithExtra = calculateMortgage(inputsWithSavingsAsExtra);
     
-    // Calculate interest savings by comparing standard consolidated loan vs accelerated payoff
-    const standardTotalInterest = calculation.totalInterest;
-    const acceleratedTotalInterest = calculationWithExtra.totalInterest;
-    const interestSaved = Math.max(0, standardTotalInterest - acceleratedTotalInterest);
+    // Calculate interest savings properly
+    let interestSaved = 0;
+    
+    if (inputs.extraPayment > 0) {
+      // If user has already applied extra payments, show the built-in interest savings
+      interestSaved = calculation.interestSavings;
+    } else {
+      // Show potential interest savings if they apply the monthly savings as extra payment
+      const standardTotalInterest = calculation.totalInterest;
+      const acceleratedTotalInterest = calculationWithExtra.totalInterest;
+      interestSaved = Math.max(0, standardTotalInterest - acceleratedTotalInterest);
+    }
     
     // Calculate payoff acceleration - use the actual calculation results
     const standardPayoffMonths = inputs.loanTerm * 12;
