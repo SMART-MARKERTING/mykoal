@@ -32,6 +32,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get all contacts (for admin purposes)
+  app.get("/api/contacts", async (req, res) => {
+    try {
+      const contacts = await storage.getContacts();
+      res.json(contacts);
+    } catch (error) {
+      console.error("Error fetching contacts:", error);
+      res.status(500).json({ 
+        success: false, 
+        message: "Internal server error" 
+      });
+    }
+  });
+
   // Quick quote submission
   app.post("/api/quick-quotes", async (req, res) => {
     try {
@@ -55,6 +69,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
           message: "Internal server error" 
         });
       }
+    }
+  });
+
+  // Get all quick quotes (for admin purposes)
+  app.get("/api/quick-quotes", async (req, res) => {
+    try {
+      const quotes = await storage.getQuickQuotes();
+      res.json(quotes);
+    } catch (error) {
+      console.error("Error fetching quick quotes:", error);
+      res.status(500).json({ 
+        success: false, 
+        message: "Internal server error" 
+      });
     }
   });
 
@@ -221,6 +249,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
           message: "Internal server error" 
         });
       }
+    }
+  });
+
+  // Get all market subscriptions (for admin purposes)
+  app.get("/api/market-subscriptions", async (req, res) => {
+    try {
+      const subscriptions = await storage.getMarketSubscriptions();
+      res.json(subscriptions);
+    } catch (error) {
+      console.error("Error fetching market subscriptions:", error);
+      res.status(500).json({ 
+        success: false, 
+        message: "Internal server error" 
+      });
     }
   });
 
