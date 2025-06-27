@@ -41,7 +41,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <div className="font-semibold text-gray-900">Email</div>
-                    <div className="text-green-600 font-semibold">info@mortgagepro.com</div>
+                    <div className="text-green-600 font-semibold">mdeshazo@mykoal.com</div>
                     <div className="text-sm text-gray-600">Response within 1 hour</div>
                   </div>
                 </div>

@@ -144,10 +144,10 @@ export default function ContactForm() {
                   <SelectValue placeholder="Select loan type" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="Purchasing a home">Purchasing a home</SelectItem>
-                  <SelectItem value="Refinancing">Refinancing</SelectItem>
-                  <SelectItem value="Home equity loan">Home equity loan</SelectItem>
-                  <SelectItem value="Investment property">Investment property</SelectItem>
+                  <SelectItem value="Business Purpose DSCR">Business Purpose DSCR</SelectItem>
+                  <SelectItem value="DSCR HELOC">DSCR HELOC</SelectItem>
+                  <SelectItem value="Startup Business Loan">Startup Business Loan</SelectItem>
+                  <SelectItem value="Personal Loan">Personal Loan</SelectItem>
                   <SelectItem value="Other">Other</SelectItem>
                 </SelectContent>
               </Select>

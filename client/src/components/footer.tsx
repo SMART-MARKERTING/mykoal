@@ -53,7 +53,7 @@ export default function Footer() {
                   onClick={() => scrollToSection("loans")}
                   className="hover:text-blue-400 transition-colors text-left"
                 >
-                  Loan Products
+                  Lending Solutions
                 </button>
               </li>
               <li>
@@ -88,7 +88,7 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-4">Contact</h4>
             <ul className="space-y-2 text-gray-300">
               <li>(555) 123-4567</li>
-              <li>info@mortgagepro.com</li>
+              <li>mdeshazo@mykoal.com</li>
               <li>
                 123 Main Street, Suite 450<br />
                 San Francisco, CA 94102

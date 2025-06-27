@@ -122,7 +122,10 @@ The application uses four main tables:
 ## Changelog
 - June 27, 2025. Initial setup
 - June 27, 2025. Personalized website for Mykoal DeShazo with NMLS #1912347, removed interest rate section
+- June 27, 2025. Updated to business lending focus - DSCR loans, HELOC, startup business loans, personal loans
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.
 Business owner: Mykoal DeShazo, NMLS #1912347
+Email: mdeshazo@mykoal.com
+Specialization: Business purpose DSCR loans, investment property financing, alternative lending

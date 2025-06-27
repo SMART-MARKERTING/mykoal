@@ -1,48 +1,62 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Home, Shield, Flag, Check } from "lucide-react";
+import { Building2, CreditCard, TrendingUp, DollarSign, Check } from "lucide-react";
 
 const loanProducts = [
   {
-    name: "Conventional",
-    subtitle: "Most Popular",
-    icon: Home,
+    name: "Business Purpose DSCR",
+    subtitle: "Investment Properties",
+    icon: Building2,
     iconBg: "bg-blue-100",
     iconColor: "text-blue-600",
     buttonColor: "bg-blue-600 hover:bg-blue-700",
     features: [
-      "3% down payment options",
-      "Competitive interest rates", 
-      "No upfront mortgage insurance",
-      "Primary & secondary homes"
+      "Purchase & rate/term refinance",
+      "Cash-out refinance available",
+      "No personal income verification",
+      "Rental income qualification"
     ]
   },
   {
-    name: "FHA",
-    subtitle: "Low Down Payment",
-    icon: Shield,
+    name: "DSCR HELOC",
+    subtitle: "Investment Property Equity",
+    icon: TrendingUp,
     iconBg: "bg-green-100",
     iconColor: "text-green-600",
     buttonColor: "bg-green-500 hover:bg-green-600",
     features: [
-      "3.5% down payment",
-      "Lower credit score requirements",
-      "Government-backed security",
-      "First-time buyer friendly"
+      "Access property equity",
+      "Revolving credit line",
+      "Interest-only payments",
+      "No personal income docs"
     ]
   },
   {
-    name: "VA",
-    subtitle: "Veterans & Military",
-    icon: Flag,
-    iconBg: "bg-blue-100",
-    iconColor: "text-blue-600",
-    buttonColor: "bg-blue-600 hover:bg-blue-700",
+    name: "Startup Business Loan",
+    subtitle: "New Business Funding",
+    icon: CreditCard,
+    iconBg: "bg-purple-100",
+    iconColor: "text-purple-600",
+    buttonColor: "bg-purple-600 hover:bg-purple-700",
     features: [
-      "$0 down payment",
-      "No private mortgage insurance",
-      "Competitive rates",
-      "For eligible veterans"
+      "New business funding",
+      "Equipment & working capital",
+      "Flexible qualification",
+      "Quick approval process"
+    ]
+  },
+  {
+    name: "Personal Loan",
+    subtitle: "Individual Financing",
+    icon: DollarSign,
+    iconBg: "bg-orange-100",
+    iconColor: "text-orange-600",
+    buttonColor: "bg-orange-600 hover:bg-orange-700",
+    features: [
+      "Debt consolidation",
+      "Home improvements",
+      "Personal expenses",
+      "Fixed rate options"
     ]
   }
 ];
@@ -54,11 +68,11 @@ export default function LoanProducts() {
     <section id="loans" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Loan Products</h2>
-          <p className="text-xl text-gray-600">Find the perfect mortgage solution for your needs</p>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">Lending Solutions</h2>
+          <p className="text-xl text-gray-600">Specialized financing for investors and business owners</p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {loanProducts.map((product) => {
             const IconComponent = product.icon;
             return (

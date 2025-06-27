@@ -42,7 +42,7 @@ export default function AboutSection() {
             </div>
 
             <p className="text-gray-700 text-lg leading-relaxed mb-6">
-              With over 15 years in the mortgage industry, Mykoal has helped over 500 families achieve their homeownership dreams. He specializes in first-time homebuyer programs, conventional loans, and complex financial situations.
+              With over 15 years in the lending industry, Mykoal specializes in business purpose DSCR loans, investment property financing, and alternative lending solutions. He has helped over 500 investors and business owners secure the capital they need to grow their portfolios and businesses.
             </p>
 
             {/* Credentials */}
@@ -65,7 +65,7 @@ export default function AboutSection() {
               </div>
               <div className="flex items-center">
                 <Mail className="text-blue-600 mr-3 h-5 w-5" />
-                <span>mykoal@mortgagepro.com</span>
+                <span>mdeshazo@mykoal.com</span>
               </div>
             </div>
 

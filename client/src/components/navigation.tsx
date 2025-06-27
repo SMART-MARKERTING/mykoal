@@ -41,7 +41,7 @@ export default function Navigation() {
                 onClick={() => scrollToSection("loans")}
                 className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors"
               >
-                Loan Products
+                Lending Solutions
               </button>
               <button
                 onClick={() => scrollToSection("about")}
@@ -96,7 +96,7 @@ export default function Navigation() {
               onClick={() => scrollToSection("loans")}
               className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 w-full text-left"
             >
-              Loan Products
+              Lending Solutions
             </button>
             <button
               onClick={() => scrollToSection("about")}
