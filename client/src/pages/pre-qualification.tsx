@@ -115,10 +115,21 @@ export default function PreQualificationPage() {
         phone: data.phone,
         loanType: data.loanType,
         loanAmount: data.loanAmount,
-        propertyValue: data.propertyValue || "",
-        propertyType: data.propertyType,
-        downPayment: data.loanTerm || "", // Using downPayment field to store loan term for backend compatibility
-        notes: data.notes || ""
+        propertyValue: data.propertyValue || null,
+        propertyType: data.propertyType || null,
+        downPayment: data.loanTerm || null, // Using downPayment field to store loan term for backend compatibility
+        notes: data.notes || null,
+        // Add required optional fields with null values
+        annualIncome: null,
+        employmentType: null,
+        creditScore: null,
+        dateOfBirth: null,
+        ssn: null,
+        employmentLength: null,
+        monthlyDebt: null,
+        assets: null,
+        bankruptcyHistory: null,
+        estimatedRate: null
       };
 
       const response = await apiRequest("POST", "/api/pre-qualifications", submitData);
