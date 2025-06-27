@@ -175,6 +175,8 @@ The application uses four main tables:
 - June 27, 2025. Updated website color scheme to Saratoga Water Blue - changed primary blue color from standard blue (hsl 220,87%,50%) to Saratoga Water Blue (hsl 195,100%,32%) across entire website including CSS variables, gradients, and component styling for consistent branding
 - June 27, 2025. Fixed Quick Links navigation buttons in footer - replaced broken hash navigation with proper cross-page routing that navigates to home page and scrolls to correct sections (Mortgage Calculator, Lending Solutions, Contact) from any page
 - June 27, 2025. Fixed Equal Housing Opportunity logo display across all pages - updated asset imports using proper Vite @assets path for footer, resources, privacy policy, terms of service, debt consolidation, market updates, and about pages; logos now display correctly on all pages
+- June 27, 2025. Set up PostgreSQL database with permanent storage for all form submissions - created database schema, migrated from memory storage to DatabaseStorage class, initialized with sample data; all contact forms, quick quotes, pre-qualifications, and email subscriptions now permanently stored
+- June 27, 2025. Added email capture forms to debt consolidation and DSCR landing pages - integrated quick quote functionality with loan amount, credit score, and email fields; forms submit to database and provide user feedback via toast notifications
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.

@@ -3,10 +3,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { CheckCircle, ArrowLeft, Calculator, Plus, Trash2, CreditCard, Home, DollarSign } from "lucide-react";
+import { CheckCircle, ArrowLeft, Calculator, Plus, Trash2, CreditCard, Home, DollarSign, Mail } from "lucide-react";
 import { Link } from "wouter";
 import DebtConsolidationCalculator from "@/components/debt-consolidation-calculator";
 import equalHousingLogo from "@assets/Equal-Housing-Logo_1751007456918.png";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
+import { InsertQuickQuote } from "@shared/schema";
 
 interface Debt {
   id: number;
@@ -23,6 +27,9 @@ export default function DebtConsolidationPage() {
     { id: 3, creditor: "", balance: "", currentPayment: "", type: "Personal Loans" }
   ]);
   const [nextId, setNextId] = useState(4);
+  const [email, setEmail] = useState("");
+  const [creditScore, setCreditScore] = useState("");
+  const { toast } = useToast();
 
   const goToContact = () => {
     window.location.href = "/#contact";
@@ -32,6 +39,49 @@ export default function DebtConsolidationPage() {
         element.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     }, 100);
+  };
+
+  const quickQuoteMutation = useMutation({
+    mutationFn: async (data: InsertQuickQuote) => {
+      const response = await apiRequest("/api/quick-quotes", "POST", data);
+      return response;
+    },
+    onSuccess: () => {
+      toast({
+        title: "Quote Request Submitted!",
+        description: "We'll contact you soon with your personalized debt consolidation quote.",
+      });
+      setEmail("");
+      setCreditScore("");
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to submit quote request. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const handleQuickQuote = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !creditScore) {
+      toast({
+        title: "Missing Information",
+        description: "Please provide your email and credit score range.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const totalDebt = debts.reduce((sum, debt) => sum + parseFloat(debt.balance || "0"), 0);
+    
+    quickQuoteMutation.mutate({
+      loanAmount: totalDebt.toString(),
+      creditScore,
+      propertyType: "Debt Consolidation",
+      email,
+    });
   };
 
   const addDebt = () => {
@@ -392,19 +442,73 @@ export default function DebtConsolidationPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-6">Ready to Consolidate Your Debt?</h2>
           <p className="text-xl text-blue-100 mb-8">
-            Contact Mykoal DeShazo to explore your debt consolidation options and start simplifying your finances today.
+            Get a personalized debt consolidation quote in minutes. Enter your information below for instant pre-qualification.
           </p>
+          
+          {/* Quick Quote Form */}
+          <div className="max-w-md mx-auto mb-8">
+            <Card className="bg-white/10 backdrop-blur border-blue-200/20">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center justify-center gap-2">
+                  <Mail className="w-5 h-5" />
+                  Get Your Quote
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleQuickQuote} className="space-y-4">
+                  <div>
+                    <Label htmlFor="email" className="text-blue-100">Email Address</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="your.email@example.com"
+                      className="bg-white/20 border-blue-200/30 text-white placeholder:text-blue-200"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="creditScore" className="text-blue-100">Credit Score Range</Label>
+                    <select
+                      id="creditScore"
+                      value={creditScore}
+                      onChange={(e) => setCreditScore(e.target.value)}
+                      className="w-full p-3 rounded-md bg-white/20 border border-blue-200/30 text-white"
+                      required
+                    >
+                      <option value="">Select Credit Score Range</option>
+                      <option value="Excellent (750+)">Excellent (750+)</option>
+                      <option value="Good (700-749)">Good (700-749)</option>
+                      <option value="Fair (650-699)">Fair (650-699)</option>
+                      <option value="Poor (580-649)">Poor (580-649)</option>
+                      <option value="Below 580">Below 580</option>
+                    </select>
+                  </div>
+                  <Button
+                    type="submit"
+                    disabled={quickQuoteMutation.isPending}
+                    className="w-full bg-white text-blue-900 hover:bg-blue-50 py-3 text-lg font-semibold"
+                  >
+                    {quickQuoteMutation.isPending ? "Submitting..." : "Get My Quote"}
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               onClick={goToContact}
-              className="bg-white text-blue-900 hover:bg-blue-50 px-8 py-4 text-lg font-semibold"
+              variant="outline"
+              className="border-2 border-blue-200 bg-transparent text-white hover:bg-blue-800 px-8 py-3"
             >
-              Get Consolidation Quote
+              Schedule Consultation
             </Button>
             <Link href="/">
               <Button
                 variant="outline"
-                className="border-2 border-blue-200 bg-blue-100 text-blue-800 hover:bg-blue-200 px-8 py-4 text-lg font-semibold"
+                className="border-2 border-blue-200 bg-transparent text-white hover:bg-blue-800 px-8 py-3"
               >
                 Calculate Savings
               </Button>
