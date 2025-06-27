@@ -147,7 +147,6 @@ export default function MarketUpdatesPage() {
             <Card className="bg-white shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-l-blue-600">
               <CardHeader className="text-center pb-3">
                 <CardTitle className="text-xl md:text-2xl text-blue-600">30-Year Fixed</CardTitle>
-                <CardDescription className="text-sm">Investment Property Rate</CardDescription>
               </CardHeader>
               <CardContent className="text-center pt-0">
                 <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
@@ -163,7 +162,6 @@ export default function MarketUpdatesPage() {
             <Card className="bg-white shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-l-green-600">
               <CardHeader className="text-center pb-3">
                 <CardTitle className="text-xl md:text-2xl text-green-600">15-Year Fixed</CardTitle>
-                <CardDescription className="text-sm">Faster Equity Building</CardDescription>
               </CardHeader>
               <CardContent className="text-center pt-0">
                 <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
@@ -179,7 +177,6 @@ export default function MarketUpdatesPage() {
             <Card className="bg-white shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-l-purple-600">
               <CardHeader className="text-center pb-3">
                 <CardTitle className="text-xl md:text-2xl text-purple-600">Jumbo Loans</CardTitle>
-                <CardDescription className="text-sm">High-Value Properties</CardDescription>
               </CardHeader>
               <CardContent className="text-center pt-0">
                 <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">

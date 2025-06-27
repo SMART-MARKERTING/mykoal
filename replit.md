@@ -153,6 +153,7 @@ The application uses four main tables:
 - June 27, 2025. Refined market insights to be less aggressive about rate locking, more varied in content focus (investment opportunities, market trends, strategic positioning), with only one insight mentioning rate strategy instead of all three being rate-focused
 - June 27, 2025. Moved rates section below Mykoal's Market Insights on Market Updates page, added Equal Housing Opportunity logo and compliance text universally across entire website including footer, pre-qualification, debt consolidation, and market updates pages
 - June 27, 2025. Reorganized Market Updates page layout: moved Rate Disclaimer to top position, followed by Current Rates section above Mykoal's Market Insights, creating logical flow from compliance to data to analysis
+- June 27, 2025. Cleaned up rate cards on Market Updates page by removing descriptive text ("Investment Property Rate", "Faster Equity Building", "High-Value Properties") to focus on loan types and rates only
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.
