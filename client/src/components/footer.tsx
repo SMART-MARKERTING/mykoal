@@ -57,44 +57,29 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2 text-gray-300">
               <li>
-                <button 
-                  onClick={() => scrollToSection("calculator")}
-                  className="hover:text-blue-400 transition-colors text-left"
-                >
+                <Link href="/#calculator" className="hover:text-blue-400 transition-colors">
                   Mortgage Calculator
-                </button>
+                </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => scrollToSection("loans")}
-                  className="hover:text-blue-400 transition-colors text-left"
-                >
+                <Link href="/#loans" className="hover:text-blue-400 transition-colors">
                   Lending Solutions
-                </button>
+                </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => scrollToSection("about")}
-                  className="hover:text-blue-400 transition-colors text-left"
-                >
+                <Link href="/about" className="hover:text-blue-400 transition-colors">
                   About Us
-                </button>
+                </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => scrollToSection("blog")}
-                  className="hover:text-blue-400 transition-colors text-left"
-                >
+                <Link href="/resources" className="hover:text-blue-400 transition-colors">
                   Resources
-                </button>
+                </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => scrollToSection("contact")}
-                  className="hover:text-blue-400 transition-colors text-left"
-                >
+                <Link href="/#contact" className="hover:text-blue-400 transition-colors">
                   Contact
-                </button>
+                </Link>
               </li>
             </ul>
           </div>

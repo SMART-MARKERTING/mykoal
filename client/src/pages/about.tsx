@@ -68,10 +68,32 @@ export default function AboutPage() {
 
                   <div className="mt-6 pt-6 border-t">
                     <Link href="/#contact">
-                      <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                      <Button className="w-full bg-blue-600 hover:bg-blue-700 mb-4">
                         Get Started Today
                       </Button>
                     </Link>
+                    
+                    {/* Quick Links */}
+                    <div className="mt-4">
+                      <h4 className="text-sm font-semibold text-gray-900 mb-3">Quick Links</h4>
+                      <div className="space-y-2">
+                        <Link href="/#calculator" className="block text-sm text-gray-600 hover:text-blue-600 transition-colors">
+                          Mortgage Calculator
+                        </Link>
+                        <Link href="/#loans" className="block text-sm text-gray-600 hover:text-blue-600 transition-colors">
+                          Lending Solutions
+                        </Link>
+                        <Link href="/resources" className="block text-sm text-gray-600 hover:text-blue-600 transition-colors">
+                          Resources
+                        </Link>
+                        <Link href="/pre-qualification" className="block text-sm text-gray-600 hover:text-blue-600 transition-colors">
+                          Pre-Qualify
+                        </Link>
+                        <Link href="/market-updates" className="block text-sm text-gray-600 hover:text-blue-600 transition-colors">
+                          Market Updates
+                        </Link>
+                      </div>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
