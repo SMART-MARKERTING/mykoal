@@ -55,10 +55,17 @@ export default function DebtConsolidationCalculator({
     const calculation = calculateMortgage(inputs);
     setResults(calculation);
 
-    // Calculate monthly savings: current total payments minus new consolidated payment
-    const monthlySavings = Math.max(0, totalMonthlyPayments - calculation.monthlyPayment);
+    // Calculate a baseline loan without any extra payments for comparison
+    const baselineInputs = {
+      ...inputs,
+      extraPayment: 0
+    };
+    const baselineCalculation = calculateMortgage(baselineInputs);
+
+    // Calculate monthly savings: current total payments minus new consolidated payment (baseline without extra payments)
+    const monthlySavings = Math.max(0, totalMonthlyPayments - baselineCalculation.monthlyPayment);
     
-    // Calculate what happens if they apply the monthly savings as extra payment
+    // Calculate what happens if they apply the monthly savings as extra payment (for potential savings display)
     const inputsWithSavingsAsExtra = {
       ...inputs,
       extraPayment: monthlySavings
@@ -69,8 +76,8 @@ export default function DebtConsolidationCalculator({
     let interestSaved = 0;
     
     if (inputs.extraPayment > 0) {
-      // If user has already applied extra payments, show the built-in interest savings
-      interestSaved = calculation.interestSavings;
+      // If user has applied extra payments, compare to baseline without extra payments
+      interestSaved = Math.max(0, baselineCalculation.totalInterest - calculation.totalInterest);
     } else {
       // Show potential interest savings if they apply the monthly savings as extra payment
       const standardTotalInterest = calculation.totalInterest;
@@ -82,10 +89,10 @@ export default function DebtConsolidationCalculator({
     let yearsEarlier = 0;
     
     if (inputs.extraPayment > 0) {
-      // Only calculate acceleration if user has applied extra payments
-      const standardPayoffMonths = inputs.loanTerm * 12;
-      const acceleratedPayoffMonths = calculation.payoffTime; // Use current calculation, not the potential one
-      yearsEarlier = Math.max(0, (standardPayoffMonths - acceleratedPayoffMonths) / 12);
+      // Compare current payoff time with baseline (no extra payments)
+      const baselinePayoffMonths = baselineCalculation.payoffTime;
+      const acceleratedPayoffMonths = calculation.payoffTime;
+      yearsEarlier = Math.max(0, (baselinePayoffMonths - acceleratedPayoffMonths) / 12);
     }
 
     // Calculate total savings vs current high-interest debt situation
