@@ -21,8 +21,10 @@ export default function DebtConsolidationCalculator({
     loanAmount: totalDebtBalance,
     interestRate: 7.5,
     loanTerm: 30,
-    extraPayment: totalMonthlyPayments,
+    extraPayment: 0,
   });
+
+  const [useExtraPayment, setUseExtraPayment] = useState(false);
 
   const [results, setResults] = useState({
     monthlyPayment: 0,
@@ -46,32 +48,38 @@ export default function DebtConsolidationCalculator({
     setInputs(prev => ({
       ...prev,
       loanAmount: totalDebtBalance,
-      extraPayment: totalMonthlyPayments,
     }));
-  }, [totalDebtBalance, totalMonthlyPayments]);
+  }, [totalDebtBalance]);
 
   useEffect(() => {
     const calculation = calculateMortgage(inputs);
     setResults(calculation);
 
-    // Calculate specific debt consolidation savings
+    // Calculate monthly savings: current total payments minus new consolidated payment
+    const monthlySavings = Math.max(0, totalMonthlyPayments - calculation.monthlyPayment);
+    
+    // Calculate what happens if they apply the monthly savings as extra payment
+    const inputsWithSavingsAsExtra = {
+      ...inputs,
+      extraPayment: monthlySavings
+    };
+    const calculationWithExtra = calculateMortgage(inputsWithSavingsAsExtra);
+    
+    // Calculate payoff acceleration
     const standardPayoffMonths = inputs.loanTerm * 12;
-    const acceleratedPayoffMonths = calculation.payoffTime;
+    const acceleratedPayoffMonths = calculationWithExtra.payoffTime;
     const yearsEarlier = (standardPayoffMonths - acceleratedPayoffMonths) / 12;
     
-    // Calculate what they would pay with current debts vs consolidated loan
-    const currentTotalPayments = totalMonthlyPayments * standardPayoffMonths;
-    const consolidatedTotalPayments = calculation.totalPaymentsWithExtra;
-    const totalSavings = Math.max(0, currentTotalPayments - consolidatedTotalPayments);
-    
-    // Monthly cash flow improvement (current payments vs new consolidated payment)
-    const monthlySavings = Math.max(0, totalMonthlyPayments - calculation.monthlyPayment);
+    // Calculate total interest savings by applying monthly savings as extra payment
+    const standardTotalInterest = calculation.totalInterest;
+    const acceleratedTotalInterest = calculationWithExtra.totalInterest;
+    const interestSaved = Math.max(0, standardTotalInterest - acceleratedTotalInterest);
 
     setSavingsAnalysis({
       yearsEarlierPayoff: Math.max(0, yearsEarlier),
-      interestSaved: calculation.interestSavings,
+      interestSaved,
       monthlySavings,
-      totalSavings,
+      totalSavings: interestSaved,
     });
   }, [inputs, totalMonthlyPayments]);
 
@@ -165,7 +173,7 @@ export default function DebtConsolidationCalculator({
               </div>
 
               <div>
-                <Label htmlFor="extraPayment">Apply Current Debt Payments as Extra Payment</Label>
+                <Label htmlFor="extraPayment">Extra Monthly Payment (Optional)</Label>
                 <div className="relative">
                   <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
                   <Input
@@ -177,11 +185,8 @@ export default function DebtConsolidationCalculator({
                     placeholder="0"
                   />
                 </div>
-                <Badge variant="secondary" className="mt-1 text-xs">
-                  Auto-filled from total monthly debt payments
-                </Badge>
                 <p className="text-sm text-gray-500 mt-1">
-                  Using your current debt payments as extra payments will accelerate payoff
+                  Add extra payments to pay off the loan faster
                 </p>
               </div>
             </div>
@@ -194,18 +199,37 @@ export default function DebtConsolidationCalculator({
                   <span className="text-blue-700">New Monthly Payment:</span>
                   <span className="font-bold text-blue-900">${results.monthlyPayment.toLocaleString()}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-blue-700">Total with Extra Payments:</span>
-                  <span className="font-bold text-blue-900">${results.totalPaymentsWithExtra.toLocaleString()}</span>
+                <div className="flex justify-between border-t pt-2">
+                  <span className="text-blue-700">Current Total Payments:</span>
+                  <span className="font-bold text-blue-900">${totalMonthlyPayments.toLocaleString()}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-blue-700">Payoff Time (with extra):</span>
-                  <span className="font-bold text-blue-900">{Math.round(results.payoffTime)} months</span>
+                <div className="bg-green-100 p-3 rounded">
+                  <div className="flex justify-between mb-2">
+                    <span className="text-green-700 font-medium">Monthly Savings:</span>
+                    <span className="font-bold text-green-800">${savingsAnalysis.monthlySavings.toLocaleString()}</span>
+                  </div>
+                  {savingsAnalysis.monthlySavings > 0 && (
+                    <Button
+                      onClick={() => updateInput('extraPayment', savingsAnalysis.monthlySavings)}
+                      size="sm"
+                      className="w-full bg-green-600 hover:bg-green-700 text-white"
+                    >
+                      Apply Savings as Extra Payment
+                    </Button>
+                  )}
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-blue-700">Effective Rate (with extra):</span>
-                  <span className="font-bold text-blue-900">{results.effectiveInterestRate.toFixed(2)}%</span>
-                </div>
+                {inputs.extraPayment > 0 && (
+                  <>
+                    <div className="flex justify-between">
+                      <span className="text-blue-700">Total with Extra Payments:</span>
+                      <span className="font-bold text-blue-900">${results.totalPaymentsWithExtra.toLocaleString()}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-blue-700">Payoff Time (with extra):</span>
+                      <span className="font-bold text-blue-900">{Math.round(results.payoffTime)} months</span>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -260,14 +284,27 @@ export default function DebtConsolidationCalculator({
               </p>
               
               <p>
-                <strong>With Consolidation:</strong> Your new loan payment would be ${results.monthlyPayment.toLocaleString()} per month, 
-                giving you an immediate monthly cash flow improvement of ${savingsAnalysis.monthlySavings.toLocaleString()}.
+                <strong>With Consolidation:</strong> Your new consolidated loan payment would be ${results.monthlyPayment.toLocaleString()} per month, 
+                which is ${savingsAnalysis.monthlySavings.toLocaleString()} less than your current total payments.
               </p>
+              
+              <p>
+                <strong>Two Options for Your Monthly Savings:</strong>
+              </p>
+              <div className="ml-4 space-y-2">
+                <p>
+                  <strong>Option 1 - Keep the Savings:</strong> Enjoy ${savingsAnalysis.monthlySavings.toLocaleString()} extra cash flow each month
+                </p>
+                <p>
+                  <strong>Option 2 - Accelerate Payoff:</strong> Apply the ${savingsAnalysis.monthlySavings.toLocaleString()} monthly savings 
+                  as extra payment to pay off your loan faster
+                </p>
+              </div>
               
               {inputs.extraPayment > 0 && (
                 <p>
-                  <strong>Accelerated Payoff Strategy:</strong> By applying your current total debt payments 
-                  (${totalMonthlyPayments.toLocaleString()}) as extra payments to the consolidation loan, you'll:
+                  <strong>With ${inputs.extraPayment.toLocaleString()} Extra Payment Applied:</strong> 
+                  You'll accelerate your loan payoff and save significantly on interest:
                 </p>
               )}
               

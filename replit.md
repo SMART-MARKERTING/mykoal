@@ -136,6 +136,7 @@ The application uses four main tables:
 - June 27, 2025. Fixed all quote buttons on dedicated landing pages to properly redirect to main contact form instead of broken scroll functionality
 - June 27, 2025. Created comprehensive debt consolidation loan page with interactive debt calculator, dynamic debt input system (3 initial debt types with add/remove functionality), integrated loan calculator, and complete SEO content
 - June 27, 2025. Implemented complete online pre-qualification system with 4-step form (personal, financial, loan details, review), automatic qualification scoring algorithm, results dashboard with approval status, estimated rates, and integrated navigation
+- June 27, 2025. Enhanced debt consolidation calculator to properly calculate monthly savings (current payments minus new loan payment) with option to apply savings as extra payment for accelerated payoff and interest savings
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.
