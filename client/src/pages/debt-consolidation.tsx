@@ -407,9 +407,11 @@ export default function DebtConsolidationPage() {
           {/* Compliance Footer */}
           <div className="mt-12 text-center">
             <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="w-6 h-6 bg-blue-600 text-white rounded flex items-center justify-center text-xs font-bold">
-                =
-              </div>
+              <img 
+                src="/attached_assets/Equal-Housing-Logo_1751007456918.png" 
+                alt="Equal Housing Opportunity Logo" 
+                className="w-6 h-6 object-contain filter brightness-0 invert"
+              />
               <span className="text-sm font-semibold text-white">Equal Housing Opportunity</span>
             </div>
             <p className="text-xs text-white opacity-80 leading-relaxed max-w-3xl mx-auto">

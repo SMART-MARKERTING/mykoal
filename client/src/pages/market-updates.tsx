@@ -302,9 +302,11 @@ export default function MarketUpdatesPage() {
           {/* Compliance Footer */}
           <div className="mt-8 text-center">
             <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="w-8 h-8 bg-blue-600 text-white rounded flex items-center justify-center text-xs font-bold">
-                =
-              </div>
+              <img 
+                src="/attached_assets/Equal-Housing-Logo_1751007456918.png" 
+                alt="Equal Housing Opportunity Logo" 
+                className="w-8 h-8 object-contain"
+              />
               <span className="text-sm font-semibold text-gray-700">Equal Housing Opportunity</span>
             </div>
             <p className="text-xs text-gray-500 leading-relaxed max-w-4xl mx-auto">

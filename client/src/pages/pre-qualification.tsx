@@ -478,9 +478,11 @@ export default function PreQualificationPage() {
               {/* Compliance Footer */}
               <div className="mt-8 text-center border-t pt-6">
                 <div className="flex items-center justify-center gap-3 mb-3">
-                  <div className="w-6 h-6 bg-blue-600 text-white rounded flex items-center justify-center text-xs font-bold">
-                    =
-                  </div>
+                  <img 
+                    src="/attached_assets/Equal-Housing-Logo_1751007456918.png" 
+                    alt="Equal Housing Opportunity Logo" 
+                    className="w-6 h-6 object-contain"
+                  />
                   <span className="text-sm font-semibold text-gray-700">Equal Housing Opportunity</span>
                 </div>
                 <p className="text-xs text-gray-500 leading-relaxed max-w-2xl mx-auto">

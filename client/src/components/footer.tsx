@@ -111,9 +111,11 @@ export default function Footer() {
                 All loans subject to credit approval. This is not a commitment to lend.
               </p>
               <div className="flex items-center justify-center md:justify-start gap-2 mt-3">
-                <div className="w-6 h-6 bg-blue-600 text-white rounded flex items-center justify-center text-xs font-bold">
-                  =
-                </div>
+                <img 
+                  src="/attached_assets/Equal-Housing-Logo_1751007456918.png" 
+                  alt="Equal Housing Opportunity Logo" 
+                  className="w-6 h-6 object-contain filter brightness-75"
+                />
                 <span className="text-xs text-gray-400">Equal Housing Opportunity</span>
               </div>
             </div>

@@ -155,6 +155,7 @@ The application uses four main tables:
 - June 27, 2025. Reorganized Market Updates page layout: moved Rate Disclaimer to top position, followed by Current Rates section above Mykoal's Market Insights, creating logical flow from compliance to data to analysis
 - June 27, 2025. Cleaned up rate cards on Market Updates page by removing descriptive text ("Investment Property Rate", "Faster Equity Building", "High-Value Properties") to focus on loan types and rates only
 - June 27, 2025. Fixed pre-qualification form validation error by updating database schema to make sensitive fields optional, created custom validation schema for removed fields (annualIncome, employmentType, creditScore), and implemented backend defaults for qualification scoring
+- June 27, 2025. Replaced all temporary Equal Housing Opportunity "=" symbols with official EHO logo image across entire website (footer, market updates, pre-qualification, debt consolidation pages) with proper CSS filters for different background colors
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.
