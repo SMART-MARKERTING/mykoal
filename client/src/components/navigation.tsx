@@ -67,6 +67,12 @@ export default function Navigation() {
               >
                 Resources
               </a>
+              <a
+                href="/debt-consolidation"
+                className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors"
+              >
+                Debt Consolidation
+              </a>
               <Button
                 onClick={() => scrollToSection("contact")}
                 className="bg-blue-600 text-white hover:bg-blue-700"
@@ -133,6 +139,12 @@ export default function Navigation() {
               className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 w-full text-left"
             >
               Resources
+            </a>
+            <a
+              href="/debt-consolidation"
+              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 w-full text-left"
+            >
+              Debt Consolidation
             </a>
             <Button
               onClick={() => scrollToSection("contact")}

@@ -312,13 +312,38 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Send notification to Mykoal
       const notificationTemplate = {
-        subject: `Debt Consolidation Quote Request: ${email}`,
+        subject: `Debt Consolidation Quote Request: ${email} - $${totalDebt.toLocaleString()}`,
         html: `
           <h2>New Debt Consolidation Quote Request</h2>
           <p><strong>Email:</strong> ${email}</p>
           <p><strong>Total Debt:</strong> $${totalDebt.toLocaleString()}</p>
           <p><strong>Total Monthly Payments:</strong> $${totalPayments.toLocaleString()}</p>
           <p><strong>Number of Debts:</strong> ${debts.length}</p>
+          
+          <h3>Individual Debt Details:</h3>
+          <table style="border-collapse: collapse; width: 100%; margin: 20px 0;">
+            <tr style="background-color: #f8f9fa;">
+              <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Creditor</th>
+              <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Balance</th>
+              <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Monthly Payment</th>
+              <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Type</th>
+            </tr>
+            ${debts.map((debt: any) => `
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">${debt.creditor}</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">$${parseInt(debt.balance).toLocaleString()}</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">$${parseInt(debt.currentPayment).toLocaleString()}</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">${debt.type}</td>
+              </tr>
+            `).join('')}
+            <tr style="background-color: #e9ecef; font-weight: bold;">
+              <td style="border: 1px solid #ddd; padding: 8px;">TOTALS</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">$${totalDebt.toLocaleString()}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">$${totalPayments.toLocaleString()}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">-</td>
+            </tr>
+          </table>
+          
           <p><strong>Submitted:</strong> ${new Date().toLocaleString()}</p>
         `,
         text: `
@@ -328,6 +353,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
           Total Debt: $${totalDebt.toLocaleString()}
           Total Monthly Payments: $${totalPayments.toLocaleString()}
           Number of Debts: ${debts.length}
+          
+          Individual Debt Details:
+          ${debts.map((debt: any) => `
+          ${debt.creditor}: $${parseInt(debt.balance).toLocaleString()} balance, $${parseInt(debt.currentPayment).toLocaleString()}/month (${debt.type})`).join('')}
+          
+          TOTALS: $${totalDebt.toLocaleString()} total debt, $${totalPayments.toLocaleString()} total monthly payments
+          
           Submitted: ${new Date().toLocaleString()}
         `
       };
