@@ -20,6 +20,7 @@ export const quickQuotes = pgTable("quick_quotes", {
   creditScore: text("credit_score").notNull(),
   propertyType: text("property_type").notNull(),
   email: text("email").notNull(),
+  phone: text("phone"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 

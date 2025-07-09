@@ -18,6 +18,7 @@ export default function HeroSection() {
     creditScore: "",
     propertyType: "",
     email: "",
+    phone: "",
   });
 
   const { toast } = useToast();
@@ -30,13 +31,14 @@ export default function HeroSection() {
     onSuccess: () => {
       toast({
         title: "Quote Request Submitted!",
-        description: "We'll email your rate quote within 60 seconds.",
+        description: "We're working on your quote and will be in touch soon.",
       });
       setQuickQuoteData({
         loanAmount: "",
         creditScore: "",
         propertyType: "",
         email: "",
+        phone: "",
       });
     },
     onError: (error: any) => {
@@ -51,7 +53,7 @@ export default function HeroSection() {
   const handleQuickQuoteSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!quickQuoteData.loanAmount || !quickQuoteData.creditScore || !quickQuoteData.propertyType || !quickQuoteData.email) {
+    if (!quickQuoteData.loanAmount || !quickQuoteData.creditScore || !quickQuoteData.propertyType || !quickQuoteData.email || !quickQuoteData.phone) {
       toast({
         title: "Error",
         description: "Please fill in all fields.",
@@ -65,6 +67,7 @@ export default function HeroSection() {
       creditScore: quickQuoteData.creditScore,
       propertyType: quickQuoteData.propertyType,
       email: quickQuoteData.email,
+      phone: quickQuoteData.phone,
     });
   };
 
@@ -211,18 +214,34 @@ export default function HeroSection() {
                       </div>
                     </div>
                     
-                    <div>
-                      <Label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                        Email
-                      </Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        placeholder="your.email@example.com"
-                        value={quickQuoteData.email}
-                        onChange={(e) => setQuickQuoteData(prev => ({ ...prev, email: e.target.value }))}
-                        className="w-full"
-                      />
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                          Email
+                        </Label>
+                        <Input
+                          id="email"
+                          type="email"
+                          placeholder="your.email@example.com"
+                          value={quickQuoteData.email}
+                          onChange={(e) => setQuickQuoteData(prev => ({ ...prev, email: e.target.value }))}
+                          className="w-full"
+                        />
+                      </div>
+                      
+                      <div>
+                        <Label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                          Phone Number
+                        </Label>
+                        <Input
+                          id="phone"
+                          type="tel"
+                          placeholder="(555) 123-4567"
+                          value={quickQuoteData.phone}
+                          onChange={(e) => setQuickQuoteData(prev => ({ ...prev, phone: e.target.value }))}
+                          className="w-full"
+                        />
+                      </div>
                     </div>
                     
                     <Button

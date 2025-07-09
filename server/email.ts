@@ -16,7 +16,7 @@ interface EmailParams {
   html?: string;
 }
 
-const FROM_EMAIL = "mdeshazo@mykoal.com";
+export const FROM_EMAIL = "mdeshazo@mykoal.com";
 const TO_EMAIL = "mdeshazo@mykoal.com";
 
 // Professional signature line for all emails
@@ -128,6 +128,7 @@ export const emailTemplates = {
     html: `
       <h2>New Quick Quote Request</h2>
       <p><strong>Email:</strong> ${quote.email}</p>
+      <p><strong>Phone:</strong> ${quote.phone || 'Not provided'}</p>
       <p><strong>Loan Amount:</strong> $${parseInt(quote.loanAmount).toLocaleString()}</p>
       <p><strong>Credit Score:</strong> ${quote.creditScore}</p>
       <p><strong>Property Type:</strong> ${quote.propertyType}</p>
@@ -138,10 +139,61 @@ export const emailTemplates = {
       New Quick Quote Request
       
       Email: ${quote.email}
+      Phone: ${quote.phone || 'Not provided'}
       Loan Amount: $${parseInt(quote.loanAmount).toLocaleString()}
       Credit Score: ${quote.creditScore}
       Property Type: ${quote.propertyType}
       Submitted: ${new Date().toLocaleString()}
+      ${PROFESSIONAL_SIGNATURE_TEXT}
+    `
+  }),
+
+  quickQuoteAutoReply: (quote: any) => ({
+    subject: `We're Working on Your Rate Quote - Mykoal DeShazo`,
+    html: `
+      <h2>Thank You for Your Quote Request!</h2>
+      <p>Hello,</p>
+      <p>Thank you for requesting a rate quote. We're currently working on your personalized quote and will be in touch soon.</p>
+      
+      <h3>Your Request Details:</h3>
+      <ul>
+        <li><strong>Loan Amount:</strong> $${parseInt(quote.loanAmount).toLocaleString()}</li>
+        <li><strong>Credit Score Range:</strong> ${quote.creditScore}</li>
+        <li><strong>Loan Type:</strong> ${quote.propertyType}</li>
+      </ul>
+      
+      <p>I personally review every quote request to ensure you get the best possible rates and terms for your specific situation.</p>
+      
+      <p><strong>What happens next?</strong></p>
+      <ul>
+        <li>I'll review your information and current market rates</li>
+        <li>You'll receive a personalized quote within 24 hours</li>
+        <li>We can schedule a brief call to discuss your options</li>
+      </ul>
+      
+      <p>If you have any immediate questions, feel free to call me directly at <strong>(623) 280-8351</strong>.</p>
+      
+      ${PROFESSIONAL_SIGNATURE}
+    `,
+    text: `
+      Thank You for Your Quote Request!
+      
+      Thank you for requesting a rate quote. We're currently working on your personalized quote and will be in touch soon.
+      
+      Your Request Details:
+      • Loan Amount: $${parseInt(quote.loanAmount).toLocaleString()}
+      • Credit Score Range: ${quote.creditScore}
+      • Loan Type: ${quote.propertyType}
+      
+      I personally review every quote request to ensure you get the best possible rates and terms for your specific situation.
+      
+      What happens next?
+      • I'll review your information and current market rates
+      • You'll receive a personalized quote within 24 hours
+      • We can schedule a brief call to discuss your options
+      
+      If you have any immediate questions, feel free to call me directly at (623) 280-8351.
+      
       ${PROFESSIONAL_SIGNATURE_TEXT}
     `
   }),

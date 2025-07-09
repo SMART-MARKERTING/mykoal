@@ -3,7 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertContactSchema, insertQuickQuoteSchema, insertPreQualificationSchema, insertMarketSubscriptionSchema } from "@shared/schema";
 import { z } from "zod";
-import { sendEmail, sendNotificationEmail, emailTemplates } from "./email";
+import { sendEmail, sendNotificationEmail, emailTemplates, FROM_EMAIL } from "./email";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Contact form submission
@@ -55,9 +55,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertQuickQuoteSchema.parse(req.body);
       const quote = await storage.createQuickQuote(validatedData);
       
-      // Send email notification
+      // Send notification email to business
       const emailTemplate = emailTemplates.newQuickQuote(quote);
       await sendNotificationEmail(emailTemplate);
+      
+      // Send auto-reply email to customer
+      const customerEmailTemplate = emailTemplates.quickQuoteAutoReply(quote);
+      await sendEmail({
+        to: quote.email,
+        from: FROM_EMAIL,
+        subject: customerEmailTemplate.subject,
+        text: customerEmailTemplate.text,
+        html: customerEmailTemplate.html,
+      });
+      
       console.log("New quick quote submission:", quote);
       
       res.json({ success: true, quote });
