@@ -20,6 +20,7 @@ import PrivacyPolicyPage from "@/pages/privacy-policy";
 import TermsOfServicePage from "@/pages/terms-of-service";
 import ResourcesPage from "@/pages/resources";
 import AboutPage from "@/pages/about";
+import JoinTeamPage from "@/pages/join-team";
 import AdminPage from "@/pages/admin";
 
 function Router() {
@@ -27,6 +28,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/about" component={AboutPage} />
+      <Route path="/join-team" component={JoinTeamPage} />
       <Route path="/dscr-purchase" component={DSCRPurchasePage} />
       <Route path="/dscr-refinance" component={DSCRRefinancePage} />
       <Route path="/dscr-heloc" component={DSCRHELOCPage} />

@@ -71,6 +71,12 @@ export default function Navigation() {
                 Resources
               </a>
               <a
+                href="/join-team"
+                className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors"
+              >
+                Join Team
+              </a>
+              <a
                 href="/debt-consolidation"
                 className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors"
               >
@@ -142,6 +148,12 @@ export default function Navigation() {
               className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 w-full text-left"
             >
               Resources
+            </a>
+            <a
+              href="/join-team"
+              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 w-full text-left"
+            >
+              Join Team
             </a>
             <a
               href="/debt-consolidation"
