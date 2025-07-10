@@ -8,8 +8,11 @@ export default function ContactSection() {
     <section id="contact" className="py-16 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Ready to Get Started?</h2>
-          <p className="text-lg text-gray-600">Let's discuss your financing needs</p>
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Ready to Experience Christ-Centered Service?</h2>
+          <p className="text-lg text-gray-600">Let's discuss your financing needs with integrity and excellence</p>
+          <div className="text-lg text-blue-600 mt-3 font-medium italic">
+            "Whatever you do, work at it with all your heart, as working for the Lord" - Colossians 3:23
+          </div>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">

@@ -22,8 +22,12 @@ const TO_EMAIL = "mdeshazo@mykoal.com";
 // Professional signature line for all emails
 const PROFESSIONAL_SIGNATURE = `
 <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 12px; color: #666;">
+  <p style="color: #0066cc; font-style: italic; margin-bottom: 15px;">
+    <strong>"Trust in the Lord with all your heart" - Proverbs 3:5</strong>
+  </p>
+  
   <p><strong>Mykoal DeShazo</strong><br>
-  Executive Loan Officer, NMLS# 1912347<br>
+  Christ-Centered Mortgage Professional, NMLS# 1912347<br>
   <a href="https://www.experience.com/mykoal-deshazo" style="color: #0066cc;">CLICK TO SEE MY REVIEWS</a></p>
   
   <p><strong>Phone:</strong> (623) 280-8351 (Direct)<br>
@@ -32,7 +36,8 @@ const PROFESSIONAL_SIGNATURE = `
   <strong>Website:</strong> <a href="#" style="color: #0066cc;">Apply now here</a><br>
   <strong>Address:</strong> 4343 North Scottsdale Road, Suite 100, Scottsdale, AZ 85251</p>
   
-  <p><strong>UWM Breakthrough Award Winner - 2023</strong></p>
+  <p><strong>UWM Breakthrough Award Winner - 2023</strong><br>
+  <em>Serving with integrity, guided by faith</em></p>
   
   <p><strong>Company NMLS# 2524174</strong> - For licensing information, go to: <a href="https://www.nmlsconsumeraccess.org" style="color: #0066cc;">www.nmlsconsumeraccess.org</a><br>
   <strong>Arizona Mortgage Banker License# 1048872</strong><br>
@@ -44,9 +49,11 @@ const PROFESSIONAL_SIGNATURE = `
 
 const PROFESSIONAL_SIGNATURE_TEXT = `
 
+"Trust in the Lord with all your heart" - Proverbs 3:5
+
 ---
 Mykoal DeShazo
-Executive Loan Officer, NMLS# 1912347
+Christ-Centered Mortgage Professional, NMLS# 1912347
 CLICK TO SEE MY REVIEWS: https://www.experience.com/mykoal-deshazo
 
 Phone: (623) 280-8351 (Direct)
@@ -56,6 +63,7 @@ Website: Apply now here
 Address: 4343 North Scottsdale Road, Suite 100, Scottsdale, AZ 85251
 
 UWM Breakthrough Award Winner - 2023
+Serving with integrity, guided by faith
 
 Company NMLS# 2524174 - For licensing information, go to: www.nmlsconsumeraccess.org
 Arizona Mortgage Banker License# 1048872

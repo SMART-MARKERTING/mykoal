@@ -98,6 +98,9 @@ export default function HeroSection() {
                 <h1 className="text-3xl lg:text-5xl font-bold text-white leading-tight mb-4">
                   Hi, I'm <span className="text-blue-200">Mykoal DeShazo</span>
                 </h1>
+                <div className="text-lg text-blue-100 mb-2 font-medium">
+                  "Trust in the Lord with all your heart" - Proverbs 3:5
+                </div>
                 
                 <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
                   <div className="flex text-yellow-400">
@@ -109,8 +112,8 @@ export default function HeroSection() {
                 </div>
                 
                 <p className="text-lg text-blue-100 leading-relaxed mb-6">
-                  Specializing in investor loans, DSCR financing, and investment property financing. 
-                  I help investors secure the capital they need to grow their portfolios. We also have many more options available.
+                  Christ-centered mortgage lending with integrity and excellence. Specializing in investor loans, DSCR financing, and investment property financing. 
+                  I'm called to serve others by helping investors and families secure the capital they need to build their futures with God's blessing.
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-3 mb-8">

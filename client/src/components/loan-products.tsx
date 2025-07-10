@@ -74,8 +74,11 @@ export default function LoanProducts() {
     <section id="loans" className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Investor Financing Solutions</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">Specialized property financing for investors - we also have many more options available</p>
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Christ-Centered Financing Solutions</h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">Specialized property financing for investors with integrity and biblical values - we also have many more options available</p>
+          <div className="text-lg text-blue-600 mt-3 font-medium italic">
+            "The plans of the diligent lead to profit" - Proverbs 21:5
+          </div>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">

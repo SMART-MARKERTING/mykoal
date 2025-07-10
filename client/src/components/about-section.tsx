@@ -14,8 +14,11 @@ export default function AboutSection() {
     <section id="about" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Meet Your Mortgage Expert</h2>
-          <p className="text-xl text-gray-600">Experienced professionals dedicated to your success</p>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">Meet Your Christ-Centered Mortgage Expert</h2>
+          <p className="text-xl text-gray-600">Serving with integrity, guided by faith, dedicated to your success</p>
+          <div className="text-lg text-blue-600 mt-4 font-medium italic">
+            "In all your ways acknowledge Him, and He will make your paths straight" - Proverbs 3:6
+          </div>
         </div>
 
         <div className="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
@@ -30,7 +33,8 @@ export default function AboutSection() {
 
           <div>
             <h3 className="text-3xl font-bold text-gray-900 mb-2">Mykoal DeShazo</h3>
-            <p className="text-xl text-blue-600 font-semibold mb-4">Senior Mortgage Advisor</p>
+            <p className="text-xl text-blue-600 font-semibold mb-2">Christ-Centered Mortgage Professional</p>
+            <p className="text-lg text-gray-600 mb-4 italic">"Serving God by serving you"</p>
             
             <div className="flex items-center mb-6">
               <div className="flex text-yellow-400 mr-2">
@@ -42,7 +46,7 @@ export default function AboutSection() {
             </div>
 
             <p className="text-gray-700 text-lg leading-relaxed mb-6">
-              With 20+ combined team experience years in the lending industry, Mykoal specializes in business purpose DSCR loans, investment property financing, and alternative lending solutions. He has helped over 500 investors and business owners secure the capital they need to grow their portfolios and businesses.
+              With 20+ combined team experience years in the lending industry, Mykoal brings Christ-centered values to every transaction. Specializing in business purpose DSCR loans, investment property financing, and alternative lending solutions, he believes in honest, transparent service guided by biblical principles. He has helped over 500 investors and business owners secure the capital they need to grow their portfolios and businesses while honoring God in every step of the process.
             </p>
 
             {/* Credentials */}

@@ -39,8 +39,11 @@ export default function Testimonials() {
     <section className="py-16 bg-blue-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Client Success Stories</h2>
-          <p className="text-lg text-gray-600">Real results from satisfied clients</p>
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">God's Blessings Through Our Service</h2>
+          <p className="text-lg text-gray-600">Real results from satisfied clients who experienced Christ-centered lending</p>
+          <div className="text-lg text-blue-600 mt-3 font-medium italic">
+            "Let your light shine before others, that they may see your good deeds" - Matthew 5:16
+          </div>
           <div className="mt-4 flex items-center justify-center gap-2">
             <div className="flex text-yellow-400">
               {[...Array(5)].map((_, i) => (
