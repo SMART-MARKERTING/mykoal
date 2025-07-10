@@ -19,7 +19,8 @@ export default function AboutPage() {
           <div className="flex items-center justify-between mb-8">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold mb-4">About Mykoal DeShazo</h1>
-              <p className="text-xl text-blue-100 mb-6">Your Trusted Mortgage Professional</p>
+              <p className="text-xl text-blue-100 mb-2">Christ-Centered Mortgage Professional</p>
+              <p className="text-lg text-blue-200 italic">"Trust in the Lord with all your heart" - Proverbs 3:5</p>
               <Link href="/">
                 <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-blue-900">
                   Back to Home
@@ -45,7 +46,8 @@ export default function AboutPage() {
                       className="w-48 h-48 rounded-full mx-auto mb-4 object-cover border-4 border-blue-100"
                     />
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">Mykoal DeShazo</h3>
-                    <p className="text-blue-600 font-semibold mb-2">Licensed Mortgage Loan Officer</p>
+                    <p className="text-blue-600 font-semibold mb-2">Christ-Centered Mortgage Professional</p>
+                    <p className="text-gray-600 text-sm italic mb-2">"Serving God by serving you"</p>
                     <Badge variant="outline" className="border-blue-200 text-blue-700">
                       NMLS #1912347
                     </Badge>
@@ -102,10 +104,13 @@ export default function AboutPage() {
             {/* Right Column - Biography */}
             <div className="lg:col-span-2">
               <div className="prose max-w-none">
-                <div className="bg-blue-50 p-6 rounded-lg mb-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-4">Hello, welcome to my page.</h2>
+                <div className="bg-blue-50 p-6 rounded-lg mb-8 border-l-4 border-blue-600">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-4">Called to Serve Through Faith</h2>
+                  <div className="text-blue-600 font-medium italic mb-4">
+                    "In all your ways acknowledge Him, and He will make your paths straight" - Proverbs 3:6
+                  </div>
                   <p className="text-gray-700 leading-relaxed">
-                    Mykoal DeShazo is a highly accomplished mortgage loan officer with over half a decade of experience in the financial industry. He has built a strong reputation for providing personalized and comprehensive solutions to his clients' mortgage needs. Mykoal is well-versed in a wide range of mortgage products, including conventional, FHA, VA, and jumbo loans. His expertise allows him to match clients with the loan products that best suit their unique situations.
+                    Mykoal DeShazo is a Christ-centered mortgage professional with over half a decade of experience serving clients with integrity, honesty, and biblical values. Guided by his faith in Jesus Christ, he brings transparency and ethical excellence to every transaction. Mykoal believes that his calling is to serve others through mortgage lending, helping families and investors achieve their financial goals while honoring God in every step of the process. He specializes in investment property financing, DSCR loans, and alternative lending solutions, always putting his clients' best interests first as an expression of Christian love and service.
                   </p>
                 </div>
 
@@ -114,49 +119,58 @@ export default function AboutPage() {
                   <Card className="border-blue-200">
                     <CardContent className="p-6 text-center">
                       <Award className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-                      <h3 className="font-semibold text-gray-900 mb-2">Top Producer</h3>
-                      <p className="text-sm text-gray-600">Recognized for exceptional results and client satisfaction</p>
+                      <h3 className="font-semibold text-gray-900 mb-2">Excellence in Service</h3>
+                      <p className="text-sm text-gray-600">Serving with excellence as unto the Lord, recognized for exceptional results</p>
                     </CardContent>
                   </Card>
                   
                   <Card className="border-blue-200">
                     <CardContent className="p-6 text-center">
                       <Users className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-                      <h3 className="font-semibold text-gray-900 mb-2">Industry Speaker</h3>
-                      <p className="text-sm text-gray-600">Invited to speak at industry events and conferences</p>
+                      <h3 className="font-semibold text-gray-900 mb-2">Faith-Based Leadership</h3>
+                      <p className="text-sm text-gray-600">Leading by example through Christian principles in business</p>
                     </CardContent>
                   </Card>
                   
                   <Card className="border-blue-200">
                     <CardContent className="p-6 text-center">
                       <Heart className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-                      <h3 className="font-semibold text-gray-900 mb-2">Community Focused</h3>
-                      <p className="text-sm text-gray-600">Active volunteer for local charities and non-profits</p>
+                      <h3 className="font-semibold text-gray-900 mb-2">Kingdom Service</h3>
+                      <p className="text-sm text-gray-600">Active in church and Christian community outreach ministries</p>
                     </CardContent>
                   </Card>
                 </div>
 
-                {/* Career Achievement */}
+                {/* Faith-Based Career Achievement */}
                 <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Career Excellence</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Walking in Faith and Excellence</h3>
+                  <div className="text-blue-600 font-medium italic mb-3">
+                    "Whatever you do, work at it with all your heart, as working for the Lord" - Colossians 3:23
+                  </div>
                   <p className="text-gray-700 leading-relaxed mb-4">
-                    Throughout his career, Mykoal has consistently delivered results that exceed clients' expectations, earning recognition as a top producer. He has received numerous accolades and has been invited to speak at industry events and conferences, establishing himself as a leader in the mortgage industry.
+                    Throughout his career, Mykoal has consistently delivered results that exceed clients' expectations by applying biblical principles of integrity, honesty, and excellence in all his work. His faith-driven approach to business has earned him recognition as a top producer and UWM Breakthrough Award Winner. He believes that every successful transaction is a testimony to God's faithfulness and an opportunity to serve others with Christian love and transparency.
                   </p>
                 </div>
 
-                {/* Personal Values */}
+                {/* Christian Values & Ministry */}
                 <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Personal Values & Interests</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Christian Values & Ministry</h3>
+                  <div className="text-blue-600 font-medium italic mb-3">
+                    "For we are God's handiwork, created in Christ Jesus to do good works" - Ephesians 2:10
+                  </div>
                   <p className="text-gray-700 leading-relaxed mb-4">
-                    Committed to giving back, Mykoal actively volunteers for local charities and non-profit organizations. Outside of work, he values maintaining a healthy work-life balance, enjoys traveling, engaging in outdoor activities, and spending quality time with his family.
+                    Mykoal's life is centered on his relationship with Jesus Christ. He is actively involved in his local church and Christian community, participating in outreach ministries and volunteer work that reflects God's love. His faith guides every aspect of his business practice, ensuring that clients receive honest, transparent service built on biblical principles. Outside of work, he enjoys fellowship with other believers, studying God's Word, and spending time with family while maintaining the balance that God calls us to in all areas of life.
                   </p>
                 </div>
 
-                {/* Mission Statement */}
+                {/* Christ-Centered Mission Statement */}
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">My Commitment to You</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">My God-Given Mission</h3>
+                  <div className="text-blue-600 font-medium italic mb-3">
+                    "And whatever you do, whether in word or deed, do it all in the name of the Lord Jesus" - Colossians 3:17
+                  </div>
                   <p className="text-gray-700 leading-relaxed">
-                    Mykoal's passion for exceptional customer service, dedication, and community involvement have earned him the trust and respect of those he serves. Every client receives personalized attention and comprehensive solutions tailored to their unique financial situation.
+                    Mykoal believes he has been called by God to serve others through mortgage lending with Christ-like love, integrity, and excellence. His passion for exceptional customer service flows from his desire to honor God in all his business dealings. Every client receives personalized attention, honest guidance, and comprehensive solutions tailored to their unique financial situation. His commitment goes beyond just closing loans—it's about building relationships founded on trust, transparency, and biblical values while helping families and investors achieve their God-given dreams and financial goals.
                   </p>
                 </div>
               </div>
@@ -168,9 +182,12 @@ export default function AboutPage() {
       {/* Call to Action */}
       <section className="bg-blue-600 text-white py-12">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
+          <h2 className="text-3xl font-bold mb-4">Ready to Experience Christ-Centered Service?</h2>
+          <div className="text-lg text-blue-200 italic mb-4">
+            "The plans of the diligent lead to profit" - Proverbs 21:5
+          </div>
           <p className="text-xl text-blue-100 mb-8">
-            Let's discuss your mortgage needs and find the perfect financing solution for you.
+            Let's discuss your mortgage needs with integrity, honesty, and biblical principles guiding every step.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/#contact">
