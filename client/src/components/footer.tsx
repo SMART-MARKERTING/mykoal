@@ -75,34 +75,34 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2 text-gray-300">
               <li>
-                <button 
-                  onClick={() => navigateToSection("calculator")} 
-                  className="hover:text-blue-400 transition-colors text-left cursor-pointer bg-transparent border-none p-0 text-gray-300 underline-offset-2 hover:underline"
-                >
-                  Mortgage Calculator
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => navigateToSection("loans")} 
-                  className="hover:text-blue-400 transition-colors text-left cursor-pointer bg-transparent border-none p-0 text-gray-300 underline-offset-2 hover:underline"
-                >
-                  Lending Solutions
-                </button>
+                <Link href="/" className="hover:text-blue-400 transition-colors cursor-pointer underline-offset-2 hover:underline">
+                  Home
+                </Link>
               </li>
               <li>
                 <Link href="/about" className="hover:text-blue-400 transition-colors cursor-pointer underline-offset-2 hover:underline">
                   About Us
                 </Link>
               </li>
-
               <li>
-                <button 
-                  onClick={() => navigateToSection("contact")} 
-                  className="hover:text-blue-400 transition-colors text-left cursor-pointer bg-transparent border-none p-0 text-gray-300 underline-offset-2 hover:underline"
+                <Link href="/debt-consolidation" className="hover:text-blue-400 transition-colors cursor-pointer underline-offset-2 hover:underline">
+                  Debt Consolidation
+                </Link>
+              </li>
+              <li>
+                <Link href="/join-team" className="hover:text-blue-400 transition-colors cursor-pointer underline-offset-2 hover:underline">
+                  Join Our Team
+                </Link>
+              </li>
+              <li>
+                <a 
+                  href="https://independencehl.com/mykoal-deshazo/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-blue-400 transition-colors cursor-pointer underline-offset-2 hover:underline"
                 >
-                  Contact
-                </button>
+                  Get Quote
+                </a>
               </li>
             </ul>
           </div>

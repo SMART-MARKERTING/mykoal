@@ -34,13 +34,7 @@ export default function DebtConsolidationPage() {
   const { toast } = useToast();
 
   const goToContact = () => {
-    window.location.href = "/#contact";
-    setTimeout(() => {
-      const element = document.getElementById("contact");
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }, 100);
+    window.open("https://independencehl.com/mykoal-deshazo/", "_blank");
   };
 
   const quickQuoteMutation = useMutation({

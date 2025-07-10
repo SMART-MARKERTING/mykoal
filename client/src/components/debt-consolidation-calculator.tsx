@@ -166,13 +166,7 @@ export default function DebtConsolidationCalculator({
   };
 
   const goToContact = () => {
-    window.location.href = "/#contact";
-    setTimeout(() => {
-      const element = document.getElementById("contact");
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }, 100);
+    window.open("https://independencehl.com/mykoal-deshazo/", "_blank");
   };
 
   if (totalDebtBalance === 0) {

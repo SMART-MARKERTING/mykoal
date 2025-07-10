@@ -117,20 +117,19 @@ export default function HeroSection() {
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-3 mb-8">
-                  <Link href="/pre-qualification" className="flex-1">
-                    <Button className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-6 py-3 rounded-lg font-semibold shadow-lg transition-all">
+                  <a href="https://independencehl.com/mykoal-deshazo/" target="_blank" rel="noopener noreferrer" className="flex-1">
+                    <div className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-6 py-3 rounded-lg font-semibold shadow-lg transition-all text-center">
                       Get Pre-Qualified
-                    </Button>
-                  </Link>
+                    </div>
+                  </a>
                   
-                  <Button
-                    onClick={() => scrollToSection("contact")}
-                    variant="outline"
-                    className="flex-1 border-2 border-white/30 bg-white/10 text-white hover:bg-white/20 px-6 py-3 rounded-lg font-semibold backdrop-blur-sm"
+                  <a
+                    href="tel:623-280-8351"
+                    className="flex-1 border-2 border-white/30 bg-white/10 text-white hover:bg-white/20 px-6 py-3 rounded-lg font-semibold backdrop-blur-sm transition-all flex items-center justify-center"
                   >
                     <Phone className="h-4 w-4 mr-2" />
                     Call Now
-                  </Button>
+                  </a>
                 </div>
                 
 

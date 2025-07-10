@@ -73,12 +73,14 @@ export default function AboutSection() {
               </div>
             </div>
 
-            <Button 
-              onClick={scrollToContact}
-              className="bg-blue-600 text-white hover:bg-blue-700"
+            <a 
+              href="https://independencehl.com/mykoal-deshazo/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md font-medium transition-colors inline-block"
             >
               Get Quote Today
-            </Button>
+            </a>
           </div>
         </div>
 

@@ -60,7 +60,7 @@ export default function AboutPage() {
                     </div>
                     <div className="flex items-center text-gray-600">
                       <Mail className="h-5 w-5 mr-3 text-blue-600" />
-                      <span>mdeshazo@independencehl.com</span>
+                      <span>mdeshazo@mykoal.com</span>
                     </div>
                     <div className="flex items-center text-gray-600">
                       <MapPin className="h-5 w-5 mr-3 text-blue-600" />
@@ -69,30 +69,24 @@ export default function AboutPage() {
                   </div>
 
                   <div className="mt-6 pt-6 border-t">
-                    <Link href="/#contact">
-                      <Button className="w-full bg-blue-600 hover:bg-blue-700 mb-4">
+                    <a href="https://independencehl.com/mykoal-deshazo/" target="_blank" rel="noopener noreferrer">
+                      <div className="w-full bg-blue-600 hover:bg-blue-700 mb-4 px-4 py-2 rounded-md font-medium transition-colors text-center text-white">
                         Get Started Today
-                      </Button>
-                    </Link>
+                      </div>
+                    </a>
                     
                     {/* Quick Links */}
                     <div className="mt-4">
                       <h4 className="text-sm font-semibold text-gray-900 mb-3">Quick Links</h4>
                       <div className="space-y-2">
-                        <Link href="/#calculator" className="block text-sm text-gray-600 hover:text-blue-600 transition-colors">
-                          Mortgage Calculator
+                        <Link href="/" className="block text-sm text-gray-600 hover:text-blue-600 transition-colors">
+                          Home
                         </Link>
-                        <Link href="/#loans" className="block text-sm text-gray-600 hover:text-blue-600 transition-colors">
-                          Lending Solutions
+                        <Link href="/debt-consolidation" className="block text-sm text-gray-600 hover:text-blue-600 transition-colors">
+                          Debt Consolidation
                         </Link>
-                        <Link href="/resources" className="block text-sm text-gray-600 hover:text-blue-600 transition-colors">
-                          Resources
-                        </Link>
-                        <Link href="/pre-qualification" className="block text-sm text-gray-600 hover:text-blue-600 transition-colors">
-                          Pre-Qualify
-                        </Link>
-                        <Link href="/market-updates" className="block text-sm text-gray-600 hover:text-blue-600 transition-colors">
-                          Market Updates
+                        <Link href="/join-team" className="block text-sm text-gray-600 hover:text-blue-600 transition-colors">
+                          Join Our Team
                         </Link>
                       </div>
                     </div>
@@ -190,16 +184,16 @@ export default function AboutPage() {
             Let's discuss your mortgage needs with integrity, honesty, and biblical principles guiding every step.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/#contact">
-              <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-blue-600">
+            <a href="https://independencehl.com/mykoal-deshazo/" target="_blank" rel="noopener noreferrer">
+              <div className="bg-transparent border-white text-white hover:bg-white hover:text-blue-600 border-2 px-8 py-3 rounded-md font-medium transition-colors text-lg">
                 Get Your Quote Today
-              </Button>
-            </Link>
-            <Link href="/pre-qualification">
-              <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50">
+              </div>
+            </a>
+            <a href="https://independencehl.com/mykoal-deshazo/" target="_blank" rel="noopener noreferrer">
+              <div className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-3 rounded-md font-medium transition-colors text-lg">
                 Start Pre-Qualification
-              </Button>
-            </Link>
+              </div>
+            </a>
           </div>
         </div>
       </section>

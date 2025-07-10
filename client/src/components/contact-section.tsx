@@ -60,17 +60,14 @@ export default function ContactSection() {
                   </div>
                 </div>
 
-                <Button 
-                  onClick={() => {
-                    const element = document.getElementById("contact");
-                    if (element) {
-                      element.scrollIntoView({ behavior: "smooth", block: "start" });
-                    }
-                  }}
-                  className="mt-6 w-full accent-gradient text-white hover:opacity-90"
+                <a 
+                  href="https://independencehl.com/mykoal-deshazo/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 w-full accent-gradient text-white hover:opacity-90 px-4 py-2 rounded-md font-medium transition-colors block text-center"
                 >
                   Get Started Today
-                </Button>
+                </a>
               </CardContent>
             </Card>
 

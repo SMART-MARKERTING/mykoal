@@ -64,12 +64,14 @@ export default function Navigation() {
               >
                 Debt Consolidation
               </a>
-              <Button
-                onClick={() => scrollToSection("contact")}
-                className="bg-blue-600 text-white hover:bg-blue-700"
+              <a
+                href="https://independencehl.com/mykoal-deshazo/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-medium transition-colors"
               >
                 Get Quote
-              </Button>
+              </a>
             </div>
           </div>
 
@@ -125,12 +127,14 @@ export default function Navigation() {
             >
               Debt Consolidation
             </a>
-            <Button
-              onClick={() => scrollToSection("contact")}
-              className="block px-3 py-2 text-base font-medium bg-blue-600 text-white rounded-md w-full"
+            <a
+              href="https://independencehl.com/mykoal-deshazo/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block px-3 py-2 text-base font-medium bg-blue-600 text-white rounded-md w-full text-center"
             >
               Get Quote
-            </Button>
+            </a>
           </div>
         </div>
       )}

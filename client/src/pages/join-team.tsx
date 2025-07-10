@@ -248,7 +248,7 @@ export default function JoinTeamPage() {
                     <Mail className="text-blue-600 mr-3 h-5 w-5" />
                     <div>
                       <div className="font-semibold text-gray-900">Email</div>
-                      <div className="text-blue-600 font-semibold">mdeshazo@independencehl.com</div>
+                      <div className="text-blue-600 font-semibold">mdeshazo@mykoal.com</div>
                     </div>
                   </div>
 
