@@ -16,8 +16,8 @@ interface EmailParams {
   html?: string;
 }
 
-export const FROM_EMAIL = "mdeshazo@independencehl.com";
-const TO_EMAIL = "mdeshazo@independencehl.com";
+export const FROM_EMAIL = "mdeshazo@mykoal.com";
+const TO_EMAIL = "mdeshazo@mykoal.com";
 
 // Professional signature line for all emails
 const PROFESSIONAL_SIGNATURE = `
@@ -32,7 +32,7 @@ const PROFESSIONAL_SIGNATURE = `
   
   <p><strong>Phone:</strong> (623) 280-8351 (Direct)<br>
   <strong>Fax:</strong> (602) 362-5286 (FAX)<br>
-  <strong>Email:</strong> <a href="mailto:mdeshazo@independencehl.com" style="color: #0066cc;">mdeshazo@independencehl.com</a><br>
+  <strong>Email:</strong> <a href="mailto:mdeshazo@mykoal.com" style="color: #0066cc;">mdeshazo@mykoal.com</a><br>
   <strong>Website:</strong> <a href="#" style="color: #0066cc;">Apply now here</a><br>
   <strong>Address:</strong> 4343 North Scottsdale Road, Suite 100, Scottsdale, AZ 85251</p>
   
@@ -58,7 +58,7 @@ CLICK TO SEE MY REVIEWS: https://www.experience.com/mykoal-deshazo
 
 Phone: (623) 280-8351 (Direct)
 Fax: (602) 362-5286 (FAX)
-Email: mdeshazo@independencehl.com
+Email: mdeshazo@mykoal.com
 Website: Apply now here
 Address: 4343 North Scottsdale Road, Suite 100, Scottsdale, AZ 85251
 
@@ -494,7 +494,7 @@ export const emailTemplates = {
             <p class="hero-subtitle">Your Personalized Financial Solution</p>
             <div class="professional-info">
                 <strong>Mykoal DeShazo</strong> - Executive Loan Officer, NMLS# 1912347<br>
-                <strong>Phone:</strong> (623) 280-8351 | <strong>Email:</strong> mdeshazo@independencehl.com
+                <strong>Phone:</strong> (623) 280-8351 | <strong>Email:</strong> mdeshazo@mykoal.com
             </div>
         </div>
 
@@ -691,14 +691,14 @@ export const emailTemplates = {
             <h2 class="cta-title">Ready to Start Saving?</h2>
             <p>Let's discuss your debt consolidation options and create a personalized plan that works for your financial goals.</p>
             <a href="tel:6232808351" class="cta-button">Call (623) 280-8351</a>
-            <a href="mailto:mdeshazo@independencehl.com" class="cta-button">Email Me</a>
+            <a href="mailto:mdeshazo@mykoal.com" class="cta-button">Email Me</a>
         </div>
 
         <!-- Contact Information -->
         <div class="contact-info">
             <h3>Questions? Let's Talk!</h3>
             <div class="phone-highlight">(623) 280-8351</div>
-            <p><strong>Email:</strong> mdeshazo@independencehl.com</p>
+            <p><strong>Email:</strong> mdeshazo@mykoal.com</p>
             <p><strong>Address:</strong> 4343 North Scottsdale Road, Suite 100, Scottsdale, AZ 85251</p>
         </div>
 
@@ -721,7 +721,7 @@ export const emailTemplates = {
     text: `
       DEBT CONSOLIDATION ANALYSIS
       Mykoal DeShazo - Executive Loan Officer, NMLS# 1912347
-      Phone: (623) 280-8351 | Email: mdeshazo@independencehl.com
+      Phone: (623) 280-8351 | Email: mdeshazo@mykoal.com
       
       YOUR POTENTIAL MONTHLY SAVINGS: $${Math.round((data.totalMonthlyPayments || 0) - (data.monthlyPayment || 0))}
       
@@ -747,7 +747,7 @@ export const emailTemplates = {
       
       READY TO START SAVING?
       Call: (623) 280-8351
-      Email: mdeshazo@independencehl.com
+      Email: mdeshazo@mykoal.com
       Address: 4343 North Scottsdale Road, Suite 100, Scottsdale, AZ 85251
       
       Equal Housing Opportunity | NMLS# 1912347 | Company NMLS# 2524174

@@ -42,7 +42,7 @@ export default function MortgageCalculator() {
       console.error("Email calculation error:", error);
       toast({
         title: "Email Temporarily Unavailable",
-        description: "Email service is temporarily down. Please contact Mykoal directly at (623) 280-8351 or mdeshazo@independencehl.com for your analysis.",
+        description: "Email service is temporarily down. Please contact Mykoal directly at (623) 280-8351 or mdeshazo@mykoal.com for your analysis.",
         variant: "destructive",
       });
     },

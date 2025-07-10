@@ -193,11 +193,12 @@ The application uses four main tables:
 - January 10, 2025. Completely transformed About page to Christ-centered professional biography - added biblical verses throughout (Proverbs 3:5-6, Colossians 3:23, Ephesians 2:10, Colossians 3:17), updated all sections to reflect faith-based approach: "Called to Serve Through Faith", "Walking in Faith and Excellence", "Christian Values & Ministry", "My God-Given Mission"; transformed expertise cards to emphasize faith-based leadership, kingdom service, and excellence as unto the Lord; integrated Christian principles and church ministry involvement throughout personal and professional narrative
 - January 10, 2025. Created comprehensive "Join My Team" page for recruiting Christ-following mortgage professionals - requires followers of Jesus Christ, offers complete training and licensing support, provides customer pipeline from day one, includes personal mentorship every step of the way, emphasizes faith-based career building with excellent income potential; integrated biblical verses (Matthew 28:19, Colossians 3:23, Matthew 6:33), team member testimonials, step-by-step process guide, FAQ section, and dedicated contact form for career inquiries
 - January 10, 2025. Updated all email addresses throughout entire website from mdeshazo@mykoal.com to mdeshazo@independencehl.com; removed Business Loans section from Resources page including "Business Loan Fundamentals" article and category references; removed all statistics from hero section including "500+ Loans Funded" and "20+ Team Experience" for cleaner design; added complete company information to footer including Company NMLS 2524174, physical address (4343 N Scottsdale Rd, Scottsdale, AZ 85251), additional phone number (480) 805-5574, and comprehensive compliance disclaimer text throughout website footer
+- January 10, 2025. Corrected email addresses back to mdeshazo@mykoal.com for SendGrid email delivery compatibility; enhanced email error handling with user-friendly messages directing to direct contact when email service is unavailable; identified SendGrid 403 Forbidden error requiring account configuration (email verification, domain authentication, or API key permissions)
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.
 Business owner: Mykoal DeShazo, NMLS #1912347
-Email: mdeshazo@independencehl.com
+Email: mdeshazo@mykoal.com
 Phone: (623) 280-8351, (480) 805-5574
 Location: 4343 N Scottsdale Rd, Scottsdale, AZ 85251
 Specialization: Investor loans, DSCR financing, investment property financing - many more options available
