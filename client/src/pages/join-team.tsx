@@ -216,37 +216,7 @@ export default function JoinTeamPage() {
             </div>
           </div>
 
-          {/* Testimonials Section */}
-          <div className="mt-16">
-            <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">What Our Team Members Say</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <Card className="border-blue-200">
-                <CardContent className="p-6">
-                  <div className="text-blue-600 font-medium italic mb-3">
-                    "He has shown you, O mortal, what is good" - Micah 6:8
-                  </div>
-                  <p className="text-gray-700 mb-4 italic">
-                    "Mykoal didn't just teach me the mortgage business—he showed me how to serve clients with Christ-like love and integrity. This isn't just a job, it's a ministry where I can support families while honoring God."
-                  </p>
-                  <div className="font-semibold text-gray-900">Sarah M.</div>
-                  <div className="text-sm text-gray-600">Licensed Loan Officer, 2 years with team</div>
-                </CardContent>
-              </Card>
-              
-              <Card className="border-green-200">
-                <CardContent className="p-6">
-                  <div className="text-green-600 font-medium italic mb-3">
-                    "Commit to the Lord whatever you do" - Proverbs 16:3
-                  </div>
-                  <p className="text-gray-700 mb-4 italic">
-                    "I came from retail with no mortgage experience. Mykoal walked me through licensing, provided customers from day one, and showed me how to build a six-figure income while serving God through excellent client service."
-                  </p>
-                  <div className="font-semibold text-gray-900">David L.</div>
-                  <div className="text-sm text-gray-600">Senior Loan Officer, 3 years with team</div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
+
 
           {/* Contact Form Section */}
           <section id="contact-form" className="mt-16 bg-gray-50 rounded-lg p-8">
