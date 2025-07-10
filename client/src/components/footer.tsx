@@ -95,11 +95,7 @@ export default function Footer() {
                   About Us
                 </Link>
               </li>
-              <li>
-                <Link href="/resources" className="hover:text-blue-400 transition-colors cursor-pointer underline-offset-2 hover:underline">
-                  Resources
-                </Link>
-              </li>
+
               <li>
                 <button 
                   onClick={() => navigateToSection("contact")} 
@@ -117,7 +113,7 @@ export default function Footer() {
             <ul className="space-y-2 text-gray-300">
               <li>(623) 280-8351</li>
               <li>(480) 805-5574</li>
-              <li>mdeshazo@independencehl.com</li>
+              <li>mdeshazo@mykoal.com</li>
               <li>
                 4343 N Scottsdale Rd<br />
                 Scottsdale, AZ 85251<br />
@@ -162,8 +158,6 @@ export default function Footer() {
               </div>
               
               <div className="flex space-x-6 text-sm text-gray-400">
-                <Link href="/privacy-policy" className="hover:text-blue-400 transition-colors">Privacy Policy</Link>
-                <Link href="/terms-of-service" className="hover:text-blue-400 transition-colors">Terms of Service</Link>
                 <a href="https://www.nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/1912347" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">Licensing</a>
               </div>
             </div>

@@ -47,28 +47,10 @@ export default function Navigation() {
                 Lending Solutions
               </button>
               <a
-                href="/pre-qualification"
-                className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors"
-              >
-                Pre-Qualify
-              </a>
-              <a
-                href="/market-updates"
-                className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors"
-              >
-                Market Updates
-              </a>
-              <a
                 href="/about"
                 className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors"
               >
                 About
-              </a>
-              <a
-                href="/resources"
-                className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors"
-              >
-                Resources
               </a>
               <a
                 href="/join-team"
@@ -126,28 +108,10 @@ export default function Navigation() {
               Lending Solutions
             </button>
             <a
-              href="/pre-qualification"
-              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 w-full text-left"
-            >
-              Pre-Qualify
-            </a>
-            <a
-              href="/market-updates"
-              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 w-full text-left"
-            >
-              Market Updates
-            </a>
-            <a
               href="/about"
               className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 w-full text-left"
             >
               About
-            </a>
-            <a
-              href="/resources"
-              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 w-full text-left"
-            >
-              Resources
             </a>
             <a
               href="/join-team"
