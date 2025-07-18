@@ -98,9 +98,6 @@ export default function HeroSection() {
                 <h1 className="text-3xl lg:text-5xl font-bold text-white leading-tight mb-4">
                   Hi, I'm <span className="text-blue-200">Mykoal DeShazo</span>
                 </h1>
-                <div className="text-lg text-blue-100 mb-2 font-medium">
-                  "Trust in the Lord with all your heart" - Proverbs 3:5
-                </div>
                 
                 <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
                   <div className="flex text-yellow-400">
