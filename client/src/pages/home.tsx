@@ -433,7 +433,7 @@ export default function Home() {
                 4.91/5 star rating from 54 verified reviews on Experience.com
               </p>
               <a
-                href="https://www.experience.com/mykoal-deshazo"
+                href="https://www.experience.com/reviews/mykoal-deshazo"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:text-blue-700 font-medium"
