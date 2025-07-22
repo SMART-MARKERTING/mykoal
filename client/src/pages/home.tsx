@@ -5,8 +5,8 @@ import headshotImage from "@assets/IMG_0016_1751000995747.jpeg";
 export default function Home() {
   const businessLinks = [
     {
-      title: "DeShazo Wealth",
-      description: "Mortgage & Life Insurance Services",
+      title: "Life Insurance",
+      description: "Life Insurance Services",
       url: "https://deshazowealth.com",
       icon: <Globe className="h-6 w-6" />,
       color: "bg-blue-600 hover:bg-blue-700"
