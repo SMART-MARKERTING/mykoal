@@ -12,8 +12,8 @@ export default function Home() {
       color: "bg-green-600 hover:bg-green-700"
     },
     {
-      title: "Life Insurance",
-      description: "Life Insurance Services",
+      title: "Team DeShazo",
+      description: "Full Financial Services",
       url: "https://deshazowealth.com",
       icon: <Globe className="h-6 w-6" />,
       color: "bg-blue-600 hover:bg-blue-700"
