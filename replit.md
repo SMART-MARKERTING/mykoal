@@ -1,7 +1,7 @@
-# Mykoal DeShazo - Investor Property Financing Platform
+# Mykoal DeShazo - Business Portfolio Website
 
 ## Overview
-This is a modern full-stack investor property financing website built with React, Express, and PostgreSQL. The application provides loan calculation tools, property financing information, contact forms, and quote request functionality. It's designed to help Mykoal DeShazo showcase his investor financing services and capture leads from potential clients.
+This is a modern Linktree-style business portfolio website built with React, Express, and PostgreSQL. The application serves as a central hub for Mykoal DeShazo's various business ventures, featuring direct links to his websites and social media platforms. It's designed as a professional landing page that consolidates all of his business activities in one clean, mobile-first interface.
 
 ## System Architecture
 
@@ -198,6 +198,7 @@ The application uses four main tables:
 - January 10, 2025. Implemented external link integration for all action buttons - updated all "Get Quote", "Get Started", and similar CTA buttons across website to redirect to https://independencehl.com/mykoal-deshazo/ for centralized lead generation; modified hero section, navigation, about page, debt consolidation calculator, footer, and all landing pages to use external URL instead of internal contact form; ensured consistent email addresses using mdeshazo@mykoal.com throughout
 - January 10, 2025. Removed all "Learn More" buttons from loan products section - simplified loan product cards to show only essential information (title, subtitle, features) with single "Get Quote" button redirecting to external lead generation page; streamlined user experience by eliminating redundant navigation options
 - January 10, 2025. Complete website redesign to single-page application - consolidated all content (homepage, about, lending solutions, testimonials, contact) into one seamless page; removed all navigation and routing; simplified contact form to only collect name, email, phone, and loan description message; eliminated all separate pages and components for streamlined user experience
+- January 10, 2025. Complete transformation to Linktree-style business portfolio - redesigned as mobile-first portfolio website featuring professional headshot, business links (DeShazo Wealth for mortgage/life insurance, Unykue.com for faith podcast), social media integration (Facebook, Instagram, YouTube), and contact information; eliminated all mortgage-specific content in favor of clean, professional business hub design
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.
