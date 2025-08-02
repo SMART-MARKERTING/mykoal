@@ -5,13 +5,6 @@ import headshotImage from "@assets/IMG_0016_1751000995747.jpeg";
 export default function Home() {
   const businessLinks = [
     {
-      title: "Mykoal DeShazo – Independence Home Loans",
-      description: "Professional Mortgage Services",
-      url: "https://independencehl.com/mykoal-deshazo/",
-      icon: <Building className="h-6 w-6" />,
-      color: "bg-green-600 hover:bg-green-700"
-    },
-    {
       title: "Client Reviews",
       description: "4.91/5 Stars • 54+ Reviews",
       url: "https://www.experience.com/reviews/mykoal-deshazo",
