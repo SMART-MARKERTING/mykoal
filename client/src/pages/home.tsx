@@ -147,10 +147,22 @@ export default function Home() {
               <Phone className="h-5 w-5" />
               <span>(623) 280-8351</span>
             </a>
-            <a href="mailto:mykoal@deshazowealth.com" className="flex items-center space-x-3 text-blue-200 hover:text-white transition-colors">
+            <a href="mailto:Mykoal@westcapitallending.com" className="flex items-center space-x-3 text-blue-200 hover:text-white transition-colors">
               <Mail className="h-5 w-5" />
-              <span>mykoal@deshazowealth.com</span>
+              <span>Mykoal@westcapitallending.com</span>
             </a>
+          </div>
+          
+          <div className="mt-6 text-center">
+            <div className="text-white font-semibold text-lg mb-2">Mykoal DeShazo | Branch Manager</div>
+            <div className="space-y-1 text-blue-200 text-sm">
+              <div>24 Executive Park Suite 250, Irvine, CA 92614</div>
+              <div>NMLS 1912347 | NMLS 1566096</div>
+              <div>DRE 02022356</div>
+              <a href="https://westcapitallending.com" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-white transition-colors">
+                westcapitallending.com
+              </a>
+            </div>
           </div>
         </div>
 
