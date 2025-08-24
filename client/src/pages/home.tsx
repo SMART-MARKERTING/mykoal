@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { ExternalLink, Globe, Podcast, Facebook, Instagram, Youtube, Phone, Mail, Building, Star, Linkedin } from "lucide-react";
+import { ExternalLink, Globe, Podcast, Facebook, Instagram, Youtube, Phone, Mail, Building, Star, Linkedin, FileText } from "lucide-react";
 import headshotImage from "@assets/IMG_0016_1751000995747.jpeg";
 
 export default function Home() {
@@ -24,6 +24,13 @@ export default function Home() {
       url: "https://unykue.com",
       icon: <Podcast className="h-6 w-6" />,
       color: "bg-purple-600 hover:bg-purple-700"
+    },
+    {
+      title: "Apply for Purchase or Refi",
+      description: "Start Your Loan Application",
+      url: "https://westcaplending.loanzify.io/register/mykoal-deshazo",
+      icon: <FileText className="h-6 w-6" />,
+      color: "bg-orange-600 hover:bg-orange-700"
     }
   ];
 
