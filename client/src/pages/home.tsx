@@ -29,7 +29,7 @@ export default function Home() {
     {
       title: "Upload Documents Securely",
       description: "Submit Your Loan Documents",
-      url: "https://documentguardian.com/filedrop/Mykoal@westcapitallending.com",
+      url: "https://documentguardian.com/filedrop/~mLjD9T",
       icon: <Upload className="h-6 w-6" />,
       color: "bg-green-600 hover:bg-green-700"
     },
