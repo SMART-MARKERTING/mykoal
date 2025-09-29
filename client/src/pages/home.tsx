@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ExternalLink, Globe, Podcast, Facebook, Instagram, Youtube, Phone, Mail, Building, Star, Linkedin, FileText, CreditCard, Upload } from "lucide-react";
 import headshotImage from "@assets/IMG_0016_1751000995747.jpeg";
 import westCapitalLogo from "@assets/image_1756055687983.png";
+import equalHousingLogo from "@assets/image_1759164152959.png";
 
 export default function Home() {
   const businessLinks = [
@@ -204,6 +205,15 @@ export default function Home() {
             {/* Equal Housing Lender Disclaimer */}
             <div className="text-xs text-blue-200/80 leading-relaxed mt-4 px-2">
               WCL is an Equal Housing Lender. As prohibited by federal law, we do not engage in business practices that discriminate based on race, color, religion, national origin, sex, marital status, age (provided you have the capacity to enter into a binding contract) because all or part of your income may be derived from any public assistance program, or because you have, in good faith, exercised any right under the Consumer Credit Protection Act.
+            </div>
+            
+            {/* Equal Housing Logo */}
+            <div className="mt-4 flex justify-center">
+              <img 
+                src={equalHousingLogo} 
+                alt="West NMLS Equal Housing Lender" 
+                className="h-12 w-auto"
+              />
             </div>
           </div>
         </div>
