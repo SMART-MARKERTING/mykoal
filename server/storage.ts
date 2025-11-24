@@ -261,6 +261,7 @@ export class MemStorage implements IStorage {
     const id = this.currentQuoteId++;
     const quote: QuickQuote = {
       ...insertQuote,
+      phone: insertQuote.phone ?? null,
       id,
       createdAt: new Date(),
     };
