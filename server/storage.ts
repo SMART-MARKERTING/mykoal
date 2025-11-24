@@ -459,7 +459,6 @@ export class MemStorage implements IStorage {
     
     try {
       const url = `https://api.stlouisfed.org/fred/series/observations?series_id=${seriesId}&api_key=${apiKey}&file_type=json&limit=1&sort_order=desc`;
-      console.log(`Fetching FRED data from: ${url}`);
       const response = await fetch(url);
       const data = await response.json();
       
