@@ -151,21 +151,11 @@ export default function Home() {
           <div className="mt-6 text-center">
             <div className="text-white font-semibold text-lg mb-2">Mykoal DeShazo | Branch Manager</div>
             <div className="space-y-1 text-blue-200 text-sm">
-              <div>24 Executive Park Suite 250, Irvine, CA 92614</div>
-              <div>NMLS 1912347 | NMLS 1566096</div>
-              <div>DRE 02022356</div>
-              <a href="https://westcapitallending.com" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-white transition-colors">
-                westcapitallending.com
+              <div>16767 N Perimeter Dr., Ste 150 Scottsdale, AZ 85260</div>
+              <div>NMLS 1912347</div>
+              <a href="https://adaxahome.com/contact/" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-white transition-colors">
+                adaxahome.com
               </a>
-            </div>
-            
-            {/* West Capital Lending Logo */}
-            <div className="mt-4">
-              <img 
-                src={westCapitalLogo} 
-                alt="West Capital Lending Awards and Certifications" 
-                className="w-full max-w-lg mx-auto h-auto"
-              />
             </div>
           </div>
         </div>
@@ -177,20 +167,17 @@ export default function Home() {
               <a href="https://www.nmlsconsumeraccess.org/" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-white transition-colors underline">
                 NMLS Consumer Access
               </a>
-              <a href="https://westcapitallending.com/licensing" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-white transition-colors underline">
+              <a href="https://adaxahome.com/licensing" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-white transition-colors underline">
                 Licensing
               </a>
-              <a href="https://westcapitallending.com/texas-complaint" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-white transition-colors underline">
-                Texas Complaint
-              </a>
-              <a href="https://westcapitallending.com/" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-white transition-colors underline">
-                West Capital Lending
+              <a href="https://adaxahome.com/contact/" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-white transition-colors underline">
+                Adaxa Home
               </a>
             </div>
             
             {/* Equal Housing Lender Disclaimer */}
             <div className="text-xs text-blue-200/80 leading-relaxed mt-4 px-2">
-              WCL is an Equal Housing Lender. As prohibited by federal law, we do not engage in business practices that discriminate based on race, color, religion, national origin, sex, marital status, age (provided you have the capacity to enter into a binding contract) because all or part of your income may be derived from any public assistance program, or because you have, in good faith, exercised any right under the Consumer Credit Protection Act.
+              Adaxa Home is an Equal Housing Lender. As prohibited by federal law, we do not engage in business practices that discriminate based on race, color, religion, national origin, sex, marital status, age (provided you have the capacity to enter into a binding contract) because all or part of your income may be derived from any public assistance program, or because you have, in good faith, exercised any right under the Consumer Credit Protection Act.
             </div>
             
             {/* Equal Housing Logo */}
