@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { ExternalLink, Globe, Podcast, Facebook, Instagram, Youtube, Phone, Mail, Building, Star, Linkedin, FileText, CreditCard, Upload } from "lucide-react";
+import { ExternalLink, Globe, Podcast, Facebook, Instagram, Youtube, Phone, Mail, Building, Star, Linkedin, FileText, CreditCard } from "lucide-react";
 import headshotImage from "@assets/IMG_0016_1751000995747.jpeg";
 import westCapitalLogo from "@assets/image_1756055687983.png";
 import equalHousingLogo from "@assets/image_1759164152959.png";
@@ -7,32 +7,18 @@ import equalHousingLogo from "@assets/image_1759164152959.png";
 export default function Home() {
   const businessLinks = [
     {
+      title: "Apply for Purchase, Refi, or HELOC",
+      description: "Start Your Loan Application",
+      url: "https://prod.lendingpad.com/adaxa-home/pos#/?loid=dabbfd28-9b5f-46b8-9029-aa478433a995",
+      icon: <FileText className="h-6 w-6" />,
+      color: "bg-orange-600 hover:bg-orange-700"
+    },
+    {
       title: "Client Reviews",
       description: "4.91/5 Stars • 54+ Reviews",
       url: "https://www.experience.com/reviews/mykoal-deshazo",
       icon: <Star className="h-6 w-6" />,
       color: "bg-yellow-600 hover:bg-yellow-700"
-    },
-    {
-      title: "Apply for Purchase or Refi",
-      description: "Start Your Loan Application",
-      url: "https://westcaplending.loanzify.io/register/mykoal-deshazo",
-      icon: <FileText className="h-6 w-6" />,
-      color: "bg-orange-600 hover:bg-orange-700"
-    },
-    {
-      title: "Apply for HELOC",
-      description: "Home Equity Line of Credit",
-      url: "https://heloc.westcapitallending.com/account/heloc/register?referrer=ba7f666e-030b-496a-bc21-4a7f26c182dd",
-      icon: <CreditCard className="h-6 w-6" />,
-      color: "bg-teal-600 hover:bg-teal-700"
-    },
-    {
-      title: "Upload Documents Securely",
-      description: "Submit Your Loan Documents",
-      url: "https://documentguardian.com/filedrop/~mLjD9T",
-      icon: <Upload className="h-6 w-6" />,
-      color: "bg-green-600 hover:bg-green-700"
     },
     {
       title: "Team DeShazo",
