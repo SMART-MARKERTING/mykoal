@@ -7,6 +7,7 @@ import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import headshotImage from "@assets/IMG_0016_1751000995747.jpeg";
 import equalHousingLogo from "@assets/Equal-Housing-Logo_1751007456918.png";
+import ecoaLogo from "@assets/image_1772497699846.png";
 import TeamSection from "@/components/team-section";
 
 const LENDING_PAD_URL = "https://prod.lendingpad.com/adaxa-home/pos#/?loid=dabbfd28-9b5f-46b8-9029-aa478433a995";
@@ -224,10 +225,15 @@ export default function Home() {
             </div>
             
             {/* Equal Housing Logo */}
-            <div className="mt-4 flex justify-center">
+            <div className="mt-4 flex justify-center items-center gap-4">
               <img 
                 src={equalHousingLogo} 
                 alt="Equal Housing Lender" 
+                className="h-12 w-auto"
+              />
+              <img 
+                src={ecoaLogo} 
+                alt="Equal Housing Opportunity" 
                 className="h-12 w-auto"
               />
             </div>

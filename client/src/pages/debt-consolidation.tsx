@@ -7,6 +7,7 @@ import { CheckCircle, ArrowLeft, Calculator, Plus, Trash2, CreditCard, Home, Dol
 import { Link } from "wouter";
 import DebtConsolidationCalculator from "@/components/debt-consolidation-calculator";
 import equalHousingLogo from "@assets/Equal-Housing-Logo_1751007456918.png";
+import ecoaLogo from "@assets/image_1772497699846.png";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
@@ -572,6 +573,11 @@ export default function DebtConsolidationPage() {
               <img 
                 src={equalHousingLogo} 
                 alt="Equal Housing Opportunity Logo" 
+                className="w-6 h-6 object-contain filter brightness-0 invert"
+              />
+              <img 
+                src={ecoaLogo} 
+                alt="Equal Housing Opportunity" 
                 className="w-6 h-6 object-contain filter brightness-0 invert"
               />
               <span className="text-sm font-semibold text-white">Equal Housing Opportunity</span>

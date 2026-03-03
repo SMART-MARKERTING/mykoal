@@ -1,6 +1,7 @@
 import { Facebook, Linkedin, Instagram, Youtube } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import equalHousingLogo from "@assets/Equal-Housing-Logo_1751007456918.png";
+import ecoaLogo from "@assets/image_1772497699846.png";
 
 export default function Footer() {
   const [location, setLocation] = useLocation();
@@ -147,10 +148,15 @@ export default function Footer() {
 
             {/* Links and compliance */}
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <div className="flex items-center">
+              <div className="flex items-center gap-3">
                 <img 
                   src={equalHousingLogo} 
                   alt="Equal Housing Opportunity Logo" 
+                  className="w-6 h-6 object-contain filter brightness-0 invert"
+                />
+                <img 
+                  src={ecoaLogo} 
+                  alt="Equal Housing Opportunity" 
                   className="w-6 h-6 object-contain filter brightness-0 invert"
                 />
               </div>

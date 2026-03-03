@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Phone, Mail, Heart, Users, Award, BookOpen, DollarSign, Shield, Clock, Target } from "lucide-react";
 import headshotPath from "@assets/IMG_0016_1751000995747.jpeg";
 import ehoLogoPath from "@assets/Equal-Housing-Logo_1751007456918.png";
+import ecoaLogo from "@assets/image_1772497699846.png";
 
 export default function JoinTeamPage() {
   const scrollToContact = () => {
@@ -303,6 +304,11 @@ export default function JoinTeamPage() {
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 text-center">
             <img 
               src={ehoLogoPath} 
+              alt="Equal Housing Opportunity" 
+              className="h-12 w-12"
+            />
+            <img 
+              src={ecoaLogo} 
               alt="Equal Housing Opportunity" 
               className="h-12 w-12"
             />
