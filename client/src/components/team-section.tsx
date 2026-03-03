@@ -1,5 +1,5 @@
-import mykoalHeadshot from "@assets/8588AB28-FD86-4A2D-8A60-D1E42B25AAE3_4_5005_c_1772496955397.jpeg";
-import cameronHeadshot from "@assets/image_1772496897336.png";
+import mykoalHeadshot from "@assets/image_1772497805986.png";
+import cameronHeadshot from "@assets/image_1772497797113.png";
 
 const teamMembers = [
   {
