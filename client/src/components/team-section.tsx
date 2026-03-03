@@ -4,7 +4,7 @@ import cameronHeadshot from "@assets/image_1772496897336.png";
 const teamMembers = [
   {
     name: "Mykoal DeShazo",
-    title: "Branch Manager",
+    title: "Vice President",
     image: mykoalHeadshot,
     nmls: "NMLS 1912347",
   },

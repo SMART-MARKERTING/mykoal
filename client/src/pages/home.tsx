@@ -1,19 +1,41 @@
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { ExternalLink, Globe, Podcast, Facebook, Instagram, Youtube, Phone, Mail, Building, Star, Linkedin, FileText, CreditCard } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { ExternalLink, Globe, Podcast, Facebook, Instagram, Youtube, Phone, Mail, Building, Star, Linkedin, FileText, CreditCard, X } from "lucide-react";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
 import headshotImage from "@assets/IMG_0016_1751000995747.jpeg";
 import westCapitalLogo from "@assets/image_1756055687983.png";
 import equalHousingLogo from "@assets/image_1759164152959.png";
 import TeamSection from "@/components/team-section";
 
+const LENDING_PAD_URL = "https://prod.lendingpad.com/adaxa-home/pos#/?loid=dabbfd28-9b5f-46b8-9029-aa478433a995";
+
 export default function Home() {
-  const businessLinks = [
-    {
-      title: "Apply for Purchase, Refi, or HELOC",
-      description: "Start Your Loan Application",
-      url: "https://prod.lendingpad.com/adaxa-home/pos#/?loid=dabbfd28-9b5f-46b8-9029-aa478433a995",
-      icon: <FileText className="h-6 w-6" />,
-      color: "bg-orange-600 hover:bg-orange-700"
+  const [showApplyModal, setShowApplyModal] = useState(false);
+  const [applyLastName, setApplyLastName] = useState("");
+
+  const applyMutation = useMutation({
+    mutationFn: async (data: { lastName: string }) => {
+      const res = await apiRequest("POST", "/api/leads", data);
+      return res.json();
     },
+    onSuccess: () => {
+      setShowApplyModal(false);
+      setApplyLastName("");
+      window.open(LENDING_PAD_URL, "_blank");
+    },
+  });
+
+  const handleApplySubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (applyLastName.trim()) {
+      applyMutation.mutate({ lastName: applyLastName.trim() });
+    }
+  };
+
+  const businessLinks = [
     {
       title: "Client Reviews",
       description: "4.91/5 Stars • 54+ Reviews",
@@ -74,7 +96,7 @@ export default function Home() {
             Mykoal DeShazo
           </h1>
           <p className="text-blue-200 text-lg mb-2">
-            Branch Manager
+            Vice President
           </p>
           <p className="text-blue-300 text-sm">
             NMLS #1912347 | Faith-Based Business
@@ -84,6 +106,27 @@ export default function Home() {
         {/* Business Links */}
         <div className="space-y-4 mb-8">
           <h2 className="text-white text-xl font-semibold text-center mb-6">My Businesses</h2>
+
+          <button
+            onClick={() => setShowApplyModal(true)}
+            className="block w-full text-left"
+          >
+            <Card className="bg-orange-600 hover:bg-orange-700 text-white border-0 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <FileText className="h-6 w-6" />
+                    <div>
+                      <h3 className="font-semibold text-lg">Apply for Purchase, Refi, or HELOC</h3>
+                      <p className="text-white/80 text-sm">Start Your Loan Application</p>
+                    </div>
+                  </div>
+                  <ExternalLink className="h-5 w-5 text-white/60" />
+                </div>
+              </CardContent>
+            </Card>
+          </button>
+
           {businessLinks.map((link, index) => (
             <a
               key={index}
@@ -150,7 +193,7 @@ export default function Home() {
           </div>
           
           <div className="mt-6 text-center">
-            <div className="text-white font-semibold text-lg mb-2">Mykoal DeShazo | Branch Manager</div>
+            <div className="text-white font-semibold text-lg mb-2">Mykoal DeShazo | Vice President</div>
             <div className="space-y-1 text-blue-200 text-sm">
               <div>16767 N Perimeter Dr., Ste 150 Scottsdale, AZ 85260</div>
               <div>NMLS 1912347</div>
@@ -199,6 +242,42 @@ export default function Home() {
           "Trust in the Lord with all your heart" - Proverbs 3:5
         </div>
       </div>
+
+      {showApplyModal && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-slate-800 border border-white/20 rounded-2xl shadow-2xl max-w-sm w-full p-6 relative">
+            <button
+              onClick={() => { setShowApplyModal(false); setApplyLastName(""); }}
+              className="absolute top-3 right-3 text-white/60 hover:text-white"
+            >
+              <X className="h-5 w-5" />
+            </button>
+            <div className="text-center mb-6">
+              <FileText className="h-10 w-10 text-orange-400 mx-auto mb-3" />
+              <h3 className="text-white text-xl font-bold">Start Your Application</h3>
+              <p className="text-blue-200 text-sm mt-2">Enter your last name to continue to LendingPad</p>
+            </div>
+            <form onSubmit={handleApplySubmit} className="space-y-4">
+              <Input
+                type="text"
+                placeholder="Last Name"
+                value={applyLastName}
+                onChange={(e) => setApplyLastName(e.target.value)}
+                className="bg-white/10 border-white/30 text-white placeholder:text-blue-300/50 focus:border-orange-400 focus:ring-orange-400"
+                required
+                autoFocus
+              />
+              <Button
+                type="submit"
+                disabled={applyMutation.isPending || !applyLastName.trim()}
+                className="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3"
+              >
+                {applyMutation.isPending ? "Submitting..." : "Continue to Application"}
+              </Button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

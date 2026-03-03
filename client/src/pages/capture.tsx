@@ -42,7 +42,7 @@ export default function Capture() {
           <h1 className="text-3xl font-bold text-white mb-2">
             Mykoal DeShazo
           </h1>
-          <p className="text-blue-200 text-lg mb-1">Branch Manager</p>
+          <p className="text-blue-200 text-lg mb-1">Vice President</p>
           <p className="text-blue-300 text-sm">NMLS #1912347</p>
         </div>
 
