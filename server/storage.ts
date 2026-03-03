@@ -397,7 +397,6 @@ export class MemStorage implements IStorage {
     try {
       // Use FRED API for current mortgage rates
       const fredApiKey = process.env.FRED_API_KEY;
-      console.log('FRED API Key available:', !!fredApiKey);
       
       if (!fredApiKey) {
         console.log('No FRED API key, falling back to Freddie Mac');
