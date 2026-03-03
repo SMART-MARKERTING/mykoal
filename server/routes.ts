@@ -1,7 +1,7 @@
 import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertContactSchema, insertQuickQuoteSchema, insertPreQualificationSchema, insertMarketSubscriptionSchema } from "@shared/schema";
+import { insertContactSchema, insertQuickQuoteSchema, insertPreQualificationSchema, insertMarketSubscriptionSchema, insertLeadSchema } from "@shared/schema";
 import { z } from "zod";
 import { sendEmail, sendNotificationEmail, emailTemplates, FROM_EMAIL } from "./email";
 
@@ -488,6 +488,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
         success: false, 
         message: "Internal server error" 
       });
+    }
+  });
+
+  app.post("/api/leads", async (req, res) => {
+    try {
+      const validatedData = insertLeadSchema.parse(req.body);
+      const lead = await storage.createLead(validatedData);
+      res.json({ success: true, lead });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({
+          success: false,
+          message: "Validation error",
+          errors: error.errors
+        });
+      } else {
+        console.error("Error creating lead:", error);
+        res.status(500).json({
+          success: false,
+          message: "Internal server error"
+        });
+      }
     }
   });
 

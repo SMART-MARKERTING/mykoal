@@ -114,6 +114,17 @@ export const insertPreQualificationSchema = z.object({
   estimatedRate: z.string().optional().nullable(),
 });
 
+export const leads = pgTable("leads", {
+  id: serial("id").primaryKey(),
+  lastName: text("last_name").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const insertLeadSchema = createInsertSchema(leads).omit({
+  id: true,
+  createdAt: true,
+});
+
 export const insertMarketSubscriptionSchema = createInsertSchema(marketSubscriptions).omit({
   id: true,
   createdAt: true,
@@ -130,3 +141,5 @@ export type BlogPost = typeof blogPosts.$inferSelect;
 export type Testimonial = typeof testimonials.$inferSelect;
 export type MarketSubscription = typeof marketSubscriptions.$inferSelect;
 export type InsertMarketSubscription = z.infer<typeof insertMarketSubscriptionSchema>;
+export type Lead = typeof leads.$inferSelect;
+export type InsertLead = z.infer<typeof insertLeadSchema>;

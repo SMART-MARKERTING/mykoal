@@ -5,6 +5,7 @@ import {
   testimonials,
   preQualifications,
   marketSubscriptions,
+  leads,
   type Contact, 
   type InsertContact,
   type QuickQuote,
@@ -14,7 +15,9 @@ import {
   type BlogPost,
   type Testimonial,
   type MarketSubscription,
-  type InsertMarketSubscription
+  type InsertMarketSubscription,
+  type Lead,
+  type InsertLead
 } from "@shared/schema";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
@@ -46,6 +49,10 @@ export interface IStorage {
   // Market subscriptions
   createMarketSubscription(subscription: InsertMarketSubscription): Promise<MarketSubscription>;
   getMarketSubscriptions(): Promise<MarketSubscription[]>;
+
+  // Leads
+  createLead(lead: InsertLead): Promise<Lead>;
+  getLeads(): Promise<Lead[]>;
 }
 
 interface NewsItem {
@@ -90,12 +97,14 @@ export class MemStorage implements IStorage {
   private blogPosts: Map<number, BlogPost>;
   private testimonials: Map<number, Testimonial>;
   private marketSubscriptions: Map<number, MarketSubscription>;
+  private leads: Map<number, Lead>;
   private currentContactId: number;
   private currentQuoteId: number;
   private currentPreQualId: number;
   private currentBlogId: number;
   private currentTestimonialId: number;
   private currentSubscriptionId: number;
+  private currentLeadId: number;
 
   constructor() {
     this.contacts = new Map();
@@ -104,12 +113,14 @@ export class MemStorage implements IStorage {
     this.blogPosts = new Map();
     this.testimonials = new Map();
     this.marketSubscriptions = new Map();
+    this.leads = new Map();
     this.currentContactId = 1;
     this.currentQuoteId = 1;
     this.currentPreQualId = 1;
     this.currentBlogId = 1;
     this.currentTestimonialId = 1;
     this.currentSubscriptionId = 1;
+    this.currentLeadId = 1;
 
     // Initialize with sample data
     this.initializeSampleData();
@@ -773,6 +784,23 @@ export class MemStorage implements IStorage {
   async getMarketSubscriptions(): Promise<MarketSubscription[]> {
     return Array.from(this.marketSubscriptions.values());
   }
+
+  async createLead(insertLead: InsertLead): Promise<Lead> {
+    const id = this.currentLeadId++;
+    const lead: Lead = {
+      ...insertLead,
+      id,
+      createdAt: new Date(),
+    };
+    this.leads.set(id, lead);
+    return lead;
+  }
+
+  async getLeads(): Promise<Lead[]> {
+    return Array.from(this.leads.values()).sort((a, b) =>
+      b.createdAt.getTime() - a.createdAt.getTime()
+    );
+  }
 }
 
 // Database storage implementation
@@ -1241,6 +1269,18 @@ export class DatabaseStorage implements IStorage {
       change: -0.15,
       lastUpdated: new Date().toISOString()
     };
+  }
+
+  async createLead(insertLead: InsertLead): Promise<Lead> {
+    const [lead] = await db
+      .insert(leads)
+      .values(insertLead)
+      .returning();
+    return lead;
+  }
+
+  async getLeads(): Promise<Lead[]> {
+    return db.select().from(leads).orderBy(leads.createdAt);
   }
 }
 
