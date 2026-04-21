@@ -30,7 +30,7 @@ import ecoaLogo from "@assets/image_1772497699846.png";
 
 const LENDING_PAD_URL =
   "https://prod.lendingpad.com/adaxa-home/pos#/?loid=dabbfd28-9b5f-46b8-9029-aa478433a995";
-const SCHEDULE_URL = "tel:623-280-8351";
+const SCHEDULE_URL = "https://calendly.com/adaxa-mortgage/quote-review";
 
 export default function Home() {
   const [showApplyModal, setShowApplyModal] = useState(false);
@@ -183,7 +183,7 @@ export default function Home() {
             </Card>
           </button>
 
-          <a href={SCHEDULE_URL} className="block w-full">
+          <a href={SCHEDULE_URL} target="_blank" rel="noopener noreferrer" className="block w-full">
             <Card className="bg-[#0077a8] hover:bg-[#005f85] text-white border-0 shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200">
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
