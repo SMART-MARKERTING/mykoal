@@ -52,7 +52,7 @@ export async function onRequestPost(context) {
       },
       body: JSON.stringify({
         from: "noreply@mykoal.com",
-        to: "mdeshazo@mykoal.com",
+        to: "mykoal@adaxahome.com",
         reply_to: email || undefined,
         subject: `New Lead: ${displayName}`,
         html,
