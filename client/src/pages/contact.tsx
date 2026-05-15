@@ -20,8 +20,8 @@ const contactOptions = [
   {
     icon: <Mail className="h-6 w-6" />,
     label: "Email",
-    value: "mykoal@adaxahome.com",
-    href: "mailto:mykoal@adaxahome.com",
+    value: "mdeshazo@mykoal.com",
+    href: "mailto:mdeshazo@mykoal.com",
     color: "bg-blue-700 hover:bg-blue-800",
   },
   {

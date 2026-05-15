@@ -8,8 +8,8 @@ if (!RESEND_API_KEY) {
 const resend = RESEND_API_KEY ? new Resend(RESEND_API_KEY) : null;
 
 export const FROM_EMAIL = "noreply@mykoal.com";
-const REPLY_TO = "mykoal@mykoal.com";
-const TO_EMAIL = "mykoal@mykoal.com";
+const REPLY_TO = "mdeshazo@mykoal.com";
+const TO_EMAIL = "mdeshazo@mykoal.com";
 
 const PROFESSIONAL_SIGNATURE = `
 <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 12px; color: #666;">
@@ -21,7 +21,7 @@ const PROFESSIONAL_SIGNATURE = `
   Adaxa Home LLC · NMLS# 2380533<br>
   <a href="https://www.experience.com/mykoal-deshazo" style="color: #0066cc;">See My Reviews</a></p>
   <p><strong>Phone:</strong> (949) 418-5486<br>
-  <strong>Email:</strong> <a href="mailto:mykoal@adaxahome.com" style="color: #0066cc;">mykoal@adaxahome.com</a><br>
+  <strong>Email:</strong> <a href="mailto:mdeshazo@mykoal.com" style="color: #0066cc;">mdeshazo@mykoal.com</a><br>
   <strong>Website:</strong> <a href="https://mykoal.com" style="color: #0066cc;">mykoal.com</a><br>
   <strong>Address:</strong> 16767 N Perimeter Dr., Ste 150, Scottsdale, AZ 85260</p>
   <p style="font-size: 11px; color: #888;">This is not a commitment to lend. The contents of this message may be confidential. If you are not the intended recipient, do not disseminate, disclose, copy or use this message without the permission of the author. Nothing contained herein shall constitute a contract or electronic signature. If received in error, please delete immediately.</p>
@@ -39,7 +39,7 @@ Adaxa Home LLC · NMLS# 2380533
 Reviews: https://www.experience.com/mykoal-deshazo
 
 Phone: (949) 418-5486
-Email: mykoal@adaxahome.com
+Email: mdeshazo@mykoal.com
 Website: mykoal.com
 Address: 16767 N Perimeter Dr., Ste 150, Scottsdale, AZ 85260
 

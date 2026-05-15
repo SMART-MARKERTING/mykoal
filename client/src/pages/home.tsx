@@ -338,11 +338,11 @@ export default function Home() {
               <span>(949) 418-5486</span>
             </a>
             <a
-              href="mailto:mykoal@adaxahome.com"
+              href="mailto:mdeshazo@mykoal.com"
               className="flex items-center space-x-3 text-blue-200 hover:text-white transition-colors"
             >
               <Mail className="h-5 w-5 flex-shrink-0" />
-              <span>mykoal@adaxahome.com</span>
+              <span>mdeshazo@mykoal.com</span>
             </a>
           </div>
           <div className="text-center text-blue-200/70 text-xs leading-relaxed">

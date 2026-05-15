@@ -498,7 +498,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       try {
         await sendEmail({
-          to: "Mykoal@adaxahome.com",
+          to: "mdeshazo@mykoal.com",
           from: FROM_EMAIL,
           subject: `New Lead Capture: ${lead.lastName}`,
           html: `

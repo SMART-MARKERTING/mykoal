@@ -113,7 +113,7 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-4">Contact</h4>
             <ul className="space-y-2 text-gray-300">
               <li>(623) 280-8351</li>
-              <li>mykoal@adaxahome.com</li>
+              <li>mdeshazo@mykoal.com</li>
               <li>
                 16767 N Perimeter Dr., Ste 150<br />
                 Scottsdale, AZ 85260<br />
