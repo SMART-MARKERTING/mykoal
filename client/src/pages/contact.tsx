@@ -56,8 +56,12 @@ export default function Contact() {
       toast({ title: "Message sent!", description: "Mykoal will be in touch shortly." });
       setForm({ firstName: "", lastName: "", email: "", phone: "", loanType: "General Inquiry", timeline: "Flexible", message: "" });
     },
-    onError: () => {
-      toast({ title: "Something went wrong", description: "Please try calling or emailing directly.", variant: "destructive" });
+    onError: (err: Error) => {
+      toast({
+        title: "Something went wrong",
+        description: err.message || "Please try calling or emailing directly.",
+        variant: "destructive",
+      });
     },
   });
 

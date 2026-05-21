@@ -1,5 +1,29 @@
+export async function onRequestGet(context) {
+  const { env } = context;
+  return new Response(
+    JSON.stringify({
+      ok: true,
+      functionReached: true,
+      hasResendKey: Boolean(env.RESEND_API_KEY),
+      from: env.RESEND_FROM || "noreply@mykoal.com",
+      to: env.RESEND_TO || "mykoal@adaxahome.com",
+    }),
+    { status: 200, headers: { "Content-Type": "application/json" } },
+  );
+}
+
 export async function onRequestPost(context) {
   const { request, env } = context;
+
+  if (!env.RESEND_API_KEY) {
+    return new Response(
+      JSON.stringify({
+        success: false,
+        error: "Email is not configured: RESEND_API_KEY is missing in the Cloudflare Pages environment.",
+      }),
+      { status: 500, headers: { "Content-Type": "application/json" } },
+    );
+  }
 
   try {
     const data = await request.json();
@@ -51,8 +75,8 @@ export async function onRequestPost(context) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "noreply@mykoal.com",
-        to: "mykoal@adaxahome.com",
+        from: env.RESEND_FROM || "noreply@mykoal.com",
+        to: env.RESEND_TO || "mykoal@adaxahome.com",
         reply_to: email || undefined,
         subject: `New Lead: ${displayName}`,
         html,
@@ -61,10 +85,11 @@ export async function onRequestPost(context) {
 
     if (!res.ok) {
       const err = await res.text();
-      return new Response(JSON.stringify({ success: false, error: err }), {
-        status: 500,
-        headers: { "Content-Type": "application/json" },
-      });
+      console.error("Resend send failed", res.status, err);
+      return new Response(
+        JSON.stringify({ success: false, status: res.status, error: err }),
+        { status: 500, headers: { "Content-Type": "application/json" } },
+      );
     }
 
     return new Response(JSON.stringify({ success: true }), {
@@ -72,6 +97,7 @@ export async function onRequestPost(context) {
       headers: { "Content-Type": "application/json" },
     });
   } catch (err) {
+    console.error("contact function error", err);
     return new Response(JSON.stringify({ success: false, error: err.message }), {
       status: 500,
       headers: { "Content-Type": "application/json" },
