@@ -1,17 +1,3 @@
-export async function onRequestGet(context) {
-  const { env } = context;
-  return new Response(
-    JSON.stringify({
-      ok: true,
-      functionReached: true,
-      hasResendKey: Boolean(env.RESEND_API_KEY),
-      from: env.RESEND_FROM || "noreply@mykoal.com",
-      to: env.RESEND_TO || "mykoal@adaxahome.com",
-    }),
-    { status: 200, headers: { "Content-Type": "application/json" } },
-  );
-}
-
 export async function onRequestPost(context) {
   const { request, env } = context;
 
