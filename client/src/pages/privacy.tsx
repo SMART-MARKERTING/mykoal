@@ -123,9 +123,10 @@ export default function Privacy() {
             <h3 className="text-white/90 font-semibold mt-5 mb-2">Important SMS Disclosure</h3>
             <ul className="list-disc list-inside space-y-1 ml-2">
               <li>
-                <strong className="text-white">SMS opt-in information and phone numbers are not shared with third parties for their marketing purposes.</strong>
+                <strong className="text-white">We will not share mobile information with third parties for promotional or marketing purposes.</strong>
               </li>
-              <li>SMS is used for service-related and informational communications with you.</li>
+              <li>Mobile opt-in data and consent records are not sold, rented, or transferred to third parties for their own marketing.</li>
+              <li>SMS is used for service-related, transactional, and (where you have opted in) marketing communications from Mykoal DeShazo.</li>
             </ul>
           </section>
 

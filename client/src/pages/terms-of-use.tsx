@@ -111,7 +111,8 @@ export default function TermsOfUse() {
             <h2 className="text-white font-semibold text-lg mb-3">5. Privacy</h2>
             <p>
               Information you provide is handled as described in our{" "}
-              <a href="/privacy" className="underline hover:text-blue-200">Privacy Policy</a>. We do not sell personal information. We do not share SMS opt-in information or phone numbers with third parties for their marketing purposes.
+              <a href="/privacy" className="underline hover:text-blue-200">Privacy Policy</a>. We do not sell personal information.{" "}
+              <strong className="text-white">We will not share mobile information with third parties for promotional or marketing purposes.</strong>
             </p>
           </section>
 

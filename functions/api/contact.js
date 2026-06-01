@@ -19,6 +19,7 @@ export async function onRequestPost(context) {
       email, phone, message,
       loanType, timeline,
       loanAmount, creditScore, propertyType,
+      smsOptIn,
       ...rest
     } = data;
 
@@ -34,6 +35,7 @@ export async function onRequestPost(context) {
       "Property Type": propertyType,
       Timeline: timeline,
       Message: message,
+      "SMS Opt-In": smsOptIn,
       ...rest,
     })
       .filter(([, v]) => v)
