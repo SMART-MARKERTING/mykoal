@@ -184,7 +184,7 @@ export default function Contact() {
               />
               <div className="text-blue-300/80 text-xs leading-relaxed">
                 <span className="block text-white text-sm font-semibold mb-1">Text me</span>
-                By providing my phone number and checking this box, I agree to receive recurring SMS messages about my mortgage inquiry, application status, appointment reminders, and marketing offers from DeShazo Wealth LLC d/b/a Mykoal DeShazo. (Mortgage services are provided through Adaxa Home LLC, NMLS #2380533.) You are opting into marketing texts. Consent is not a condition of any purchase or service. Message frequency may vary. Standard message and data rates may apply. Reply STOP to opt out. Reply HELP for help. We will not share mobile information with third parties for promotional or marketing purposes.
+                By providing my phone number and checking this box, I agree to receive recurring SMS messages about my mortgage inquiry, application status, appointment reminders, and marketing offers from DeShazo Wealth LLC d/b/a Mykoal DeShazo, sent from (619) 782-6916. (Mortgage services are provided through Adaxa Home LLC, NMLS #2380533.) You are opting into marketing texts. Consent is not a condition of any purchase or service. Message frequency may vary. Standard message and data rates may apply. Reply STOP to opt out. Reply HELP for help. We will not share mobile information with third parties for promotional or marketing purposes.
               </div>
             </label>
 

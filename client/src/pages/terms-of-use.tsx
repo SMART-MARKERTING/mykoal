@@ -53,7 +53,8 @@ export default function TermsOfUse() {
 
             <h3 className="text-white/90 font-semibold mt-4 mb-2">Express Consent</h3>
             <p>
-              When you provide a phone number through a form on this Site and check the consent box, you give your express written consent (opt-in) to receive recurring SMS/MMS messages from DeShazo Wealth LLC d/b/a Mykoal DeShazo regarding:
+              When you provide a phone number through a form on this Site and check the consent box, you give your express written consent (opt-in) to receive recurring SMS/MMS messages from DeShazo Wealth LLC d/b/a Mykoal DeShazo, sent from{" "}
+              <a href="tel:+16197826916" className="underline hover:text-blue-200">(619) 782-6916</a>, regarding:
             </p>
             <ul className="list-disc list-inside mt-2 space-y-1 ml-2">
               <li>Account and application updates</li>
