@@ -146,10 +146,9 @@ export default function Contact() {
             <Input
               name="phone"
               type="tel"
-              placeholder="Phone Number"
+              placeholder="Phone Number (optional — needed only for text updates)"
               value={form.phone}
               onChange={handleChange}
-              required
               className="bg-white/10 border-white/20 text-white placeholder:text-blue-300/50"
             />
             <select

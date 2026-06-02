@@ -39,21 +39,30 @@ export default function SiteFooter() {
               {[
                 { label: "NMLS Consumer Access", href: "https://www.nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/1912347", external: true },
                 { label: "Licensing", href: "https://adaxahome.com/licensing", external: true },
+                { label: "SMS Opt-In", href: "/opt-in", static: true },
                 { label: "Privacy Policy", href: "/privacy", external: false },
                 { label: "Terms of Use", href: "/terms-of-use", external: false },
-              ].map((l) => (
-                <li key={l.href}>
-                  {l.external ? (
-                    <a href={l.href} target="_blank" rel="noopener noreferrer" className="text-blue-300/70 hover:text-white text-sm transition-colors">
-                      {l.label}
-                    </a>
-                  ) : (
-                    <Link href={l.href} className="text-blue-300/70 hover:text-white text-sm transition-colors">
-                      {l.label}
-                    </Link>
-                  )}
-                </li>
-              ))}
+              ].map((l) => {
+                const item = l as { label: string; href: string; external?: boolean; static?: boolean };
+                return (
+                  <li key={item.href}>
+                    {item.external ? (
+                      <a href={item.href} target="_blank" rel="noopener noreferrer" className="text-blue-300/70 hover:text-white text-sm transition-colors">
+                        {item.label}
+                      </a>
+                    ) : item.static ? (
+                      // Static HTML page (not an SPA route) — use a real navigation, not wouter <Link>.
+                      <a href={item.href} className="text-blue-300/70 hover:text-white text-sm transition-colors">
+                        {item.label}
+                      </a>
+                    ) : (
+                      <Link href={item.href} className="text-blue-300/70 hover:text-white text-sm transition-colors">
+                        {item.label}
+                      </Link>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>

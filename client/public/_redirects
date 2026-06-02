@@ -1,4 +1,11 @@
 /purchase https://smartr8.com/apply/purchase 301
 /refinance https://smartr8.com/apply/cash-out 301
 /heloc https://smartr8.com/heloc/instant-options 301
+
+# Serve the static, crawlable A2P 10DLC compliance pages at clean URLs.
+# These MUST come before the SPA catch-all so carrier/registrar review tooling
+# (which does not run JavaScript) can read the opt-in form and privacy policy.
+/opt-in    /opt-in.html    200
+/privacy   /privacy.html   200
+
 /* /index.html 200

@@ -1,18 +1,49 @@
 export async function onRequestPost(context) {
   const { request, env } = context;
 
+  // The React app submits JSON via fetch. The static /opt-in page also submits JSON
+  // when JavaScript is available, but falls back to a native form POST
+  // (application/x-www-form-urlencoded) when it is not. Support both.
+  const contentType = request.headers.get("content-type") || "";
+  const isForm =
+    contentType.includes("application/x-www-form-urlencoded") ||
+    contentType.includes("multipart/form-data");
+
+  // For no-JS form submissions, respond with a simple HTML page so the visitor
+  // isn't left staring at raw JSON. Otherwise respond with JSON for the SPA.
+  const reply = (body, status) => {
+    if (isForm) {
+      return new Response(htmlResult(body), {
+        status,
+        headers: { "Content-Type": "text/html; charset=utf-8" },
+      });
+    }
+    return new Response(JSON.stringify(body), {
+      status,
+      headers: { "Content-Type": "application/json" },
+    });
+  };
+
   if (!env.RESEND_API_KEY) {
-    return new Response(
-      JSON.stringify({
+    return reply(
+      {
         success: false,
         error: "Email is not configured: RESEND_API_KEY is missing in the Cloudflare Pages environment.",
-      }),
-      { status: 500, headers: { "Content-Type": "application/json" } },
+      },
+      500,
     );
   }
 
   try {
-    const data = await request.json();
+    let data;
+    if (isForm) {
+      const fd = await request.formData();
+      data = Object.fromEntries(fd.entries());
+      // An unchecked checkbox is simply absent from form data — record it explicitly.
+      data.smsOptIn = data.smsOptIn === "Yes" ? "Yes" : "No";
+    } else {
+      data = await request.json();
+    }
 
     const {
       firstName, lastName, name,
@@ -74,21 +105,38 @@ export async function onRequestPost(context) {
     if (!res.ok) {
       const err = await res.text();
       console.error("Resend send failed", res.status, err);
-      return new Response(
-        JSON.stringify({ success: false, status: res.status, error: err }),
-        { status: 500, headers: { "Content-Type": "application/json" } },
-      );
+      return reply({ success: false, status: res.status, error: err }, 500);
     }
 
-    return new Response(JSON.stringify({ success: true }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
+    return reply({ success: true }, 200);
   } catch (err) {
     console.error("contact function error", err);
-    return new Response(JSON.stringify({ success: false, error: err.message }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
-    });
+    return reply({ success: false, error: err.message }, 500);
   }
+}
+
+// Minimal branded confirmation page for no-JavaScript form submissions.
+function htmlResult(body) {
+  const ok = body && body.success !== false;
+  const heading = ok ? "Thank you!" : "Something went wrong";
+  const detail = ok
+    ? "Your message has been sent. Mykoal will be in touch shortly."
+    : "Please try again, or call (480) 206-9290 / email mdeshazo@mykoal.com directly.";
+  return `<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>${heading} | Mykoal DeShazo</title>
+<style>
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:#e2e8f0;background:linear-gradient(135deg,#0f172a,#1e3a8a 55%,#1e293b);min-height:100vh;
+    display:flex;align-items:center;justify-content:center;padding:24px;text-align:center}
+  .card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:14px;
+    padding:32px;max-width:440px}
+  h1{color:#fff;margin:0 0 10px;font-size:24px}
+  p{font-size:15px;line-height:1.6}
+  a{display:inline-block;margin-top:18px;color:#fff;background:#ea580c;text-decoration:none;
+    padding:11px 20px;border-radius:8px;font-weight:600}
+</style></head>
+<body><div class="card"><h1>${heading}</h1><p>${detail}</p>
+<a href="/opt-in">Back to the form</a></div></body></html>`;
 }

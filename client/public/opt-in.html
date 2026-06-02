@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index,follow" />
+    <title>SMS Opt-In &amp; Contact | Mykoal DeShazo — DeShazo Wealth LLC</title>
+    <meta
+      name="description"
+      content="Opt in to receive SMS text messages from DeShazo Wealth LLC d/b/a Mykoal DeShazo about your mortgage inquiry. Consent is optional and is not a condition of any purchase or service."
+    />
+    <link rel="canonical" href="https://mykoal.com/opt-in" />
+    <!--
+      Static, no-JavaScript-required SMS opt-in page for A2P 10DLC campaign verification.
+      This page is intentionally plain HTML so that carrier/registrar review tooling and
+      screenshots can read the phone field, the separate optional SMS consent checkbox,
+      and the full consent + privacy disclosures without executing JavaScript.
+      Submit this URL (https://mykoal.com/opt-in) as the opt-in form for the campaign.
+    -->
+    <style>
+      :root {
+        --bg1: #0f172a;
+        --bg2: #1e3a8a;
+        --bg3: #1e293b;
+        --cyan: #00b4d8;
+        --orange: #ea580c;
+        --orange-h: #c2410c;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: #e2e8f0;
+        background: linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 55%, var(--bg3) 100%);
+        min-height: 100vh;
+        line-height: 1.55;
+      }
+      .wrap { max-width: 640px; margin: 0 auto; padding: 32px 16px 56px; }
+      header.top { text-align: center; margin-bottom: 28px; }
+      header.top a.brand {
+        color: #fff; font-weight: 700; letter-spacing: 0.04em; text-decoration: none; font-size: 14px;
+      }
+      h1 { color: #fff; font-size: 26px; margin: 18px 0 6px; }
+      .sub { color: rgba(191, 219, 254, 0.75); font-size: 14px; margin: 0; }
+      .card {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 14px;
+        padding: 24px;
+        margin-top: 24px;
+      }
+      label.field { display: block; margin-bottom: 14px; }
+      label.field .lab { display: block; font-size: 13px; color: #fff; font-weight: 600; margin-bottom: 6px; }
+      label.field .opt { color: rgba(191, 219, 254, 0.65); font-weight: 400; }
+      input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 8px;
+        color: #fff;
+        padding: 11px 12px;
+        font-size: 15px;
+        font-family: inherit;
+      }
+      input::placeholder, textarea::placeholder { color: rgba(147, 197, 253, 0.5); }
+      select option { background: #1e293b; }
+      textarea { resize: vertical; min-height: 96px; }
+      .row { display: flex; gap: 12px; }
+      .row > * { flex: 1; }
+      .consent {
+        display: flex; gap: 12px; align-items: flex-start;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 10px; padding: 14px; margin: 6px 0 14px;
+      }
+      .consent input[type="checkbox"] { width: 18px; height: 18px; margin-top: 3px; flex: 0 0 auto; cursor: pointer; }
+      .consent .ctext { font-size: 12.5px; color: rgba(226, 232, 240, 0.85); }
+      .consent .ctext strong.title { display: block; color: #fff; font-size: 14px; margin-bottom: 4px; }
+      .privacy-block {
+        font-size: 12.5px; color: rgba(191, 219, 254, 0.8);
+        border-top: 1px solid rgba(255, 255, 255, 0.12); padding-top: 14px; margin-top: 4px;
+      }
+      a { color: var(--cyan); text-decoration: underline; }
+      a:hover { color: #7dd3fc; }
+      button.submit {
+        width: 100%; background: var(--orange); color: #fff; font-weight: 700; font-size: 16px;
+        border: none; border-radius: 8px; padding: 13px; cursor: pointer; margin-top: 6px;
+      }
+      button.submit:hover { background: var(--orange-h); }
+      button.submit:disabled { opacity: 0.6; cursor: not-allowed; }
+      .note { font-size: 11.5px; color: rgba(191, 219, 254, 0.55); margin-top: 14px; text-align: center; }
+      .status { margin-top: 14px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+      .status.ok { display: block; background: rgba(16, 185, 129, 0.18); border: 1px solid rgba(16, 185, 129, 0.4); color: #d1fae5; }
+      .status.err { display: block; background: rgba(239, 68, 68, 0.18); border: 1px solid rgba(239, 68, 68, 0.4); color: #fee2e2; }
+      footer.legal { text-align: center; margin-top: 30px; font-size: 12px; color: rgba(191, 219, 254, 0.6); }
+      footer.legal p { margin: 4px 0; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="top">
+        <a class="brand" href="/">MYKOAL.COM</a>
+        <h1>Get In Touch &amp; Text Updates</h1>
+        <p class="sub">
+          Direct access to Mykoal DeShazo — and, if you choose, text updates about your mortgage inquiry.
+        </p>
+      </header>
+
+      <div class="card">
+        <form id="optInForm" method="post" action="/api/contact">
+          <input type="hidden" name="source" value="opt-in-page" />
+
+          <div class="row">
+            <label class="field">
+              <span class="lab">First Name</span>
+              <input type="text" name="firstName" placeholder="First name" required />
+            </label>
+            <label class="field">
+              <span class="lab">Last Name</span>
+              <input type="text" name="lastName" placeholder="Last name" required />
+            </label>
+          </div>
+
+          <label class="field">
+            <span class="lab">Email Address</span>
+            <input type="email" name="email" placeholder="you@example.com" required />
+          </label>
+
+          <label class="field">
+            <span class="lab">Phone Number <span class="opt">(optional — required only if you want text updates)</span></span>
+            <input type="tel" name="phone" placeholder="(555) 555-5555" autocomplete="tel" />
+          </label>
+
+          <label class="field">
+            <span class="lab">Loan Type</span>
+            <select name="loanType">
+              <option value="General Inquiry">General Inquiry</option>
+              <option value="Purchase">Purchase</option>
+              <option value="Refinance">Refinance</option>
+              <option value="HELOC">HELOC</option>
+              <option value="Investor/DSCR">Investor / DSCR</option>
+              <option value="VA Loan">VA Loan</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span class="lab">How can Mykoal help you? <span class="opt">(optional)</span></span>
+            <textarea name="message" placeholder="Tell us a bit about what you're looking for"></textarea>
+          </label>
+
+          <!-- Separate, OPTIONAL, UNCHECKED-by-default SMS consent. Not required to submit this form. -->
+          <div class="consent">
+            <input type="checkbox" id="smsOptIn" name="smsOptIn" value="Yes" />
+            <span class="ctext">
+              <strong class="title">Text me (optional)</strong>
+              By checking this box and providing my phone number, I give my express written consent to
+              receive recurring SMS text messages from <strong>DeShazo Wealth LLC d/b/a Mykoal DeShazo</strong>
+              (mortgage services provided through Adaxa Home LLC, NMLS #2380533) about my mortgage inquiry,
+              application status, document requests, appointment reminders, and marketing offers.
+              <strong>You are opting into marketing texts.</strong> Consent is not a condition of any purchase,
+              loan application, or service. Message frequency may vary. Message and data rates may apply.
+              Reply STOP to opt out. Reply HELP for help. Your mobile information will not be sold or shared
+              with third parties for promotional or marketing purposes.
+            </span>
+          </div>
+
+          <div class="privacy-block">
+            <strong>Your privacy:</strong> Your mobile information will not be sold or shared with third
+            parties for promotional or marketing purposes. Text-messaging opt-in data and consent are
+            excluded from all other data-sharing categories and will not be shared with any third party for
+            their own purposes. We only share data with the vendors that deliver our messages (our messaging
+            platform and the wireless carriers), solely to deliver the SMS service to you. Full details are in
+            our <a href="/privacy">Privacy Policy</a> and <a href="/terms-of-use">Terms of Use</a>.
+          </div>
+
+          <button class="submit" type="submit" id="submitBtn">Send Message</button>
+          <div class="status" id="status" role="status" aria-live="polite"></div>
+          <p class="note">
+            Ticking the SMS box is entirely optional and is not required to submit this form.
+          </p>
+        </form>
+      </div>
+
+      <footer class="legal">
+        <p><strong style="color:#fff">Mykoal DeShazo</strong> · Vice President, Senior Loan Officer · NMLS #1912347</p>
+        <p>DeShazo Wealth LLC d/b/a Mykoal DeShazo · Mortgage services via Adaxa Home LLC · NMLS #2380533</p>
+        <p>Equal Housing Opportunity · 16767 N Perimeter Dr, Ste 150, Scottsdale, AZ 85260</p>
+        <p>Phone: <a href="tel:+14802069290">(480) 206-9290</a> · Email: <a href="mailto:mdeshazo@mykoal.com">mdeshazo@mykoal.com</a></p>
+      </footer>
+    </div>
+
+    <script>
+      // Progressive enhancement: submit via fetch as JSON for a smooth, in-page experience.
+      // If JavaScript is disabled, the form still works via a native POST to /api/contact.
+      (function () {
+        var form = document.getElementById("optInForm");
+        var btn = document.getElementById("submitBtn");
+        var status = document.getElementById("status");
+        if (!form) return;
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var fd = new FormData(form);
+          var data = {};
+          fd.forEach(function (v, k) { data[k] = v; });
+          data.smsOptIn = form.querySelector("#smsOptIn").checked ? "Yes" : "No";
+          btn.disabled = true;
+          btn.textContent = "Sending...";
+          status.className = "status";
+          fetch("/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          })
+            .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, j: j }; }); })
+            .then(function (res) {
+              if (res.ok && res.j && res.j.success !== false) {
+                status.className = "status ok";
+                status.textContent = "Thanks! Your message has been sent. Mykoal will be in touch shortly.";
+                form.reset();
+              } else {
+                throw new Error((res.j && res.j.error) || "Something went wrong.");
+              }
+            })
+            .catch(function (err) {
+              status.className = "status err";
+              status.textContent = "Sorry — " + (err.message || "please try calling or emailing directly.");
+            })
+            .finally(function () {
+              btn.disabled = false;
+              btn.textContent = "Send Message";
+            });
+        });
+      })();
+    </script>
+  </body>
+</html>
