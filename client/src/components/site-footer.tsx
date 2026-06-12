@@ -13,6 +13,7 @@ export default function SiteFooter() {
               {[
                 { label: "Home", href: "/" },
                 { label: "About", href: "/about" },
+                { label: "Learn", href: "/learn" },
                 { label: "Blog", href: "/blog" },
                 { label: "FAQ", href: "/faq" },
                 { label: "Contact", href: "/contact" },
