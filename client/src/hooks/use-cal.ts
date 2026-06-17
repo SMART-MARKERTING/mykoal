@@ -1,8 +1,8 @@
 import { useEffect, useCallback } from "react";
 import { getCalApi } from "@calcom/embed-react";
 
-const CAL_LINK = "mykoal-deshazo/consult";
-const CAL_NAMESPACE = "consult";
+const CAL_LINK = "mykoal/15-min-loan-consult-meeting";
+const CAL_NAMESPACE = "15-min-loan-consult-meeting";
 
 export function useCalModal() {
   useEffect(() => {
