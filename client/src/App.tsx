@@ -18,6 +18,7 @@ import DscrLoanRequirementsArizona from "@/pages/learn/dscr-loan-requirements-ar
 import WhenDoesRefinancingMakeSense from "@/pages/learn/when-does-refinancing-make-sense";
 import VaLoanMyths from "@/pages/learn/va-loan-myths";
 import VaCashOutRefinance from "@/pages/learn/va-cash-out-refinance";
+import DebtConsolidation from "@/pages/debt-consolidation";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -33,6 +34,7 @@ function Router() {
       <Route path="/learn/when-does-refinancing-make-sense" component={WhenDoesRefinancingMakeSense} />
       <Route path="/learn/va-loan-myths" component={VaLoanMyths} />
       <Route path="/learn/va-cash-out-refinance" component={VaCashOutRefinance} />
+      <Route path="/debt-consolidation" component={DebtConsolidation} />
       <Route path="/faq" component={FAQ} />
       <Route path="/contact" component={Contact} />
       <Route path="/testimonials" component={Testimonials} />

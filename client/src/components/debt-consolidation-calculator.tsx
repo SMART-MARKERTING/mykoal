@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { calculateMortgage } from "@/lib/mortgage-calculations";
 import { Calculator, TrendingDown, Clock, DollarSign } from "lucide-react";
+import { useCalModal } from "@/hooks/use-cal";
 
 interface Debt {
   id: number;
@@ -134,9 +135,7 @@ export default function DebtConsolidationCalculator({
     setInputs(prev => ({ ...prev, [key]: value }));
   };
 
-  const goToContact = () => {
-    window.open("https://independencehl.com/mykoal-deshazo/", "_blank");
-  };
+  const goToContact = useCalModal();
 
   if (totalDebtBalance === 0) {
     return (

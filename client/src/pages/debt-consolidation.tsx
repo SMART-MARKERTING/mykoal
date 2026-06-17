@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { CheckCircle, ArrowLeft, Calculator, Plus, Trash2, CreditCard, Home, DollarSign } from "lucide-react";
 import { Link } from "wouter";
 import DebtConsolidationCalculator from "@/components/debt-consolidation-calculator";
+import { useCalModal } from "@/hooks/use-cal";
 import equalHousingLogo from "@assets/Equal-Housing-Logo_1751007456918.png";
 import ecoaLogo from "@assets/image_1772497699846.png";
 
@@ -25,9 +26,7 @@ export default function DebtConsolidationPage() {
   ]);
   const [nextId, setNextId] = useState(4);
 
-  const goToContact = () => {
-    window.open("https://independencehl.com/mykoal-deshazo/", "_blank");
-  };
+  const goToContact = useCalModal();
 
   const addDebt = () => {
     const newDebt: Debt = {
