@@ -22,7 +22,7 @@ import {
   type FAQ,
 } from "@/lib/schema";
 import { getRelatedArticles, type CategoryId } from "@/lib/learn-data";
-import { funnelUrl, COMPLIANCE_REVIEW_DATE, type FunnelKey } from "@/lib/site-config";
+import { funnelUrl, type FunnelKey } from "@/lib/site-config";
 import { articleEvent } from "@/lib/analytics";
 
 export interface TocItem {
@@ -138,9 +138,9 @@ export default function ArticleLayout({
             <div className="text-blue-50 text-sm leading-relaxed">{shortAnswer}</div>
           </div>
 
-          {/* Author / reviewer block */}
+          {/* Author block */}
           <div className="mb-6">
-            <AuthorBox dateModified={displayDate} reviewDate={COMPLIANCE_REVIEW_DATE} />
+            <AuthorBox dateModified={displayDate} />
           </div>
 
           {/* Table of contents */}

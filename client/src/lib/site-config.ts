@@ -9,7 +9,6 @@
  * layer. Genuinely-unknown compliance fields are kept as swap-in placeholders:
  *
  *   - VA_DISCLAIMER_TEXT      → fill with compliance-approved VA non-affiliation copy
- *   - COMPLIANCE_REVIEW_DATE  → fill with the date each page was compliance-reviewed
  *
  * No rates, APRs, payments, or fees live in this file by design.
  */
@@ -54,7 +53,6 @@ export const EQUAL_HOUSING_TEXT =
 //  the U.S. Department of Veterans Affairs or any government agency. VA-backed
 //  loan products are subject to VA eligibility and lender underwriting."
 export const VA_DISCLAIMER_TEXT = "{{VA_DISCLAIMER_TEXT}}";
-export const COMPLIANCE_REVIEW_DATE = "{{COMPLIANCE_REVIEW_DATE}}";
 
 // --- smartr8.com funnel destinations (conversion site) ---
 // mykoal.com is the educational source; smartr8.com is the funnel.

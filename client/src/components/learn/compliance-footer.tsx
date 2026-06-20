@@ -7,12 +7,11 @@ import {
   COMPANY_NMLS_ID,
   LICENSED_STATES_ABBR,
   EQUAL_HOUSING_TEXT,
-  COMPLIANCE_REVIEW_DATE,
 } from "@/lib/site-config";
 
 /**
  * Compliance footer for every mortgage-related /learn page. Carries the Equal
- * Housing logo + text, licensing identity, and the compliance-review date.
+ * Housing logo + text and licensing identity.
  * Educational content only — no rates, APRs, fees, or approval guarantees.
  */
 export default function ComplianceFooter() {
@@ -40,8 +39,8 @@ export default function ComplianceFooter() {
         This article is for general educational purposes only and is not financial,
         legal, or tax advice. It is not a commitment to lend, and it does not
         guarantee any loan terms or approval. All loans are subject to a full
-        application review, credit approval, and underwriting. Reviewed for mortgage
-        compliance: {COMPLIANCE_REVIEW_DATE}.
+        application review, credit approval, underwriting, and applicable program
+        requirements.
       </p>
     </div>
   );

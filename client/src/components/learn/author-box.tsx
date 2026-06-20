@@ -1,4 +1,4 @@
-import { Calendar, ShieldCheck } from "lucide-react";
+import { Calendar } from "lucide-react";
 import headshotImage from "@assets/IMG_0016_1751000995747.jpeg";
 import {
   LO_NAME,
@@ -12,15 +12,13 @@ import {
 interface AuthorBoxProps {
   /** Human-readable last-updated date shown on the article. */
   dateModified: string;
-  /** Compliance review date placeholder/value. */
-  reviewDate: string;
 }
 
 /**
  * Author / reviewer block for every article: LO name, NMLS ID, company,
- * service states, and the last-updated + compliance-review dates.
+ * service states, and the last-updated date.
  */
-export default function AuthorBox({ dateModified, reviewDate }: AuthorBoxProps) {
+export default function AuthorBox({ dateModified }: AuthorBoxProps) {
   return (
     <div className="bg-white/10 border border-white/20 rounded-xl p-5">
       <div className="flex items-center gap-3 mb-3">
@@ -45,10 +43,6 @@ export default function AuthorBox({ dateModified, reviewDate }: AuthorBoxProps) 
       <div className="space-y-1 border-t border-white/10 pt-3">
         <p className="text-blue-300/60 text-xs flex items-center gap-1.5">
           <Calendar className="h-3 w-3 flex-shrink-0" /> Last updated: {dateModified}
-        </p>
-        <p className="text-blue-300/60 text-xs flex items-center gap-1.5">
-          <ShieldCheck className="h-3 w-3 flex-shrink-0" /> Reviewed for mortgage
-          compliance: {reviewDate}
         </p>
       </div>
     </div>
