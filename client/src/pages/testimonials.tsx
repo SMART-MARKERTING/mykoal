@@ -2,6 +2,9 @@ import SiteNav from "@/components/site-nav";
 import SiteFooter from "@/components/site-footer";
 import { Star, ExternalLink } from "lucide-react";
 
+const EXPERIENCE_REVIEWS_URL = "https://www.experience.com/reviews/mykoal-deshazo";
+const GOOGLE_REVIEW_URL = "https://g.page/r/CYuMMqoeA88qEAI/review";
+
 const reviews = [
   {
     name: "Amanda R.",
@@ -70,7 +73,7 @@ export default function Testimonials() {
           </div>
           <h1 className="text-3xl font-bold text-white mb-1">Client Reviews</h1>
           <p className="text-[#00b4d8] font-semibold text-base mb-1">4.91 / 5 Stars</p>
-          <p className="text-blue-200/70 text-sm">54+ verified client reviews</p>
+          <p className="text-blue-200/70 text-sm">54+ verified Experience.com reviews</p>
         </div>
 
         {/* Review cards */}
@@ -89,15 +92,25 @@ export default function Testimonials() {
           ))}
         </div>
 
-        {/* Link to all reviews */}
-        <a
-          href="https://www.experience.com/reviews/mykoal-deshazo"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 text-[#00b4d8] hover:text-white text-sm font-medium transition-colors"
-        >
-          View all reviews <ExternalLink className="h-4 w-4" />
-        </a>
+        {/* Review links */}
+        <div className="space-y-3 text-center">
+          <a
+            href={EXPERIENCE_REVIEWS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 text-[#00b4d8] hover:text-white text-sm font-medium transition-colors"
+          >
+            View Experience.com reviews <ExternalLink className="h-4 w-4" />
+          </a>
+          <a
+            href={GOOGLE_REVIEW_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 text-blue-300/70 hover:text-white text-sm font-medium transition-colors"
+          >
+            Leave a Google Review <ExternalLink className="h-4 w-4" />
+          </a>
+        </div>
       </div>
       <SiteFooter />
     </div>

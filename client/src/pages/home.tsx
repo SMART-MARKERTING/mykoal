@@ -37,6 +37,7 @@ const LENDING_PAD_URL =
 const UNYKUE_MARKETING_URL =
   "https://unykue.marketing?utm_source=mykoal&utm_medium=hub&utm_campaign=marketing-seo-sms-imessage";
 const SMARTR8_LEGAL_URL = "https://smartr8.com/legal";
+const GOOGLE_REVIEW_URL = "https://g.page/r/CYuMMqoeA88qEAI/review";
 
 export default function Home() {
   const [showApplyModal, setShowApplyModal] = useState(false);
@@ -253,13 +254,23 @@ export default function Home() {
             Schedule a Call
           </button>
 
-          <a
-            href="/testimonials"
-            className="flex items-center justify-center gap-1.5 text-white/70 hover:text-white transition-colors"
-          >
-            <Star className="h-4 w-4 text-[#D4A857] fill-[#D4A857]" />
-            <span className="text-sm">4.91 / 5 · 54+ Google Reviews</span>
-          </a>
+          <div className="space-y-1.5 text-center">
+            <a
+              href="/testimonials"
+              className="flex items-center justify-center gap-1.5 text-white/70 hover:text-white transition-colors"
+            >
+              <Star className="h-4 w-4 text-[#D4A857] fill-[#D4A857]" />
+              <span className="text-sm">4.91 / 5 · 54+ Experience.com Reviews</span>
+            </a>
+            <a
+              href={GOOGLE_REVIEW_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-blue-300/70 hover:text-white text-xs transition-colors underline"
+            >
+              Leave a Google Review
+            </a>
+          </div>
         </div>
 
         {/* ── Loan Types ── */}
