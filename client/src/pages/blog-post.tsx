@@ -2,11 +2,21 @@ import { Link, useParams } from "wouter";
 import SiteNav from "@/components/site-nav";
 import SiteFooter from "@/components/site-footer";
 import { getPostBySlug } from "@/lib/blog-data";
+import SeoHead from "@/components/seo-head";
+import { getArticleSchema, getBreadcrumbSchema, getFaqPageSchema } from "@/lib/schema";
 import { Calendar, ChevronLeft, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import headshotImage from "@assets/IMG_0016_1751000995747.jpeg";
 import { useCalModal } from "@/hooks/use-cal";
 import { useState } from "react";
+
+function isoDateFromDisplayDate(date: string): string {
+  const parsed = new Date(date);
+  if (Number.isNaN(parsed.getTime())) {
+    return new Date().toISOString().slice(0, 10);
+  }
+  return parsed.toISOString().slice(0, 10);
+}
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
@@ -28,8 +38,33 @@ export default function BlogPost() {
     );
   }
 
+  const path = `/blog/${post.slug}`;
+  const datePublished = post.datePublished ?? isoDateFromDisplayDate(post.date);
+  const dateModified = post.dateModified ?? datePublished;
+  const schemas = [
+    getArticleSchema({
+      path,
+      title: post.title,
+      description: post.excerpt,
+      datePublished,
+      dateModified,
+    }),
+    getFaqPageSchema(post.faqs),
+    getBreadcrumbSchema([
+      { name: "Home", path: "/" },
+      { name: "Blog", path: "/blog" },
+      { name: post.title, path },
+    ]),
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
+      <SeoHead
+        title={`${post.title} | MyKoal`}
+        description={post.excerpt}
+        path={path}
+        schemas={schemas}
+      />
       <SiteNav />
       <div className="container max-w-md mx-auto px-4 pt-24 pb-6">
 
@@ -114,7 +149,7 @@ export default function BlogPost() {
               rel="noopener noreferrer"
               className="text-blue-300/70 hover:text-white underline transition-colors"
             >
-              Apply for HELOC →
+              Apply for HELOC -&gt;
             </a>
             <a
               href="https://smartr8.com/apply/cash-out"
@@ -122,7 +157,7 @@ export default function BlogPost() {
               rel="noopener noreferrer"
               className="text-blue-300/70 hover:text-white underline transition-colors"
             >
-              Cash-Out Refi →
+              Cash-Out Refi -&gt;
             </a>
             <a
               href="https://smartr8.com/apply/rate-reduction"
@@ -130,7 +165,7 @@ export default function BlogPost() {
               rel="noopener noreferrer"
               className="text-blue-300/70 hover:text-white underline transition-colors"
             >
-              Rate Reduction →
+              Rate Reduction -&gt;
             </a>
           </div>
         </div>

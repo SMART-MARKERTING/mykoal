@@ -2,6 +2,8 @@ export interface BlogPost {
   slug: string;
   title: string;
   date: string;
+  datePublished?: string;
+  dateModified?: string;
   excerpt: string;
   content: string[];
   faqs: { question: string; answer: string }[];

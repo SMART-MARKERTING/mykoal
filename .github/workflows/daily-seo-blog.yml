@@ -1,0 +1,81 @@
+name: Daily SEO Blog Draft
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 7:00 AM Arizona/Pacific during daylight saving time. GitHub cron uses UTC.
+    - cron: "0 14 * * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: daily-seo-blog
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-5.5' }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Check required secrets
+        run: |
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "::error::Missing repository secret OPENAI_API_KEY."
+            exit 1
+          fi
+
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate daily blog post
+        run: npm run blog:generate
+
+      - name: Type-check
+        run: npm run check
+
+      - name: Build
+        run: npm run build
+
+      - name: Create draft pull request
+        run: |
+          if git diff --quiet -- client/src/lib/blog-data.ts client/public/sitemap.xml; then
+            echo "No blog changes generated."
+            exit 0
+          fi
+
+          BRANCH="automation/daily-seo-blog-$(date -u +%Y%m%d)-${GITHUB_RUN_ID}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add client/src/lib/blog-data.ts client/public/sitemap.xml
+          git commit -m "Add daily SEO blog draft"
+          git push --set-upstream origin "$BRANCH"
+
+          gh pr create \
+            --draft \
+            --title "Daily SEO blog draft - $(date -u +%Y-%m-%d)" \
+            --body "Automated SEO blog draft generated from the scheduled workflow.
+
+          Review before merging:
+          - Compliance-safe mortgage language
+          - No rate, APR, payment, fee, approval, or savings guarantees
+          - Correct funnel fit and internal linking
+          - Sitemap entry added
+
+          Checks run:
+          - npm run check
+          - npm run build"

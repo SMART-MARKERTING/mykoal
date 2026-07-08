@@ -1,12 +1,30 @@
 import { Link } from "wouter";
 import SiteNav from "@/components/site-nav";
 import SiteFooter from "@/components/site-footer";
+import SeoHead from "@/components/seo-head";
 import { blogPosts } from "@/lib/blog-data";
+import { getBreadcrumbSchema } from "@/lib/schema";
 import { ChevronRight } from "lucide-react";
 
 export default function BlogIndex() {
+  const description =
+    "Mortgage insights from Mykoal DeShazo covering home equity, HELOCs, refinance options, VA loans, and investor financing.";
+  const schemas = [
+    getBreadcrumbSchema([
+      { name: "Home", path: "/" },
+      { name: "Blog", path: "/blog" },
+    ]),
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
+      <SeoHead
+        title="Mortgage Insights | MyKoal"
+        description={description}
+        path="/blog"
+        ogType="website"
+        schemas={schemas}
+      />
       <SiteNav />
       <div className="container max-w-md mx-auto px-4 pt-24 pb-6">
         <div className="text-center mb-10">
