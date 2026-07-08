@@ -14,6 +14,7 @@ import {
   Instagram,
   Youtube,
   FileText,
+  Scale,
   X,
   Home as HomeIcon,
   RefreshCw,
@@ -36,6 +37,7 @@ const LENDING_PAD_URL =
   "https://prod.lendingpad.com/adaxa-home/pos#/?loid=dabbfd28-9b5f-46b8-9029-aa478433a995";
 const UNYKUE_MARKETING_URL =
   "https://unykue.marketing?utm_source=mykoal&utm_medium=hub&utm_campaign=marketing-seo-sms-imessage";
+const SMARTR8_LEGAL_URL = "https://smartr8.com/legal";
 
 export default function Home() {
   const [showApplyModal, setShowApplyModal] = useState(false);
@@ -249,6 +251,23 @@ export default function Home() {
               <span className="min-w-0 text-left">
                 <span className="block text-sm leading-tight">Marketing, SEO, SMS & iMessage</span>
                 <span className="block text-xs font-medium text-white/75">Unykue Marketing</span>
+              </span>
+            </span>
+            <ExternalLink className="h-4 w-4 flex-shrink-0 text-white/75" />
+          </a>
+
+          <a
+            href={SMARTR8_LEGAL_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit Smartr8 Legal for LLCs, wills, trusts, and trademarks"
+            className="w-full flex items-center justify-between gap-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl"
+          >
+            <span className="flex min-w-0 items-center gap-2.5">
+              <Scale className="h-5 w-5 flex-shrink-0" />
+              <span className="min-w-0 text-left">
+                <span className="block text-sm leading-tight">LLCs, Wills, Trusts & Trademarks</span>
+                <span className="block text-xs font-medium text-white/75">Smartr8 Legal</span>
               </span>
             </span>
             <ExternalLink className="h-4 w-4 flex-shrink-0 text-white/75" />
