@@ -143,7 +143,7 @@ export default function Home() {
     },
     {
       title: "Instagram",
-      url: "https://www.instagram.com/themlomykoal?igsh=MW9sejNyZ3FjMjF0NQ%3D%3D&utm_source=qr",
+      url: "https://www.instagram.com/dscrplug?igsh=MW9sejNyZ3FjMjF0NQ%3D%3D&utm_source=qr",
       icon: <Instagram className="h-5 w-5" />,
       color: "bg-pink-600 hover:bg-pink-700",
     },
