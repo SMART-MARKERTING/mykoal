@@ -11,6 +11,38 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "self-employed-mortgage-documentation-preparation-2026",
+    title: "Self-Employed Mortgage Documentation: Tips for Cleaner Income Records",
+    date: "July 9, 2026",
+    datePublished: "2026-07-09",
+    dateModified: "2026-07-09",
+    excerpt:
+      "Learn how self-employed borrowers can better prepare their income documentation for a smoother mortgage application process.",
+    content: [
+      "Navigating the mortgage application process as a self-employed individual can sometimes involve unique documentation requirements. Lenders typically need a clear picture of your consistent income to assess your ability to repay a loan. Preparing your financial records thoroughly and understanding what lenders look for can help streamline your application.",
+      "One key step is to maintain organized business and personal financial accounts. Separating these can make it easier to track income and expenses. Ensure your business structure, whether sole proprietorship, partnership, or corporation, is clearly reflected in your tax filings and financial statements.",
+      "For income verification, lenders often review two years of personal and business tax returns. These should be complete, signed, and include all schedules. If you've recently changed your business structure or experienced significant income fluctuations, be prepared to provide additional explanations and supporting documents.",
+      "Profit and Loss (P&L) statements are also frequently requested, especially if your tax returns are more than a few months old. These statements should accurately reflect your current business performance. Having them prepared professionally and consistently can demonstrate financial stability.",
+      "Bank statements, both personal and business, are another crucial component. Lenders typically look for consistent deposits that align with your declared income. Avoid large, unexplained deposits or frequent transfers between accounts, as these might require further clarification.",
+      "Ultimately, the goal is to present a consistent and verifiable income history. Proactive organization of your financial documents can significantly benefit your mortgage application. Remember that actual options depend on application, underwriting, property, credit, income, and program guidelines.",
+      "If you're a self-employed borrower considering a mortgage, preparing your documentation in advance can help. Mykoal DeShazo, a Vice President and Senior Loan Officer at Adaxa Home LLC, is available to discuss your specific situation and guide you through the process."
+    ],
+    faqs: [
+      {
+        question: "What tax documents do self-employed borrowers typically need for a mortgage?",
+        answer: "Self-employed borrowers generally need to provide two years of complete personal and business tax returns, including all schedules. These documents help lenders verify consistent income.",
+      },
+      {
+        question: "Why are Profit and Loss (P&L) statements important for self-employed mortgage applicants?",
+        answer: "P&L statements provide an updated view of your business's financial performance, especially if your tax returns are not recent. They help demonstrate current income stability to lenders.",
+      },
+      {
+        question: "How can I make my bank statements look 'cleaner' for a mortgage application?",
+        answer: "Maintain separate business and personal accounts, ensure consistent income deposits, and avoid large, unexplained cash deposits or frequent inter-account transfers that may raise questions.",
+      }
+    ],
+  },
+  {
     slug: "va-cash-out-refinance-considerations-2026",
     title: "VA Cash-Out Refinance: When Tapping Home Equity May or May Not Fit",
     date: "July 8, 2026",
