@@ -28,6 +28,37 @@ function isoDateFromDisplayDate(date: string): string {
 function getPrimarySmartr8Link(post: BlogPostData): RelatedResource {
   const text = `${post.title} ${post.excerpt}`.toLowerCase();
 
+  if (
+    text.includes("private money") ||
+    text.includes("hard money") ||
+    text.includes("bridge loan") ||
+    text.includes("blanket loan") ||
+    text.includes("blanket mortgage") ||
+    text.includes("asset based") ||
+    text.includes("asset-based")
+  ) {
+    return {
+      label: "Explore private money and bridge loan options on Smartr8",
+      href: withUtm("https://smartr8.com/hard-money-loans"),
+      external: true,
+    };
+  }
+
+  if (
+    text.includes("non-qm") ||
+    text.includes("non qualified") ||
+    text.includes("bank statement") ||
+    text.includes("foreign national") ||
+    text.includes("p&l") ||
+    text.includes("stated income")
+  ) {
+    return {
+      label: "Compare non-QM and alternative mortgage options on Smartr8",
+      href: withUtm("https://smartr8.com/see-my-options"),
+      external: true,
+    };
+  }
+
   if (text.includes("va ")) {
     return {
       label: "Explore VA loan options on Smartr8",
@@ -64,6 +95,14 @@ function getPrimarySmartr8Link(post: BlogPostData): RelatedResource {
     return {
       label: "Explore refinance options on Smartr8",
       href: funnelUrl("refinance"),
+      external: true,
+    };
+  }
+
+  if (text.includes("fha") || text.includes("usda") || text.includes("affordability")) {
+    return {
+      label: "Explore purchase loan options on Smartr8",
+      href: withUtm("https://smartr8.com/purchase"),
       external: true,
     };
   }

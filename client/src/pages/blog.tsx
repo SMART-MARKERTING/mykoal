@@ -3,12 +3,13 @@ import SiteNav from "@/components/site-nav";
 import SiteFooter from "@/components/site-footer";
 import SeoHead from "@/components/seo-head";
 import { blogPosts } from "@/lib/blog-data";
+import { seoKeywordClusters } from "@/lib/seo-keywords";
 import { getBreadcrumbSchema } from "@/lib/schema";
 import { ChevronRight } from "lucide-react";
 
 export default function BlogIndex() {
   const description =
-    "Mortgage insights from Mykoal DeShazo covering home equity, HELOCs, refinance options, VA loans, and investor financing.";
+    "Mortgage insights from Mykoal DeShazo covering HELOCs, VA loan calculators, DSCR investor loans, non-QM and bank statement mortgages, private money, bridge loans, and refinance planning.";
   const schemas = [
     getBreadcrumbSchema([
       { name: "Home", path: "/" },
@@ -30,7 +31,7 @@ export default function BlogIndex() {
         <div className="text-center mb-10">
           <h1 className="text-3xl font-bold text-white mb-2">Mortgage Insights</h1>
           <p className="text-blue-200/70 text-sm">
-            Straight talk on home loans from Mykoal DeShazo, NMLS #1912347
+            Straight talk on home loans, HELOCs, DSCR, non-QM, VA, and investor financing from Mykoal DeShazo, NMLS #1912347
           </p>
         </div>
 
@@ -52,6 +53,47 @@ export default function BlogIndex() {
             </Link>
           ))}
         </div>
+
+        <section className="mt-10">
+          <h2 className="text-white text-xl font-bold text-center mb-2">Popular Mortgage Topics</h2>
+          <p className="text-blue-200/60 text-sm text-center mb-5">
+            Browse high-interest mortgage questions organized into plain-English guides.
+          </p>
+          <div className="space-y-3">
+            {seoKeywordClusters.map((cluster) => {
+              const content = (
+                <div className="bg-white/10 hover:bg-white/15 border border-white/20 hover:border-white/30 rounded-xl p-4 transition-all group">
+                  <h3 className="text-white font-bold text-sm mb-1 group-hover:text-[#00b4d8] transition-colors">
+                    {cluster.title}
+                  </h3>
+                  <p className="text-blue-200/70 text-xs leading-relaxed mb-3">
+                    {cluster.description}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {cluster.keywords.map((keyword) => (
+                      <span
+                        key={keyword}
+                        className="rounded-full border border-white/15 bg-white/5 px-2 py-1 text-[10px] leading-none text-blue-100/70"
+                      >
+                        {keyword}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              );
+
+              if (cluster.path) {
+                return (
+                  <Link key={cluster.id} href={cluster.path}>
+                    {content}
+                  </Link>
+                );
+              }
+
+              return <div key={cluster.id}>{content}</div>;
+            })}
+          </div>
+        </section>
       </div>
       <SiteFooter />
     </div>

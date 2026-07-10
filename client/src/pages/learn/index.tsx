@@ -15,11 +15,13 @@ import { track } from "@/lib/analytics";
 
 const TITLE = "Learn: Mortgage Education Hub | MyKoal";
 const DESCRIPTION =
-  "Plain-English mortgage education from a licensed loan officer — HELOCs and home equity, VA loans, DSCR investor loans, refinancing, FHA, and conventional financing.";
+  "Plain-English mortgage education from a licensed loan officer covering HELOCs, VA loan calculators, DSCR investor loans, non-QM bank statement mortgages, private money, bridge loans, FHA, USDA, and refinance planning.";
 
 const CALCULATOR_LINKS = [
   { label: "Debt Consolidation Calculator", href: "/debt-consolidation", external: false },
-  { label: "Mortgage Payment Calculator", href: "/#calculator", external: false },
+  { label: "Mortgage Payment & Affordability Calculator", href: "/#calculator", external: false },
+  { label: "VA Loan Payment Calculator Topics", href: "/learn/va-cash-out-refinance", external: false },
+  { label: "Mortgage Payoff Calculator Topics", href: "/blog", external: false },
 ];
 
 export default function LearnHub() {
@@ -50,8 +52,8 @@ export default function LearnHub() {
           <h1 className="text-3xl font-bold text-white mb-3">Mortgage Learning Hub</h1>
           <p className="text-blue-200/70 text-sm leading-relaxed max-w-xl mx-auto">
             Straight, borrower-first answers to the mortgage questions people actually
-            ask — written and reviewed by a licensed loan officer. Start with a topic
-            below.
+            ask, including DSCR loans, HELOCs, bank statement mortgages, private money,
+            VA loan requirements, and mortgage calculator topics. Start with a topic below.
           </p>
         </div>
 

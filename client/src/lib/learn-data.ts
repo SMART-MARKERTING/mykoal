@@ -22,9 +22,15 @@ export type CategoryId =
   | "heloc"
   | "va"
   | "dscr"
+  | "non-qm"
+  | "private-money"
+  | "foreign-national"
+  | "bridge-blanket"
   | "cash-out"
   | "rate-term"
   | "fha"
+  | "usda"
+  | "mortgage-tax"
   | "conventional"
   | "calculators";
 
@@ -99,9 +105,37 @@ export const learnCategories: LearnCategory[] = [
     id: "dscr",
     name: "DSCR & Investor Loans",
     description:
-      "Financing that qualifies on the property's cash flow, built for real estate investors.",
+      "DSCR rental loans, DSCR mortgage loans, investor cash-out, and financing that qualifies on the property's cash flow.",
     focus: true,
     articleSlugs: ["dscr-loan-requirements-arizona"],
+  },
+  {
+    id: "non-qm",
+    name: "Non-QM & Bank Statement Mortgages",
+    description:
+      "Non-qualified mortgage lenders, bank statement mortgage loans, stated income loans, and P&L loan documentation.",
+    articleSlugs: [],
+  },
+  {
+    id: "private-money",
+    name: "Private Money & Hard Money Loans",
+    description:
+      "Private money lenders, hard money loans, asset-based real estate loans, and short-term investor financing.",
+    articleSlugs: [],
+  },
+  {
+    id: "foreign-national",
+    name: "Foreign National & Asset-Based Loans",
+    description:
+      "Foreign national loans, non-US citizen home loan questions, asset-based mortgages, and portfolio scenarios.",
+    articleSlugs: [],
+  },
+  {
+    id: "bridge-blanket",
+    name: "Bridge, Blanket & Portfolio Loans",
+    description:
+      "Blanket loans, blanket mortgages, bridge loans, swing loans, and real estate portfolio financing.",
+    articleSlugs: [],
   },
   {
     id: "cash-out",
@@ -125,6 +159,13 @@ export const learnCategories: LearnCategory[] = [
     articleSlugs: [],
   },
   {
+    id: "usda",
+    name: "USDA Loans",
+    description:
+      "USDA lenders, rural housing program basics, USDA property eligibility, and government-backed home loan questions.",
+    articleSlugs: [],
+  },
+  {
     id: "conventional",
     name: "Conventional & First-Time Buyers",
     description:
@@ -132,10 +173,17 @@ export const learnCategories: LearnCategory[] = [
     articleSlugs: [],
   },
   {
+    id: "mortgage-tax",
+    name: "Mortgage Tax & Closing Basics",
+    description:
+      "APR vs. interest rate, SALT tax deduction basics, capital gains on real estate, cost segregation, and wet funding states.",
+    articleSlugs: [],
+  },
+  {
     id: "calculators",
     name: "Mortgage Calculators",
     description:
-      "Run the numbers on payments, equity, and break-even before you talk to anyone.",
+      "VA loan calculator, mortgage payoff calculator, affordability calculator, and home loan approval calculator topics.",
     articleSlugs: [],
   },
 ];
