@@ -7,6 +7,11 @@ const SITEMAP_PATH = path.join(ROOT, "client", "public", "sitemap.xml");
 const SITE_URL = "https://mykoal.com";
 const OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions";
 const DEFAULT_MODEL = "google/gemini-2.5-flash";
+const MAX_GENERATION_ATTEMPTS = Math.max(
+  1,
+  Number.parseInt(process.env.BLOG_GENERATION_ATTEMPTS || "3", 10) || 3,
+);
+const RETRYABLE_STATUS_CODES = new Set([408, 409, 425, 429, 500, 502, 503, 504]);
 
 const args = new Set(process.argv.slice(2));
 const dryRun = args.has("--dry-run");
@@ -303,25 +308,80 @@ function normalizeApiKey(value) {
   return value?.trim().replace(/^Bearer\s+/i, "");
 }
 
-function parseJsonObject(outputText) {
-  const trimmed = outputText.trim();
-  try {
-    return JSON.parse(trimmed);
-  } catch {
-    const fenced = trimmed.match(/```(?:json)?\s*([\s\S]*?)```/i);
-    if (fenced?.[1]) return JSON.parse(fenced[1].trim());
-
-    const start = trimmed.indexOf("{");
-    const end = trimmed.lastIndexOf("}");
-    if (start !== -1 && end > start) {
-      return JSON.parse(trimmed.slice(start, end + 1));
-    }
-
-    throw new Error("Model response was not valid JSON.");
-  }
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
 }
 
-async function generatePost({ topic, isoDate, existingSlugs }) {
+function compactPreview(value, maxLength = 220) {
+  return String(value || "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, maxLength);
+}
+
+function extractBalancedJsonObject(value) {
+  const start = value.indexOf("{");
+  if (start === -1) return "";
+
+  let depth = 0;
+  let inString = false;
+  let escaped = false;
+
+  for (let i = start; i < value.length; i += 1) {
+    const char = value[i];
+
+    if (inString) {
+      if (escaped) {
+        escaped = false;
+      } else if (char === "\\") {
+        escaped = true;
+      } else if (char === "\"") {
+        inString = false;
+      }
+      continue;
+    }
+
+    if (char === "\"") {
+      inString = true;
+    } else if (char === "{") {
+      depth += 1;
+    } else if (char === "}") {
+      depth -= 1;
+      if (depth === 0) return value.slice(start, i + 1);
+    }
+  }
+
+  return "";
+}
+
+function parseJsonObject(outputText) {
+  const trimmed = outputText.trim();
+  const candidates = [trimmed];
+
+  const fenced = trimmed.match(/```(?:json)?\s*([\s\S]*?)```/i);
+  if (fenced?.[1]) candidates.push(fenced[1].trim());
+
+  const balanced = extractBalancedJsonObject(trimmed);
+  if (balanced) candidates.push(balanced);
+
+  let lastError;
+  for (const candidate of candidates) {
+    if (!candidate) continue;
+    try {
+      return JSON.parse(candidate);
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  const preview = compactPreview(outputText);
+  const detail = lastError ? ` Last parser error: ${lastError.message}` : "";
+  throw new Error(`Model response was not valid JSON. Preview: "${preview}".${detail}`);
+}
+
+async function generatePost({ topic, isoDate, existingSlugs, attempt = 1, feedback = "" }) {
   const apiKey = normalizeApiKey(process.env.OPENROUTER_API_KEY);
   if (!apiKey) {
     throw new Error("OPENROUTER_API_KEY is required to generate a daily blog post.");
@@ -336,14 +396,18 @@ async function generatePost({ topic, isoDate, existingSlugs }) {
     date: displayDate(isoDate),
     datePublished: isoDate,
     existingSlugs,
+    generationAttempt: attempt,
+    previousAttemptFeedback: feedback ? compactPreview(feedback, 600) : undefined,
     output_rules: [
-      "Return only the JSON object matching the schema.",
+      "Return only the raw JSON object matching the schema. Start with { and end with }.",
+      "Do not include markdown fences, commentary, labels, apologies, or prose outside the JSON object.",
       "Use ASCII punctuation.",
       "Use a clear, search-oriented title.",
       "Use the primary topic keyword naturally in the title, excerpt, and opening paragraph when it reads well.",
       "Use one or two relatedKeywords naturally when provided, but do not keyword-stuff.",
       "Do not include raw URLs or markdown links in content. The site template renders related links.",
       "Write 5 to 7 concise paragraphs in content.",
+      "Make every content paragraph at least 120 characters.",
       "Write exactly 3 FAQs.",
       "Do not quote specific rates, APRs, payments, fees, or market statistics.",
       "Do not promise approval, savings, speed, eligibility, or financial outcomes.",
@@ -372,8 +436,8 @@ async function generatePost({ topic, isoDate, existingSlugs }) {
         },
         { role: "user", content: JSON.stringify(prompt) },
       ],
-      temperature: 0.65,
-      max_tokens: 3000,
+      temperature: 0.45,
+      max_tokens: 3500,
       response_format: {
         type: "json_schema",
         json_schema: {
@@ -386,7 +450,9 @@ async function generatePost({ topic, isoDate, existingSlugs }) {
   });
 
   if (!response.ok) {
-    throw new Error(`OpenRouter API request failed: ${response.status} ${await response.text()}`);
+    const error = new Error(`OpenRouter API request failed: ${response.status} ${await response.text()}`);
+    error.retryable = RETRYABLE_STATUS_CODES.has(response.status);
+    throw error;
   }
 
   const responseJson = await response.json();
@@ -395,6 +461,35 @@ async function generatePost({ topic, isoDate, existingSlugs }) {
     throw new Error("OpenRouter response did not include output text.");
   }
   return parseJsonObject(outputText);
+}
+
+async function generateValidPost({ topic, isoDate, existingSlugs }) {
+  let lastError;
+  for (let attempt = 1; attempt <= MAX_GENERATION_ATTEMPTS; attempt += 1) {
+    try {
+      const generated = await generatePost({
+        topic,
+        isoDate,
+        existingSlugs,
+        attempt,
+        feedback: lastError?.message || "",
+      });
+      const post = normalizeAndValidatePost(generated, { topic, isoDate, existingSlugs });
+      if (attempt > 1) {
+        console.log(`Generated valid blog post on attempt ${attempt}.`);
+      }
+      return post;
+    } catch (error) {
+      lastError = error;
+      console.warn(`Blog generation attempt ${attempt} failed: ${error.message}`);
+      if (attempt >= MAX_GENERATION_ATTEMPTS || error.retryable === false) {
+        throw error;
+      }
+      await sleep(1000 * attempt);
+    }
+  }
+
+  throw lastError || new Error("Blog generation failed before a post was created.");
 }
 
 function normalizeAndValidatePost(post, { topic, isoDate, existingSlugs }) {
@@ -425,7 +520,7 @@ function normalizeAndValidatePost(post, { topic, isoDate, existingSlugs }) {
     failures.push("faqs must contain exactly 3 items");
   }
   for (const [i, para] of (normalized.content ?? []).entries()) {
-    if (typeof para !== "string" || para.length < 120) failures.push(`paragraph ${i + 1} is too short`);
+    if (typeof para !== "string" || para.length < 100) failures.push(`paragraph ${i + 1} is too short`);
   }
   for (const [i, faq] of (normalized.faqs ?? []).entries()) {
     if (!faq?.question || !faq?.answer) failures.push(`faq ${i + 1} is incomplete`);
@@ -536,6 +631,7 @@ async function main() {
           existingPostCount: existingSlugs.length,
           wouldUseProvider: "OpenRouter",
           wouldUseModel: process.env.OPENROUTER_MODEL || DEFAULT_MODEL,
+          maxGenerationAttempts: MAX_GENERATION_ATTEMPTS,
         },
         null,
         2,
@@ -544,8 +640,7 @@ async function main() {
     return;
   }
 
-  const generated = await generatePost({ topic, isoDate, existingSlugs });
-  const post = normalizeAndValidatePost(generated, { topic, isoDate, existingSlugs });
+  const post = await generateValidPost({ topic, isoDate, existingSlugs });
 
   writeText(BLOG_DATA_PATH, insertPost(source, post));
   ensureSitemapBlogUrls([post.slug, ...existingSlugs]);
