@@ -11,6 +11,37 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "preparing-for-foreign-national-loans-what-non-us-citizens-need-to-know-2026-07-16",
+    title: "Preparing for Foreign National Loans: What Non-US Citizens Need to Know",
+    date: "2026-07-16",
+    datePublished: "2026-07-16",
+    dateModified: "2026-07-16",
+    excerpt:
+      "If you're a non-US citizen looking to purchase real estate in the United States, understanding the requirements for foreign national loans is crucial. This guide helps international real estate buyers prepare for the application process.",
+    content: [
+      "Navigating the US mortgage market as a non-US citizen can seem complex, but with proper preparation, securing a foreign national mortgage loan is achievable. These specialized loan programs are designed for individuals who do not hold US citizenship or permanent residency but wish to invest in American real estate. Understanding the unique documentation and eligibility criteria beforehand can streamline your application process significantly.",
+      "One of the primary steps for international real estate buyers is to gather comprehensive financial documentation. This often includes proof of income from your home country, which may require translation and notarization. Lenders will typically want to see a consistent employment history and verifiable income sources to assess your ability to repay the loan. Be prepared to provide bank statements, tax returns, and employment verification letters from your country of origin.",
+      "Credit history is another vital component for foreign national loans. While you may not have a US credit score, some lenders may accept alternative credit documentation, such as letters from international banks or utility payment histories. It's important to discuss these options with your loan officer early in the process. Demonstrating a strong financial track record, even without a traditional US credit report, can strengthen your application.",
+      "Expect higher down payment requirements for foreign nationals mortgage programs compared to conventional loans for US citizens. Lenders often mitigate perceived risk by requiring a larger equity stake upfront. Additionally, you should anticipate needing reserves, which are funds held in accessible accounts after closing, to cover a certain number of months of mortgage payments. These requirements can vary based on the specific loan program and your financial profile.",
+      "Finally, understanding the legal and immigration status requirements is paramount. While you don't need to be a US citizen, you will typically need a valid passport, a US visa that permits your stay, and potentially an Individual Taxpayer Identification Number (ITIN) if you do not have a Social Security Number. The specific type of visa can influence eligibility, so it's wise to confirm these details with your loan officer and, if necessary, consult with an immigration attorney.",
+      "Preparing these documents and understanding these expectations in advance will help ensure a smoother application experience for your home loan for non US citizen. Mykoal DeShazo, a Vice President and Senior Loan Officer at Adaxa Home LLC, is experienced in guiding borrowers through these specialized processes. Remember that actual options depend on your specific application, underwriting, property, credit, income, and program guidelines."
+    ],
+    faqs: [
+      {
+        question: "What is a foreign national loan?",
+        answer: "A foreign national loan is a mortgage program designed for individuals who are not US citizens or permanent residents but wish to purchase real estate in the United States. These loans have specific requirements tailored to international borrowers.",
+      },
+      {
+        question: "Do I need a US credit score for a foreign national mortgage?",
+        answer: "While a US credit score is beneficial, some lenders offering foreign national loans may accept alternative forms of credit documentation, such as international bank letters or rental payment histories, to assess your creditworthiness.",
+      },
+      {
+        question: "What kind of visa do I need to qualify for a foreign national loan?",
+        answer: "The specific visa requirements can vary by lender and loan program. Generally, you will need a valid US visa that permits your stay in the country. It's best to discuss your specific visa type with your loan officer to confirm eligibility.",
+      }
+    ],
+  },
+  {
     slug: "private-money-lenders-vs-traditional-mortgages-for-investors-2026-07-14",
     title: "Private Money Lenders vs. Traditional Mortgages for Real Estate Investors",
     date: "2026-07-14",
