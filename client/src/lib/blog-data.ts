@@ -11,6 +11,38 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "non-qualified-mortgage-lenders-for-self-employed-2026-07-17",
+    title: "Understanding Non-Qualified Mortgage Lenders for Self-Employed Borrowers",
+    date: "July 17, 2026",
+    datePublished: "2026-07-17",
+    dateModified: "2026-07-17",
+    excerpt:
+      "For self-employed individuals and those with non-traditional income, non-qualified mortgage lenders can offer flexible financing solutions. Learn how bank statement loans and P&L documentation can help you secure a mortgage.",
+    content: [
+      "Navigating the mortgage landscape as a self-employed individual or someone with a non-traditional income stream can sometimes present unique challenges. Traditional mortgage lenders often rely heavily on W-2s and standard pay stubs, which may not fully capture the financial picture of many entrepreneurs. This is where understanding non-qualified mortgage lenders and their specialized loan products becomes particularly valuable.",
+      "A non-qualified mortgage (non-QM) loan is a type of home loan that does not meet the specific underwriting standards set by government-sponsored enterprises like Fannie Mae and Freddie Mac. While this might sound complex, it essentially means that non-QM mortgage lenders have more flexibility in how they assess a borrower's ability to repay, opening doors for those who don't fit the conventional mold.",
+      "One of the most popular non-QM options for self-employed borrowers is the bank statement mortgage. Instead of tax returns, these loans allow you to qualify based on your business or personal bank deposits over a specified period, typically 12 or 24 months. This approach can be beneficial if your tax returns show numerous deductions that reduce your reported taxable income, making it appear lower than your actual cash flow.",
+      "Another relevant option for business owners is a Profit & Loss (P&L) loan. With a P&L loan, lenders evaluate your business's financial health and income using prepared profit and loss statements, often alongside bank statements. This can be particularly useful for newer businesses or those with complex financial structures, providing a more direct look at the business's profitability and consistent revenue.",
+      "It's important to differentiate non-QM loans from what were sometimes called 'stated income loans' in the past. While some non-QM programs might offer reduced documentation, current regulations require lenders to make a reasonable and good-faith determination of a borrower's ability to repay the loan. This means that while the documentation type may differ, a thorough assessment of your financial standing is still conducted.",
+      "Exploring options with non-qualified mortgage lenders can be a strategic move for self-employed individuals, real estate investors, or those with unique income profiles. These programs are designed to accommodate a broader range of financial situations, potentially allowing you to achieve your homeownership or investment goals when traditional routes prove difficult. Your specific situation will determine which loan product might be the best fit.",
+      "When considering a non-QM loan, it's always advisable to consult with an experienced loan officer who understands these specialized products. They can help you evaluate your income documentation, assess your eligibility, and guide you through the application process. Actual loan options depend on a comprehensive review of your application, credit history, property details, and current program guidelines."
+    ],
+    faqs: [
+      {
+        question: "What is a non-qualified mortgage (non-QM) loan?",
+        answer: "A non-qualified mortgage (non-QM) loan is a type of home loan that does not adhere to the strict underwriting guidelines of conventional mortgages backed by government-sponsored enterprises. This flexibility allows lenders to consider alternative documentation and income verification methods for borrowers who may not fit traditional criteria.",
+      },
+      {
+        question: "How do bank statement loans work for self-employed borrowers?",
+        answer: "Bank statement loans allow self-employed individuals to qualify for a mortgage using their business or personal bank deposits as proof of income, typically over a 12 or 24-month period. This method can be advantageous if your tax returns show significant deductions that reduce your reported taxable income.",
+      },
+      {
+        question: "Are non-QM loans the same as 'stated income loans'?",
+        answer: "While some non-QM programs may involve alternative income documentation, they are not the same as the 'stated income loans' of the past. Current regulations require non-QM lenders to make a reasonable and good-faith assessment of a borrower's ability to repay the loan, even if that assessment uses non-traditional documentation like bank statements or P&L reports.",
+      }
+    ],
+  },
+  {
     slug: "preparing-for-foreign-national-loans-what-non-us-citizens-need-to-know-2026-07-16",
     title: "Preparing for Foreign National Loans: What Non-US Citizens Need to Know",
     date: "2026-07-16",
