@@ -11,6 +11,37 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "understanding-usda-loan-eligibility-before-comparing-lenders-2026-07-23",
+    title: "Understanding USDA Loan Eligibility Before Comparing Lenders",
+    date: "July 23, 2026",
+    datePublished: "2026-07-23",
+    dateModified: "2026-07-23",
+    excerpt:
+      "Exploring USDA loan options can be a great path to homeownership, especially for those in eligible rural and suburban areas. Before you dive into comparing USDA lenders, it's crucial to understand the program's specific eligibility requirements for both borrowers and properties. This foundational knowledge will help you navigate the process more effectively and identify suitable financing options.",
+    content: [
+      "A USDA home loan, backed by the U.S. Department of Agriculture, is designed to help low-to-moderate income individuals and families purchase homes in designated rural areas. These loans often feature attractive terms, such as no down payment requirements for eligible borrowers, making them a popular choice for those who qualify. Understanding what a USDA home loan entails is the first step toward determining if it aligns with your homeownership goals.",
+      "One of the primary considerations for a USDA loan is property eligibility. Not all properties, even those outside major metropolitan areas, will qualify. The USDA maintains specific maps that define eligible rural and suburban areas. It's essential to check if the property you are interested in, or the general area you plan to buy in, falls within these designated zones. For example, potential homebuyers in Oregon or Connecticut considering USDA loans should verify property eligibility for their specific locations.",
+      "Beyond property location, borrower income limits are a critical component of USDA loan eligibility. The USDA sets maximum income thresholds based on the household size and the county where the property is located. These limits are designed to ensure the program serves its intended purpose of assisting lower and moderate-income families. Your household's total adjusted gross income must not exceed these established limits.",
+      "Creditworthiness is another vital factor for USDA loan approval. While USDA loans are known for being more flexible than some conventional options, lenders will still evaluate your credit history and score to assess your ability to manage debt responsibly. Demonstrating a consistent payment history and a reasonable debt-to-income ratio can significantly strengthen your application when you approach USDA lenders.",
+      "When you're ready to explore your options, working with a knowledgeable loan officer who understands the nuances of USDA loans can be invaluable. They can help you pre-qualify, verify property eligibility, and guide you through the income calculation process. This proactive approach ensures you are well-prepared before formally applying and comparing offers from various lenders.",
+      "Remember that actual loan options, terms, and eligibility depend on a comprehensive review of your application, credit, income, and the specific property. Program guidelines can also evolve, so consulting with a mortgage professional is always recommended to get the most current information tailored to your situation."
+    ],
+    faqs: [
+      {
+        question: "What is the main purpose of a USDA home loan?",
+        answer: "The main purpose of a USDA home loan is to help low-to-moderate income individuals and families purchase homes in eligible rural and suburban areas, often with no down payment requirement, to promote rural development and homeownership.",
+      },
+      {
+        question: "How do I check if a property is eligible for a USDA loan?",
+        answer: "You can check if a property is eligible for a USDA loan by using the USDA's official property eligibility maps, which outline the designated rural and suburban areas. A qualified loan officer can also assist you in verifying a specific address.",
+      },
+      {
+        question: "Are there income limits for USDA loans?",
+        answer: "Yes, there are income limits for USDA loans. These limits are based on your household size and the county where the property is located, and your total adjusted gross income must not exceed these established thresholds to qualify for the program.",
+      }
+    ],
+  },
+  {
     slug: "apr-vs-interest-rate-understanding-your-loan-estimate-2026-07-22",
     title: "APR vs. Interest Rate: Understanding Your Loan Estimate",
     date: "July 22, 2026",
