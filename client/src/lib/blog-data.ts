@@ -11,6 +11,36 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "navigating-capital-gains-tax-on-real-estate-sales-2026-07-24",
+    title: "Navigating Capital Gains Tax on Real Estate Sales: Planning Considerations",
+    date: "July 24, 2026",
+    datePublished: "2026-07-24",
+    dateModified: "2026-07-24",
+    excerpt:
+      "Understanding potential capital gains tax on real estate sales is crucial for homeowners and investors. This article explores key planning questions to discuss with a tax professional before selling property.",
+    content: [
+      "When you're considering selling a property, whether it's your primary residence or an investment, one significant financial aspect to prepare for is capital gains tax on real estate. This tax applies to the profit you make from the sale, and the amount you might owe can vary based on several factors. Proactive planning with a qualified tax professional can help you understand your potential obligations and explore strategies well before you list your property.",
+      "For homeowners, the primary residence exclusion is a key consideration. If you've lived in the home for at least two of the five years leading up to the sale, you might be able to exclude a significant portion of your capital gain from taxation. The exact exclusion amount depends on your filing status. Understanding how this exclusion works and if you qualify is a foundational step in assessing your tax liability.",
+      "Investors, on the other hand, often face different considerations. The capital gains tax on home sale for an investment property can be more complex, potentially involving depreciation recapture in addition to the capital gain itself. Exploring options like a 1031 exchange, which allows you to defer capital gains by reinvesting sale proceeds into a similar property, could be a valuable strategy to discuss with your tax advisor.",
+      "Beyond the federal capital gains tax, state and local taxes can also play a role. Some states have their own capital gains taxes, and understanding the impact of these, along with potential deductions like the SALT tax deduction (State and Local Tax), is important for a comprehensive financial picture. Your tax professional can provide guidance tailored to your specific location and situation.",
+      "Before finalizing any sale, it is always recommended to consult with a qualified tax professional. They can help you calculate potential capital gains, identify applicable exclusions or deferral strategies, and ensure you are making informed decisions. This proactive approach can help you navigate the complexities of real estate transactions and their tax implications effectively."
+    ],
+    faqs: [
+      {
+        question: "What is capital gains tax on real estate?",
+        answer: "Capital gains tax on real estate is a tax levied on the profit you make from selling a property. The amount of tax you owe depends on factors like how long you owned the property, whether it was your primary residence or an investment, and your income level.",
+      },
+      {
+        question: "How is the capital gains tax on a home sale calculated?",
+        answer: "The capital gains tax on a home sale is generally calculated on the difference between the sale price and your adjusted cost basis (what you paid for the home plus certain improvements, minus depreciation if it was an investment property). Various exclusions and deductions may apply, which is why consulting a tax professional is recommended.",
+      },
+      {
+        question: "Can I avoid paying capital gains tax when selling my home?",
+        answer: "You may be able to exclude a significant portion of your capital gain from taxation if the property was your primary residence and you meet specific ownership and use tests. For investment properties, strategies like a 1031 exchange might allow for tax deferral. Eligibility and specific outcomes depend on individual circumstances and should be discussed with a tax professional.",
+      }
+    ],
+  },
+  {
     slug: "understanding-usda-loan-eligibility-before-comparing-lenders-2026-07-23",
     title: "Understanding USDA Loan Eligibility Before Comparing Lenders",
     date: "July 23, 2026",
